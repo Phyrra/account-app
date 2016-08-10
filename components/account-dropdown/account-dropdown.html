@@ -1,0 +1,14 @@
+<div class="account-dropdown">
+	<div class="account-dropdown-display" ng-click="accountDropdownCtrl.onFoldoutToggle()">
+		{{ accountDropdownCtrl.model.name }}
+		
+		<div class="account-dropdown-toggle">
+			<i class="fa" ng-class="{ 'fa-chevron-down': !accountDropdownCtrl.showFoldout, 'fa-chevron-left': accountDropdownCtrl.showFoldout }"></i>
+		</div>
+	</div>
+	<div class="account-dropdown-foldout" ng-show="accountDropdownCtrl.showFoldout">
+		<div class="account-dropdown-item" ng-repeat="account in accountDropdownCtrl.accounts" ng-click="accountDropdownCtrl.onAccountSelected(account)">
+			{{ account.name }}
+		</div>
+	</div>
+</div>

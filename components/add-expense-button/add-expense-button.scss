@@ -1,0 +1,23 @@
+@import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+@import 'scss/z-order.scss';
+
+.add-expense-button {
+    position: absolute;
+    right: $default-padding;
+    bottom: $default-padding;
+
+    width: $button-size;
+    height: $button-size;
+    border-radius: $button-size;
+
+    line-height: $button-size;
+
+    background-color: $dark-blue;
+    color: $white;
+
+    font-size: $button-font-size;
+
+    text-align: center;
+    vertical-align: middle;
+}

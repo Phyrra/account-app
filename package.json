@@ -1,0 +1,19 @@
+{
+  "name": "AccountApp",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.5.3",
+    "browser-sync": "^2.9.8",
+    "gulp": "^3.9.0",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-sass": "^2.0.4"
+  },
+  "scripts": {
+    "install": "bower --config.interactive=false install && gulp sass"
+  },
+  "author": "Sandro Maggi",
+  "license": "MIT"
+}

@@ -1,0 +1,21 @@
+<div class="expense-item">
+	<div class="expense-item-background">
+		<div>
+			<i class="fa fa-times"></i>
+			Delete
+		</div>
+	</div>
+	<div class="expense-item-body" on-swipe-right="expenseItemCtrl.accountCtrl.deleteExpense(expenseItemCtrl.model)">
+		<div class="expense-item-title">
+			{{ expenseItemCtrl.model.description }}
+
+			<div class="expense-item-toggle" ng-click="expenseItemCtrl.toggleDetail()">
+				<i class="fa" ng-class="{ 'fa-plus': !expenseItemCtrl.showDetail, 'fa-minus': expenseItemCtrl.showDetail }"></i>
+			</div>
+		</div>
+
+		<div class="expense-item-detail" ng-show="expenseItemCtrl.showDetail">
+			{{ expenseItemCtrl.model.amount }} CHF
+		</div>
+	</div>
+</div>

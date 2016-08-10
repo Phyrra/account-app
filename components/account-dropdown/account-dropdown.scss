@@ -1,0 +1,46 @@
+@import 'scss/dimensions.scss';
+@import 'scss/z-order.scss';
+@import 'scss/colors.scss';
+
+.account-dropdown {
+	position: relative;
+	
+	.account-dropdown-display {
+		border-radius: $border-radius $border-radius 0 0;
+		padding: $default-padding;
+
+		height: 100%;
+		
+		cursor: pointer;
+		
+		.account-dropdown-toggle {
+			float: right;
+		}
+	}
+
+	.account-dropdown-foldout {
+		position: absolute;
+		left: 0;
+		right: 0;
+		
+		background-color: $light-blue;
+		color: $white;
+		border-radius: 0 0 $border-radius $border-radius;
+		
+		.account-dropdown-item {
+			padding: $default-padding;
+
+			font-size: $dropdown-item-size;
+
+			cursor: pointer;
+			
+			&:hover {
+				background-color: $middle-blue;
+			}
+			
+			&:last-child {
+				border-radius: 0 0 $border-radius $border-radius;
+			}
+		}
+	}
+}

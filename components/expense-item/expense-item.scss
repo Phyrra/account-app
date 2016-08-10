@@ -1,0 +1,68 @@
+@import 'scss/z-order.scss';
+@import 'scss/colors.scss';
+@import 'scss/dimensions.scss';
+
+expense-item {
+    &:nth-child(odd) .expense-item-body {
+        background-color: $light-grey;
+    }
+
+    &:nth-child(even) .expense-item-body {
+        background-color: $middle-grey;
+    }
+
+    &:last-child {
+        .expense-item-background,
+        .expense-item-body {
+            border-radius: 0 0 $border-radius $border-radius;
+        }
+    }
+}
+
+.expense-item {
+    position: relative;
+    width: 100%;
+
+    .expense-item-background {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 100%;
+
+        -webkit-user-select: none;
+
+        background-color: $lighter-grey;
+        color: $middle-grey;
+
+        padding: $default-padding;
+
+        display: flex;
+        align-items: center;
+    }
+
+    .expense-item-body {
+        position: relative;
+        left: 0;
+        right: 0;
+
+        cursor: pointer;
+        -webkit-user-select: none;
+
+        z-index: $z-expense-item;
+
+        padding: $default-padding;
+
+        .expense-item-title {
+            font-size: $item-title-size;
+            font-weight: bold;
+
+            .expense-item-toggle {
+                float: right;
+            }
+        }
+
+        .expense-item-detail {
+            padding-top: $default-padding;
+        }
+    }
+}

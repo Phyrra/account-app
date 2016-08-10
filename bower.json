@@ -1,0 +1,21 @@
+{
+  "name": "AccountApp",
+  "version": "0.1.0",
+  "authors": [
+    "Sandro.Maggi"
+  ],
+  "description": "",
+  "private": true,
+  "keywords": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "1.5.7",
+    "jquery": "1.12.0",
+    "font-awesome": "^4.6.3"
+  }
+}
