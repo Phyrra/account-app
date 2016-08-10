@@ -1,10 +1,13 @@
-$app-size: 640px;
+$app-max-size: 640px;
+// $app-min-size does not really work (fixed position won't scroll horizontally)
 $app-margin: 12px;
 
 $header-height: 50px;
 $footer-height: 50px;
 
 $header-title-size: 20px;
+
+$sidebar-width: $app-max-size / 2;
 
 $border-radius: 8px;
 $default-padding: 12px;

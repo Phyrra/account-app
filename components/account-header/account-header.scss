@@ -1,0 +1,13 @@
+@import 'scss/dimensions.scss';
+
+.account-header {
+    padding: $default-padding;
+
+    > span {
+        margin-left: $default-padding;
+    }
+
+    .filter-menu-toggle {
+        float: right;
+    }
+}

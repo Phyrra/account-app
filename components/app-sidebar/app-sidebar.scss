@@ -1,0 +1,61 @@
+@import 'scss/dimensions.scss';
+@import 'scss/z-order.scss';
+
+.app-sidebar {
+    position: fixed;
+
+    top: $app-margin * 2 + $header-height;
+    bottom: $app-margin * 2;
+
+    z-index: $z-sidebar;
+
+    overflow-x: hidden;
+    border-radius: 0 0 0 $border-radius;
+
+    width: $sidebar-width;
+
+    .app-sidebar-content {
+        position: absolute;
+
+        height: 100%;
+        width: $sidebar-width;
+
+        background-color: black;
+    }
+
+    &.ng-hide-remove {
+        width: 0;
+        transition: 0.5s ease all;
+
+        .app-sidebar-content {
+            left: -$sidebar-width;
+            transition: 0.5s ease all;
+        }
+    }
+
+    &.ng-hide-remove-active {
+        width: $sidebar-width;
+
+        .app-sidebar-content {
+            left: 0;
+        }
+    }
+
+    &.ng-hide-add {
+        width: $sidebar-width;
+        transition: 0.5s ease all;
+
+        .app-sidebar-content {
+            left: 0;
+            transition: 0.5s ease all;
+        }
+    }
+
+    &.ng-hide-add-active {
+        width: 0;
+
+        .app-sidebar-content {
+            left: -$sidebar-width;
+        }
+    }
+}

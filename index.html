@@ -1,29 +1,40 @@
 <!doctype html>
-<html ng-app="plunker">
+<html ng-app="app">
 	<head>
 		<meta charset="utf-8">
 		<title>AngularJS Plunker</title>
 
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.min.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="styles.css" />
 		
 		<script>
-			var app = angular.module('plunker', []);
+			$.fn.isOrChildOf = function(arg) {
+				var $arg = $(arg);
+
+				return this.is($arg) || $.contains($arg[0], this[0]);
+			};
+
+			var app = angular.module('app', ['ngAnimate']);
 
 			app.run(['$document', '$rootScope', function($document, $rootScope) {
 				console.log('run');
 				
-				$document.on('click', function() {
-					$rootScope.$broadcast('document-click');
+				$document.on('click', function(event) {
+					$rootScope.$broadcast('document-click', event);
 				});
 			}]);
 
             app.controller('AccountController', ['$scope', 'AccountService', function($scope, AccountService) {
                 var ctrl = this;
 
+				ctrl.showSidebar = false;
+				ctrl.showFilterMenu = false;
+
+                /*
                 $scope.$watch('accountCtrl.selectedAccount', function(value, oldValue) {
                     if (value && value !== oldValue) {
                         AccountService.getExpenses(value).then(function(expenses) {
@@ -31,6 +42,17 @@
                         });
                     }
                 });
+                */
+
+				AccountService.getAccounts().then(function(accounts) {
+					ctrl.accounts = accounts;
+					ctrl.selectedAccount = ctrl.accounts[0];
+					console.log('hier', ctrl.selectedAccount);
+				});
+
+				AccountService.getExpenses().then(function(expenses) {
+					ctrl.expenses = expenses
+				});
 
                 ctrl.deleteExpense = function(expense) {
                     var idx = ctrl.expenses.indexOf(expense);
@@ -43,21 +65,26 @@
 		</script>
 		
 		<script src="services/account/AccountService.js"></script>
-		
-		<script src="components/account-dropdown/account-dropdown.js"></script>
+
 		<script src="components/on-long-click/on-long-click.js"></script>
 		<script src="components/on-swipe-right/on-swipe-right.js"></script>
         <script src="components/expense-item/expense-item.js"></script>
 		<script src="components/add-expense-button/add-expense-button.js"></script>
+		<script src="components/account-header/account-header.js"></script>
+		<script src="components/app-sidebar/app-sidebar.js"></script>
 	</head>
 
 	<body>
         <div class="main">
             <div class="view">
                 <div ng-controller="AccountController as accountCtrl">
-					<div class="header">
-						<account-dropdown ng-model="accountCtrl.selectedAccount"></account-dropdown>
-					</div>
+					<account-header show-sidebar="accountCtrl.showSidebar" show-filter-menu="accountCtrl.showFilterMenu">
+						{{ accountCtrl.selectedAccount.name }}
+					</account-header>
+
+					<app-sidebar show="accountCtrl.showSidebar"></app-sidebar>
+
+					<div ng-show="accountCtrl.showFilterMenu">Filter Menu</div>
 
                     <expense-item ng-repeat="expense in accountCtrl.expenses" ng-model="expense"></expense-item>
 
