@@ -1,0 +1,6 @@
+<div class="category-filter">
+    <div class="category-filter-item" ng-class="{ 'selected': category.checked }" ng-repeat="category in categoryFilterCtrl.categories" ng-click="categoryFilterCtrl.toggleCategory(category)">
+        {{ category.name }}
+        <i class="fa" ng-class="{ 'fa-times': !category.checked, 'fa-check': category.checked }"></i>
+    </div>
+</div>

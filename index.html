@@ -44,14 +44,19 @@
                 });
                 */
 
+                ctrl.selectedAccount = null;
+                ctrl.accounts = [];
+
+                ctrl.expenses = [];
+                ctrl.filteredExpenses = [];
+
 				AccountService.getAccounts().then(function(accounts) {
 					ctrl.accounts = accounts;
 					ctrl.selectedAccount = ctrl.accounts[0];
-					console.log('hier', ctrl.selectedAccount);
 				});
 
 				AccountService.getExpenses().then(function(expenses) {
-					ctrl.expenses = expenses
+					ctrl.expenses = expenses;
 				});
 
                 ctrl.deleteExpense = function(expense) {
@@ -59,12 +64,14 @@
 
                     if (idx !== -1) {
                         ctrl.expenses.splice(idx, 1);
+                        ctrl.expenses = ctrl.expenses.slice(0); // do this to trigger the update accross the scopes
                     }
                 };
             }]);
 		</script>
 		
 		<script src="services/account/AccountService.js"></script>
+		<script src="services/data/DataService.js"></script>
 
 		<script src="components/on-long-click/on-long-click.js"></script>
 		<script src="components/on-swipe-right/on-swipe-right.js"></script>
@@ -72,6 +79,7 @@
 		<script src="components/add-expense-button/add-expense-button.js"></script>
 		<script src="components/account-header/account-header.js"></script>
 		<script src="components/app-sidebar/app-sidebar.js"></script>
+        <script src="components/expense-filter/category-filter/category-filter.js"></script>
 	</head>
 
 	<body>
@@ -84,9 +92,14 @@
 
 					<app-sidebar show="accountCtrl.showSidebar"></app-sidebar>
 
-					<div ng-show="accountCtrl.showFilterMenu">Filter Menu</div>
+					<div class="expense-filter" ng-show="accountCtrl.showFilterMenu">
+                        <category-filter src-model="accountCtrl.expenses" dst-model="accountCtrl.filteredExpenses"></category-filter>
+                    </div>
 
-                    <expense-item ng-repeat="expense in accountCtrl.expenses" ng-model="expense"></expense-item>
+                    <expense-item ng-repeat="expense in accountCtrl.filteredExpenses" ng-model="expense"></expense-item>
+                    <div ng-show="accountCtrl.filteredExpenses.length === 0" class="no-entry-message">
+                        No entries
+                    </div>
 
 					<div class="footer">
 						<add-expense-button></add-expense-button>

@@ -1,6 +1,6 @@
 app
 	.component('accountDropdown', {
-		templateUrl: 'components/account-dropdown/account-dropdown.html',
+		templateUrl: 'components/expense-filter/account-dropdown/account-dropdown.html',
 		controller: 'accountDropdownController',
 		controllerAs: 'accountDropdownCtrl',
 		bindings: {

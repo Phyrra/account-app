@@ -25,11 +25,11 @@
 
     &.ng-hide-remove {
         width: 0;
-        transition: 0.5s ease all;
+        transition:$default-transition;
 
         .app-sidebar-content {
             left: -$sidebar-width;
-            transition: 0.5s ease all;
+            transition: $default-transition;
         }
     }
 
@@ -43,11 +43,11 @@
 
     &.ng-hide-add {
         width: $sidebar-width;
-        transition: 0.5s ease all;
+        transition: $default-transition;
 
         .app-sidebar-content {
             left: 0;
-            transition: 0.5s ease all;
+            transition: $default-transition;
         }
     }
 

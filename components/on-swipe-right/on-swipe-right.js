@@ -31,8 +31,9 @@ app
                     var newX = event.clientX;
 
                     if (newX < curX) {
-                        running = false;
                         $element.css('left', 0);
+
+                        running = false;
                     }
 
                     if (running) {
@@ -43,7 +44,7 @@ app
                 });
 
                 $document.on('mouseup touchend', function() {
-                    if (curX - startX > width * executeFraction) {
+                    if (running && curX - startX > width * executeFraction) {
                         $timeout(function() {
                             callback($scope);
                         }, 0);
