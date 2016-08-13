@@ -3,11 +3,11 @@
 @import 'scss/dimensions.scss';
 
 expense-item {
-    &:nth-child(odd) .expense-item-body {
+    &:nth-of-type(even) .expense-item-body {
         background-color: $light-grey;
     }
 
-    &:nth-child(even) .expense-item-body {
+    &:nth-of-type(odd) .expense-item-body {
         background-color: $middle-grey;
     }
 

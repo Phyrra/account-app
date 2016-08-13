@@ -9,5 +9,10 @@
 
     .filter-menu-toggle {
         float: right;
+
+        .fa-chevron-down,
+        .fa-chevron-left {
+            width: $bigger-icon-size;
+        }
     }
 }
