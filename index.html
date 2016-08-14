@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="app">
+<html>
 	<head>
 		<meta charset="utf-8">
 		<title>AngularJS Plunker</title>
@@ -7,7 +7,8 @@
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="bower_components/angular/angular.min.js"></script>
 		<script src="bower_components/angular-animate/angular-animate.min.js"></script>
-		
+		<script src="bower_components/angular-route/angular-route.min.js"></script>
+
 		<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="styles.css" />
 		
@@ -18,7 +19,17 @@
 				return this.is($arg) || $.contains($arg[0], this[0]);
 			};
 
-			var app = angular.module('app', ['ngAnimate']);
+			var app = angular.module('app', ['ngAnimate', 'ngRoute']);
+
+            app.config(function($routeProvider) {
+				$routeProvider.when('/', {
+				    templateUrl: 'views/account-view/account-view.html',
+				    controller: 'AccountController',
+				    controllerAs: 'accountCtrl',
+				    reloadOnSearch: false
+                });
+				$routeProvider.otherwise({ redirectTo: '/' });
+			});
 
 			app.run(['$document', '$rootScope', function($document, $rootScope) {
 				console.log('run');
@@ -28,38 +39,15 @@
 				});
 			}]);
 
-            app.controller('AccountController', ['$scope', 'AccountService', function($scope, AccountService) {
-                var ctrl = this;
-
-				ctrl.showSidebar = false;
-				ctrl.showFilterMenu = false;
-
-                ctrl.selectedAccount = null;
-
-                $scope.$watch('accountCtrl.selectedAccount', function(value, oldValue) {
-                    if (value && value !== oldValue) {
-                        AccountService.getExpenses(value).then(function(expenses) {
-                            ctrl.expenses = expenses
-                        });
-                    }
-                });
-
-                ctrl.expenses = [];
-                ctrl.filteredExpenses = [];
-
-                ctrl.deleteExpense = function(expense) {
-                    var idx = ctrl.expenses.indexOf(expense);
-
-                    if (idx !== -1) {
-                        ctrl.expenses.splice(idx, 1);
-                        ctrl.expenses = ctrl.expenses.slice(0); // do this to trigger the update accross the scopes
-                    }
-                };
-            }]);
+			$(document).ready(function() {
+                angular.bootstrap(document, ['app']);
+			});
 		</script>
 		
 		<script src="services/account/AccountService.js"></script>
 		<script src="services/data/DataService.js"></script>
+
+        <script src="views/account-view/AccountController.js"></script>
 
 		<script src="components/on-long-click/on-long-click.js"></script>
 		<script src="components/on-swipe-right/on-swipe-right.js"></script>
@@ -74,29 +62,7 @@
 
 	<body>
         <div class="main">
-            <div class="view">
-                <div ng-controller="AccountController as accountCtrl">
-					<account-header show-sidebar="accountCtrl.showSidebar" show-filter-menu="accountCtrl.showFilterMenu">
-						{{ accountCtrl.selectedAccount.name }}
-					</account-header>
-
-					<app-sidebar show="accountCtrl.showSidebar"></app-sidebar>
-
-					<div class="expense-filter foldout-animation" ng-show="accountCtrl.showFilterMenu">
-                        <account-dropdown ng-model="accountCtrl.selectedAccount"></account-dropdown>
-                        <category-filter src-model="accountCtrl.expenses" dst-model="accountCtrl.filteredExpenses"></category-filter>
-                    </div>
-
-                    <expense-item ng-repeat="expense in accountCtrl.filteredExpenses" ng-model="expense"></expense-item>
-                    <div ng-show="accountCtrl.filteredExpenses.length === 0" class="no-entry-message">
-                        No entries
-                    </div>
-
-					<div class="footer">
-						<add-expense-button></add-expense-button>
-					</div>
-                </div>
-            </div>
+            <div class="view" ng-view></div>
         </div>
 	</body>
 </html>

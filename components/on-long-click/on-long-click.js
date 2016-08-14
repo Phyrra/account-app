@@ -7,7 +7,7 @@ app
 
                 var timeDelay;
                 if ($attrs.hasOwnProperty('timeDelay')) {
-                    timeDelay = parseInt($attrs.timeDelay);
+                    timeDelay = parseInt($attrs.timeDelay, 10);
                 } else {
                     timeDelay = DEFAULT_TIME_DELAY;
                 }

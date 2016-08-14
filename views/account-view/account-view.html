@@ -1,0 +1,21 @@
+<div>
+    <account-header show-sidebar="accountCtrl.showSidebar" show-filter-menu="accountCtrl.showFilterMenu">
+        {{ accountCtrl.selectedAccount.name }}
+    </account-header>
+
+    <app-sidebar show="accountCtrl.showSidebar"></app-sidebar>
+
+    <div class="expense-filter foldout-animation" ng-show="accountCtrl.showFilterMenu">
+        <account-dropdown ng-model="accountCtrl.selectedAccount"></account-dropdown>
+        <category-filter src-model="accountCtrl.expenses" dst-model="accountCtrl.filteredExpenses"></category-filter>
+    </div>
+
+    <expense-item ng-repeat="expense in accountCtrl.filteredExpenses" ng-model="expense"></expense-item>
+    <div ng-show="accountCtrl.filteredExpenses.length === 0" class="no-entry-message">
+        No entries
+    </div>
+
+    <div class="footer">
+        <add-expense-button></add-expense-button>
+    </div>
+</div>

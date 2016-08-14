@@ -25,7 +25,7 @@
 
     &.ng-hide-remove {
         width: 0;
-        transition:$default-transition;
+        transition: $default-transition;
 
         .app-sidebar-content {
             left: -$sidebar-width;
