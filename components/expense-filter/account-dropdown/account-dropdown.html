@@ -6,7 +6,8 @@
 			<i class="fa" ng-class="{ 'fa-chevron-down': !accountDropdownCtrl.showFoldout, 'fa-chevron-left': accountDropdownCtrl.showFoldout }"></i>
 		</div>
 	</div>
-	<div class="account-dropdown-foldout" ng-show="accountDropdownCtrl.showFoldout">
+
+	<div class="account-dropdown-foldout foldout-animation" ng-show="accountDropdownCtrl.showFoldout">
 		<div class="account-dropdown-item" ng-repeat="account in accountDropdownCtrl.accounts" ng-click="accountDropdownCtrl.onAccountSelected(account)">
 			{{ account.name }}
 		</div>

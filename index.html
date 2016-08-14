@@ -34,7 +34,8 @@
 				ctrl.showSidebar = false;
 				ctrl.showFilterMenu = false;
 
-                /*
+                ctrl.selectedAccount = null;
+
                 $scope.$watch('accountCtrl.selectedAccount', function(value, oldValue) {
                     if (value && value !== oldValue) {
                         AccountService.getExpenses(value).then(function(expenses) {
@@ -42,22 +43,9 @@
                         });
                     }
                 });
-                */
-
-                ctrl.selectedAccount = null;
-                ctrl.accounts = [];
 
                 ctrl.expenses = [];
                 ctrl.filteredExpenses = [];
-
-				AccountService.getAccounts().then(function(accounts) {
-					ctrl.accounts = accounts;
-					ctrl.selectedAccount = ctrl.accounts[0];
-				});
-
-				AccountService.getExpenses().then(function(expenses) {
-					ctrl.expenses = expenses;
-				});
 
                 ctrl.deleteExpense = function(expense) {
                     var idx = ctrl.expenses.indexOf(expense);
@@ -80,7 +68,8 @@
 		<script src="components/account-header/account-header.js"></script>
 		<script src="components/app-sidebar/app-sidebar.js"></script>
         <script src="components/expense-filter/category-filter/category-filter.js"></script>
-		<script src="components/expense-filter/expense-filter.js"></script>
+		<script src="components/ng-animation/ng-animation-foldout.js"></script>
+        <script src="components/expense-filter/account-dropdown/account-dropdown.js"></script>
 	</head>
 
 	<body>
@@ -93,7 +82,8 @@
 
 					<app-sidebar show="accountCtrl.showSidebar"></app-sidebar>
 
-					<div class="expense-filter" ng-show="accountCtrl.showFilterMenu">
+					<div class="expense-filter foldout-animation" ng-show="accountCtrl.showFilterMenu">
+                        <account-dropdown ng-model="accountCtrl.selectedAccount"></account-dropdown>
                         <category-filter src-model="accountCtrl.expenses" dst-model="accountCtrl.filteredExpenses"></category-filter>
                     </div>
 

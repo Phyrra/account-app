@@ -6,26 +6,23 @@
 	position: relative;
 	
 	.account-dropdown-display {
-		border-radius: $border-radius $border-radius 0 0;
-		padding: $default-padding;
+	    background-color: $middle-blue;
+	    color: $white;
 
-		height: 100%;
-		
-		cursor: pointer;
+	    font-size: $dropdown-display-size;
+	    font-weight: bold;
+
+		padding: $default-padding;
 		
 		.account-dropdown-toggle {
 			float: right;
+			width: $default-icon-size;
 		}
 	}
 
 	.account-dropdown-foldout {
-		position: absolute;
-		left: 0;
-		right: 0;
-		
 		background-color: $light-blue;
 		color: $white;
-		border-radius: 0 0 $border-radius $border-radius;
 		
 		.account-dropdown-item {
 			padding: $default-padding;
