@@ -1,41 +1,23 @@
 app
-    .factory('Account', ['$q', function($q) {
+    .factory('Account', ['$http', function($http) {
         var service = {};
 
         service.getAccounts = function() {
-            return $q.resolve([
-                {
-                    id: 1,
-                    name: 'Account 1'
-                }, {
-                    id: 2,
-                    name: 'Account 2'
-                }, {
-                    id: 3,
-                    name: 'Account 3'
-                }
-            ]);
+            return $http({
+                method: 'GET',
+                url: 'http://localhost/public/api/account/get-accounts.php'
+            }).then(function(response) {
+                return response.data;
+            });
         };
 
         service.getExpenses = function(account) {
-            return $q.resolve([
-                {
-                    id: 1,
-                    amount: 12,
-                    description: 'Flight',
-                    categoryId: 5
-                }, {
-                    id: 2,
-                    amount: 23,
-                    description: 'Food',
-                    categoryId: 1
-                }, {
-                    id: 3,
-                    amount: 17,
-                    description: 'Computer',
-                    categoryId: 7
-                }
-            ]);
+            return $http({
+                method: 'GET',
+                url: 'http://localhost/public/api/account/get-expenses.php?account-id=' + account.id
+            }).then(function(response) {
+                return response.data;
+            });
         };
 
         return service;
@@ -45,11 +27,27 @@ app
         var service = {};
 
         service.getAccounts = function() {
-            return Account.getAccounts();
+            return Account.getAccounts().then(function(accounts) {
+                return accounts.map(function(account) {
+                    return {
+                        id: parseInt(account.id, 10),
+                        name: account.sName
+                    };
+                });
+            });
         };
 
         service.getExpenses = function(account) {
-            return Account.getExpenses(account);
+            return Account.getExpenses(account).then(function(expenses) {
+                return expenses.map(function(expense) {
+                    return {
+                        id: parseInt(expense.id, 10),
+                        amount: parseFloat(expense.fAmount),
+                        description: expense.sDescription,
+                        categoryId: parseInt(expense.idCategory, 10)
+                    };
+                });
+            });
         };
 
         return service;
