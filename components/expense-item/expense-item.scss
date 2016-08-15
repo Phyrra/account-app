@@ -52,12 +52,44 @@ expense-item {
 
         padding: $default-padding;
 
-        .expense-item-title {
+        .expense-item-display {
             font-size: $item-title-size;
             font-weight: bold;
 
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            .expense-item-title {
+                flex-grow: 1;
+
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow-x: hidden;
+
+                margin-right: $default-padding;
+            }
+
+            .expense-item-amount {
+                text-align: right;
+                white-space: nowrap;
+
+                font-size: $item-amount-size;
+                color: $dark-grey;
+
+                margin-right: $default-padding;
+                padding-top: 1px; // MAGIC
+            }
+
+            @media screen and (max-width: $app-break-point-small) {
+                .expense-item-amount {
+                    display: none;
+                }
+            }
+
             .expense-item-toggle {
-                float: right;
+                width: $bigger-icon-size;
+                text-align: center;
             }
         }
 

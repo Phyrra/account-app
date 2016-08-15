@@ -3,7 +3,8 @@ app
         return {
             restrict: 'A',
             link: function($scope, $element, $attrs) {
-                var DEFAULT_EXECUTE_FRACTION = 0.66;
+                var DEFAULT_EXECUTE_FRACTION = 0.5;
+                var MIN_ANIMATION_TIME = 500;
 
                 var executeFraction;
                 if ($attrs.hasOwnProperty('executeFraction')) {
@@ -63,7 +64,7 @@ app
                             $element.animate({
                                 left: width
                             }, {
-                                duration: time,
+                                duration: Math.min(time || MIN_ANIMATION_TIME, MIN_ANIMATION_TIME),
                                 easing: 'linear',
                                 done: function() {
                                     $timeout(function() {

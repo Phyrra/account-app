@@ -2,6 +2,8 @@ $app-max-size: 640px;
 // $app-min-size does not really work (fixed position won't scroll horizontally)
 $app-margin: 12px;
 
+$app-break-point-small: 360px;
+
 $header-height: 50px;
 $footer-height: 50px;
 
@@ -22,6 +24,7 @@ $dropdown-display-size: 18px;
 $dropdown-item-size: 16px;
 
 $item-title-size: 18px;
+$item-amount-size: 14px;
 
 $default-transition: 0.5s ease all;
 $slow-transition: 1s ease all;
