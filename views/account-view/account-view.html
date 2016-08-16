@@ -10,7 +10,11 @@
         <category-filter src-model="accountCtrl.expenses" dst-model="accountCtrl.filteredExpenses"></category-filter>
     </div>
 
-    <expense-item ng-repeat="expense in accountCtrl.filteredExpenses" ng-model="expense"></expense-item>
+    <balance-block ng-repeat="balance in accountCtrl.balances" ng-model="balance" open-on-init="$index < accountCtrl.MAX_OPEN_ON_START">
+        <expense-item ng-repeat="expense in accountCtrl.filteredExpenses | filter : accountCtrl.getExpensesInDateRange(balance)" ng-model="expense"></expense-item>
+    </balance-block>
+
+    <!--<expense-item ng-repeat="expense in accountCtrl.filteredExpenses" ng-model="expense"></expense-item>-->
     <div ng-show="accountCtrl.filteredExpenses.length === 0" class="no-entry-message">
         No entries
     </div>

@@ -1,0 +1,41 @@
+@import 'scss/colors.scss';
+@import 'scss/dimensions.scss';
+
+.balance-block {
+	.balance-block-header {
+		cursor: pointer;
+
+		background-color: $middle-blue;
+		color: $white;
+
+		font-size: $item-title-size;
+		font-weight: bold;
+
+		padding: $default-padding;
+
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+
+		.balance-block-title {
+			flex-grow: 1;
+
+			margin-right: $default-padding;
+		}
+
+		.balance-block-amount {
+			text-align: right;
+			white-space: nowrap;
+
+			font-size: $item-amount-size;
+
+			margin-right: $default-padding;
+			padding-top: 1px; // MAGIC
+		}
+
+		.balance-block-toggle {
+			width: $bigger-icon-size;
+			text-align: center;
+		}
+	}
+}

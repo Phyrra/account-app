@@ -16,7 +16,8 @@
 		</div>
 
 		<div class="expense-item-detail" ng-show="expenseItemCtrl.showDetail">
-			{{ expenseItemCtrl.model.amount | number : 2 }} CHF
+			{{ expenseItemCtrl.model.amount | number : 2 }} CHF <br />
+			{{ expenseItemCtrl.model.date | date : 'dd.MM.yyyy' }}
 		</div>
 	</div>
 </div>

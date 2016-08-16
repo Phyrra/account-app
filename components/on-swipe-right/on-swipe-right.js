@@ -25,6 +25,15 @@ app
                 var lastTimeStamp;
                 var swipeXSpeed;
 
+                var reset = function() {
+                    startX = null;
+                    curX = null;
+                    swipeXSpeed = null;
+                    lastTimeStamp = null;
+
+                    running = false;
+                };
+
                 $element.on('mousedown touchstart', function(event) {
                     event.preventDefault();
 
@@ -42,7 +51,7 @@ app
                     if (newX < curX) {
                         $element.css('left', 0);
 
-                        running = false;
+                        reset();
                     }
 
                     if (running) {
@@ -77,7 +86,7 @@ app
                         }
                     }
 
-                    running = false;
+                    reset();
                 });
             }
         }
