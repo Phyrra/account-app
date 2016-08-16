@@ -1,0 +1,13 @@
+.kvp-table {
+	display: table;
+	width: 100%;
+
+	> div {
+		display: table-row;
+		width: 100%;
+
+		> div {
+			display: table-cell;
+		}
+	}
+}

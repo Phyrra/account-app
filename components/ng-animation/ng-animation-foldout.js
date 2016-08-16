@@ -2,6 +2,16 @@ app
 	.constant('FOLDOUT_ANIMATION_DURATION', 500)
 
 	.animation('.foldout-animation', ['FOLDOUT_ANIMATION_DURATION', function(DURATION) {
+		var getTargetHeight = function(element) {
+			var attr = element.attr('target-height');
+
+			if (angular.isDefined(attr)) {
+				return parseInt(attr, 10);
+			}
+
+			return element.height();
+		};
+
 		var getDuration = function(element) {
 			var attr = element.attr('animation-time');
 
@@ -13,11 +23,10 @@ app
 		};
 
 		var enter = function(element, done) {
-			var targetHeight = element.height();
 			element.css('height', 0);
 
 			element.animate({
-				height: targetHeight
+				height: getTargetHeight(element)
 			}, {
 				duration: getDuration(element),
 				done: function() {

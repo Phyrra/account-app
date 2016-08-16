@@ -4,6 +4,11 @@
 		<meta charset="utf-8">
 		<title>AngularJS Plunker</title>
 
+		<script charset="utf-8" src="bower_components/d3/d3.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="bower_components/c3/c3.css" />
+		<script charset="utf-8" src="bower_components/c3/c3.js"></script>
+
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="bower_components/angular/angular.min.js"></script>
 		<script src="bower_components/angular-animate/angular-animate.min.js"></script>
@@ -39,6 +44,16 @@
 				});
 			}]);
 
+			app.constant('UUID', function() {
+				var block = function() {
+					return Math.floor((1 + Math.random()) * 0x10000)
+						.toString(16)
+						.substring(1);
+				};
+
+				return block() + block() + '-' + block() + '-' + block() + '-' + block() + '-' + block() + block() + block();
+			});
+
 			$(document).ready(function() {
                 angular.bootstrap(document, ['app']);
 			});
@@ -62,6 +77,7 @@
 		<script src="components/ng-animation/ng-animation-foldout.js"></script>
         <script src="components/expense-filter/account-dropdown/account-dropdown.js"></script>
 		<script src="components/balance-block/balance-block.js"></script>
+		<script src="components/expense-progress-chart/expense-progress-chart.js"></script>
 	</head>
 
 	<body>

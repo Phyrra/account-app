@@ -39,6 +39,34 @@ app
 			};
 		};
 
+		ctrl.buildExpenseProgress = function() {
+			ctrl.balances.forEach(function(balance, idx) {
+				if (idx < ctrl.balances.length - 1) {
+					var expenses = ctrl.expenses
+						.filter(ctrl.getExpensesInDateRange(balance));
+
+					var initialBalance = ctrl.balances[idx + 1];
+					var currentBalance = initialBalance.amount;
+					var expenseStack = [];
+
+					expenses
+						.reverse()
+						.forEach(function(expense) {
+							currentBalance -= expense.amount;
+							expenseStack.push(expense);
+
+							expense.initialBalance = {
+								amount: initialBalance.amount,
+								date: initialBalance.date
+							};
+
+							expense.currentBalance = currentBalance;
+							expense.expenseStack = expenseStack.slice(0); // create copy so it won't grow
+						});
+				}
+			});
+		};
+
 		ctrl.deleteExpense = function(expense) {
 			var idx = ctrl.expenses.indexOf(expense);
 
@@ -58,6 +86,8 @@ app
 					ctrl.expenses = result.expenses;
 
 					ctrl.balances.unshift({});
+
+					ctrl.buildExpenseProgress();
 				});
 			}
 		});
