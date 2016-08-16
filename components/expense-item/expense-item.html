@@ -8,7 +8,7 @@
 	<div class="expense-item-body" on-swipe-right="expenseItemCtrl.accountCtrl.deleteExpense(expenseItemCtrl.model)">
 		<div class="expense-item-display">
 			<div class="expense-item-title">{{ expenseItemCtrl.model.description }}</div>
-			<div class="expense-item-amount">({{ expenseItemCtrl.model.amount | number : 2 }} CHF)</div>
+			<div class="expense-item-amount">({{ expenseItemCtrl.model.amount | number }} CHF)</div>
 
 			<div class="expense-item-toggle" ng-click="expenseItemCtrl.toggleDetail()">
 				<i class="fa" ng-class="{ 'fa-plus': !expenseItemCtrl.showDetail, 'fa-minus': expenseItemCtrl.showDetail }"></i>
@@ -17,7 +17,7 @@
 
 		<div class="expense-item-detail" ng-show="expenseItemCtrl.showDetail">
 			{{ expenseItemCtrl.model.amount | number : 2 }} CHF <br />
-			{{ expenseItemCtrl.model.date | date : 'dd.MM.yyyy' }}
+			{{ expenseItemCtrl.model.date | date }}
 		</div>
 	</div>
 </div>
