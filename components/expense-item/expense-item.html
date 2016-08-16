@@ -15,7 +15,7 @@
 			</div>
 		</div>
 
-		<div class="expense-item-detail" ng-show="expenseItemCtrl.showDetail">
+		<div class="expense-item-detail foldout-animation" animation-time="100" ng-if="expenseItemCtrl.showDetail">
 			{{ expenseItemCtrl.model.amount | number : 2 }} CHF <br />
 			{{ expenseItemCtrl.model.date | date }}
 		</div>
