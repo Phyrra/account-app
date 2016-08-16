@@ -23,10 +23,11 @@ app
 		};
 
 		var enter = function(element, done) {
+		    var targetHeight = getTargetHeight(element);
 			element.css('height', 0);
 
 			element.animate({
-				height: getTargetHeight(element)
+				height: targetHeight
 			}, {
 				duration: getDuration(element),
 				done: function() {
