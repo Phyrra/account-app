@@ -1,0 +1,17 @@
+<div class="modal-backdrop">
+	<div class="modal-container">
+		<div class="modal-body">
+			<div class="modal-header">
+				{{ modalCtrl.header }}
+			</div>
+
+			<div class="modal-content" ng-transclude></div>
+
+			<div class="modal-footer" ng-if="modalCtrl.buttons && modalCtrl.buttons.length > 0">
+				<div class="modal-button" ng-repeat="button in modalCtrl.buttons" ng-class="{ 'primary-action': button.isPrimary }" ng-click="button.action()">
+					{{ button.text }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

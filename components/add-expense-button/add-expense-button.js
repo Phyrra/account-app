@@ -5,10 +5,28 @@ app
 		controllerAs: 'buttonCtrl'
 	})
 
-	.controller('AddExpenseButtonController', [function() {
+	.controller('AddExpenseButtonController', ['ModalService', function(ModalService) {
 	    var ctrl = this;
 
 	    ctrl.onButtonClick = function() {
-	        console.log('clicked');
+	        ModalService.open({
+	        	header: 'Create',
+	        	buttons: [
+					{
+						isPrimary: true,
+						text: 'Save',
+						action: function() {
+							console.log('save');
+							ModalService.close();
+						}
+					}, {
+						text: 'Cancel',
+						action: function() {
+							ModalService.close();
+						}
+					}
+				],
+				content: 'TODO'
+	        });
 	    };
 	}]);

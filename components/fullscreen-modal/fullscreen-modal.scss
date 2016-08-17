@@ -1,0 +1,106 @@
+@import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+@import 'scss/z-order.scss';
+
+.modal-backdrop {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+
+	z-index: $z-modal;
+
+	.modal-container {
+		height: 100%;
+        max-width: $app-max-size;
+
+        margin: auto;
+
+		display: flex;
+		align-items: center;
+
+		.modal-body {
+			flex-grow: 1;
+
+			background-color: $lighter-grey;
+
+			border-radius: $border-radius;
+
+			.modal-header {
+				border-radius: $border-radius $border-radius 0 0;
+
+				background-color: $dark-blue;
+				color: $white;
+
+				padding: $default-padding;
+
+				font-size: $header-title-size;
+				font-weight: bold;
+			}
+
+			.modal-content {
+				padding: $default-padding;
+
+				&:last-child {
+					border-radius: 0 0 $border-radius $border-radius;
+				}
+			}
+
+			.modal-footer {
+				padding: $default-padding;
+
+				border-top: 1px solid $darkish-grey;
+				border-radius: 0 0 $border-radius $border-radius;
+
+				display: flex;
+				flex-direction: row-reverse;
+				align-items: right;
+
+				.modal-button {
+					cursor: pointer;
+
+					margin-left: $default-padding;
+					padding: $default-padding;
+
+					border-radius: $border-radius;
+
+					&.primary-action {
+						background-color: $dark-blue;
+						color: $white;
+					}
+
+					&:not(.primary-action) {
+						background-color: $darkish-grey;
+					}
+				}
+			}
+		}
+
+		opacity: 0;
+	}
+
+	// FIXME: this whole css buildup is a clusterfuck
+	&:not(.modal-leave) {
+		background: $modal-backdrop-start;
+	}
+
+	&.modal-enter:not(.modal-leave) {
+		background: $modal-backdrop-stop;
+		transition: $default-transition;
+
+		.modal-container {
+			opacity: 1;
+			transition: $default-transition;
+		}
+	}
+
+	&.modal-leave:not(.modal-enter) {
+		background-color: $light-grey;
+		opacity: $model-target-opacity;
+
+		.modal-container {
+			opacity: 1;
+		}
+	}
+}

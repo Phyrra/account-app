@@ -54,8 +54,31 @@
 				return block() + block() + '-' + block() + '-' + block() + '-' + block() + '-' + block() + block() + block();
 			});
 
+			app.controller('TmpController', function() {
+				var ctrl = this;
+
+				ctrl.buttons = [
+					{
+						isPrimary: true,
+						text: 'Save',
+						action: function() {
+							console.log('save');
+						}
+					}, {
+						text: 'Cancel',
+						action: function() {
+							console.log('cancel');
+						}
+					}
+				];
+			});
+
 			$(document).ready(function() {
                 angular.bootstrap(document, ['app']);
+
+                $('.modal-backdrop').on('click', function() {
+                	$(this).addClass('enter');
+                });
 			});
 		</script>
 		
@@ -78,11 +101,20 @@
         <script src="components/expense-filter/account-dropdown/account-dropdown.js"></script>
 		<script src="components/balance-block/balance-block.js"></script>
 		<script src="components/expense-progress-chart/expense-progress-chart.js"></script>
+		<script src="components/fullscreen-modal/fullscreen-modal.js"></script>
 	</head>
 
 	<body>
         <div class="main">
             <div class="view" ng-view></div>
         </div>
+
+		<!--
+		<div ng-controller="TmpController as tmpCtrl">
+			<fullscreen-modal header="Modal" buttons="tmpCtrl.buttons">
+				Some Content, lorem ipsum
+			</fullscreen-modal>
+		</div>
+		-->
 	</body>
 </html>

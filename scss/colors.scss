@@ -14,3 +14,7 @@ $darkish-grey: #cccccc;
 $middle-grey: #d5d5d5;
 $light-grey: #e6e6e6;
 $lighter-grey: #efefef;
+
+$model-target-opacity: 0.5;
+$modal-backdrop-start: rgba(230, 230, 230, 0);
+$modal-backdrop-stop: rgba(230, 230, 230, $model-target-opacity);
