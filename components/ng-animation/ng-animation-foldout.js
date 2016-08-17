@@ -2,14 +2,20 @@ app
 	.constant('FOLDOUT_ANIMATION_DURATION', 500)
 
 	.animation('.foldout-animation', ['FOLDOUT_ANIMATION_DURATION', function(DURATION) {
-		var getTargetHeight = function(element) {
+		var getAnimationTarget = function(element) {
 			var attr = element.attr('target-height');
 
 			if (angular.isDefined(attr)) {
-				return parseInt(attr, 10);
+				return {
+					property: 'max-height',
+					value: parseInt(attr, 10)
+				};
 			}
 
-			return element.height();
+			return {
+				property: 'height',
+				value: element.height()
+			};
 		};
 
 		var getDuration = function(element) {
@@ -23,15 +29,21 @@ app
 		};
 
 		var enter = function(element, done) {
-		    var targetHeight = getTargetHeight(element);
-			element.css('height', 0);
+		    var target = getAnimationTarget(element);
 
-			element.animate({
-				height: targetHeight
-			}, {
+			element.css(target.property, 0);
+			element.css('overflow-y', 'hidden');
+
+			var animationTarget = {};
+			animationTarget[target.property] = target.value;
+
+			element.animate(animationTarget,
+			{
 				duration: getDuration(element),
 				done: function() {
-					element.css('height', '');
+					element.css(target.property, '');
+					element.css('overflow-y', '');
+
 					done();
 				}
 			});
