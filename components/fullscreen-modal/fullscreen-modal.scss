@@ -2,7 +2,7 @@
 @import 'scss/colors.scss';
 @import 'scss/z-order.scss';
 
-.modal-backdrop {
+.modal-wrapper {
 	position: fixed;
 	left: 0;
 	right: 0;
@@ -10,6 +10,16 @@
 	bottom: 0;
 
 	z-index: $z-modal;
+
+	.modal-backdrop {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+
+		background-color: $lighter-grey;
+	}
 
 	.modal-container {
 		height: 100%;
@@ -19,6 +29,9 @@
 
 		display: flex;
 		align-items: center;
+
+		position: relative;
+		z-index: 1;
 
 		.modal-body {
 			flex-grow: 1;
@@ -75,32 +88,6 @@
 					}
 				}
 			}
-		}
-
-		opacity: 0;
-	}
-
-	// FIXME: this whole css buildup is a clusterfuck
-	&:not(.modal-leave) {
-		background: $modal-backdrop-start;
-	}
-
-	&.modal-enter:not(.modal-leave) {
-		background: $modal-backdrop-stop;
-		transition: $default-transition;
-
-		.modal-container {
-			opacity: 1;
-			transition: $default-transition;
-		}
-	}
-
-	&.modal-leave:not(.modal-enter) {
-		background-color: $light-grey;
-		opacity: $model-target-opacity;
-
-		.modal-container {
-			opacity: 1;
 		}
 	}
 }

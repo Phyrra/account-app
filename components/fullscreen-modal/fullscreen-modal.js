@@ -20,19 +20,14 @@ app
 		};
 
 		service.close = function() {
-			var $element = $('fullscreen-modal');
-
-			// FIXME: this animaiton is a clusterfuck
-			$element
-				.find('.modal-backdrop')
-				.removeClass('modal-enter')
-				.addClass('modal-leave')
+			$('.modal-wrapper')
+				.css('opacity', 1)
 				.animate({
 					opacity: 0
 				}, {
 					duration: DURATION,
 					done: function() {
-						$element.remove();
+						$('fullscreen-modal').remove();
 					}
 				});
 		};
@@ -51,13 +46,24 @@ app
 		}
 	})
 
-	.controller('ModalController', ['ModalService', 'MODAL_ANIMATION_DURATION', '$timeout', function(ModalService, DURATION, $timeout) {
+	.controller('ModalController', ['ModalService', 'MODAL_ANIMATION_DURATION', function(ModalService, DURATION) {
 		var ctrl = this;
 
 		ctrl.$onInit = function() {
-			// FIXME: this animation stuff is all kinda broken
-			$timeout(function() {
-				$('.modal-backdrop').addClass('modal-enter');
-			}, 0, false);
+			$('.modal-backdrop')
+				.css('opacity', 0)
+				.animate({
+					opacity: 0.5
+				}, {
+					duration: DURATION
+				});
+
+			$('.modal-body')
+				.css('opacity', 0)
+				.animate({
+					opacity: 1
+				}, {
+					duration: DURATION
+				});
 		};
 	}]);
