@@ -23,6 +23,10 @@ app
             });
         };
 
+        ctrl.addCategory = function(category) {
+        	ctrl.categories.push(category);
+        };
+
         ctrl.selectAllCategories = function() {
             ctrl.categories.forEach(function(category) {
                 category.checked = true;

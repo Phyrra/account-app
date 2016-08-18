@@ -1,0 +1,34 @@
+@import 'scss/colors.scss';
+@import 'scss/dimensions.scss';
+
+.add-category-button {
+	margin-top: $default-padding / 2;
+
+	.add-button-input {
+		height: $default-icon-size + 2 * $filter-item-padding + 2;
+
+		vertical-align: top;
+
+		border-radius: $filter-item-padding * 2 0 0 $filter-item-padding * 2;
+		border: 1px solid $light-blue;
+
+		padding-left: $filter-item-padding * 1.5;
+		padding-right: $filter-item-padding * 2;
+
+		margin-right: -$filter-item-padding * 2 - 2;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+    .fa-plus {
+        background-color: $light-blue;
+        color: $white;
+
+        padding: $filter-item-padding $filter-item-padding * 1.25;
+
+		border-radius: $filter-item-padding * 2;
+		border: 1px solid $light-blue;
+    }
+}

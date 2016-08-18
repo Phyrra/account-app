@@ -1,14 +1,14 @@
 @import 'scss/colors.scss';
 @import 'scss/dimensions.scss';
 
-$filter-item-padding: 8px;
-
 .category-filter {
     padding: $default-padding;
 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
+    margin-top: -$default-padding / 2;
 
     .category-filter-item {
         background-color: $white;

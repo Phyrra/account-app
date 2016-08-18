@@ -1,5 +1,5 @@
 app
-    .factory('Data', ['$http', function($http) {
+    .factory('Data', ['$http', '$q', function($http, $q) {
         var service = {};
 
         service.getCategories = function() {
@@ -9,6 +9,13 @@ app
             }).then(function(response) {
                 return response.data;
             });
+        };
+
+        service.addCategory = function(name) {
+        	return $q.resolve({
+        		id: new Date().getTime(),
+        		name: name
+        	});
         };
 
         return service;
@@ -26,6 +33,10 @@ app
                     };
                 });
             });
+        };
+
+        service.addCategory = function(name) {
+        	return Data.addCategory(name);
         };
 
         return service;

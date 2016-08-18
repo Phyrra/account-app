@@ -5,7 +5,7 @@ app
 		ctrl.MAX_OPEN_ON_START = 5;
 
 		ctrl.showSidebar = false;
-		ctrl.showFilterMenu = false;
+		ctrl.showFilterMenu = true;
 
 		ctrl.selectedAccount = null;
 
