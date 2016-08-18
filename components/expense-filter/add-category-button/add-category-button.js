@@ -25,10 +25,10 @@ app
 		ctrl.onClickPlus = function() {
 			if (ctrl.isOpen) {
 				if (ctrl.name.length > 0) {
-					console.log('hier');
 					DataService.addCategory(ctrl.name).then(function(category) {
-						console.log('hier too');
 						ctrl.categoryFilterCtrl.addCategory(category);
+
+						ctrl.name = '';
 					});
 				}
 
