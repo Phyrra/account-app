@@ -1,10 +1,20 @@
 app
-    .directive('onSwipeRight', ['$parse', '$document', '$timeout', function($parse, $document, $timeout) {
+    .directive('onSwipe', ['$parse', '$document', '$timeout', function($parse, $document, $timeout) {
         return {
             restrict: 'A',
             link: function($scope, $element, $attrs) {
                 var DEFAULT_EXECUTE_FRACTION = 0.5;
                 var MIN_ANIMATION_TIME = 500;
+
+                var swipeValidator = {
+                    'left': function(newX, oldX) {
+                        return newX < oldX;
+                    },
+
+                    'right': function(newX, oldX) {
+                        return newX > oldX;
+                    }
+                }
 
                 var executeFraction;
                 if ($attrs.hasOwnProperty('executeFraction')) {
@@ -15,7 +25,15 @@ app
 
                 var width = $element.parent().width();
 
-                var callback = $parse($attrs.onSwipeRight);
+                var swipeDirection = null;
+                if ($attrs.hasOwnProperty('swipeDirection')) {
+                    swipeDirection = $attrs.swipeDirection;
+                }
+
+                var callback = null;
+                if (angular.isDefined($attrs.onSwipe)) {
+                    callback = $parse($attrs.onSwipe);
+                }
 
                 var running = false;
 
@@ -28,11 +46,11 @@ app
                 var reset = function() {
                     startX = null;
                     curX = null;
-                    swipeXSpeed = null;
                     lastTimeStamp = null;
+                    swipeXSpeed = null;
 
                     running = false;
-                };
+                }
 
                 $element.on('mousedown touchstart', function(event) {
                     event.preventDefault();
@@ -48,10 +66,12 @@ app
                     var newX = event.clientX;
                     var timeStamp = event.timeStamp;
 
-                    if (newX < curX) {
-                        $element.css('left', 0);
+                    if (angular.isFunction(swipeValidator[swipeDirection])) {
+                        if (!swipeValidator[swipeDirection](newX, curX)) {
+                            $element.css('left', '');
 
-                        reset();
+                            reset();
+                        }
                     }
 
                     if (running) {
@@ -66,23 +86,25 @@ app
 
                 $document.on('mouseup touchend', function() {
                     if (running) {
-                        if (curX - startX > width * executeFraction || swipeXSpeed > 1) {
+                        if (Math.abs(curX - startX) > width * executeFraction || Math.abs(swipeXSpeed) > 1) {
                             var left = $element.position().left;
-                            var time = (width - left) / swipeXSpeed;
+                            var time = Math.abs((width - left) / swipeXSpeed);
 
                             $element.animate({
-                                left: width
+                                left: Math.sign(swipeXSpeed) * width
                             }, {
                                 duration: Math.min(time || MIN_ANIMATION_TIME, MIN_ANIMATION_TIME),
                                 easing: 'linear',
                                 done: function() {
-                                    $timeout(function() {
-                                        callback($scope);
-                                    }, 0);
+                                    if (angular.isFunction(callback)) {
+                                        $timeout(function() {
+                                            callback($scope);
+                                        }, 0);
+                                    }
                                 }
                             });
                         } else {
-                            $element.css('left', 0);
+                            $element.css('left', '');
                         }
                     }
 

@@ -18,7 +18,8 @@ gulp.task('sass', function() {
 
 gulp.task('serve', ['sass'], function() {
     browserSync.init({
-        server: './'
+        server: './',
+        online: true // speeds up startup
     });
 
     //gulp.watch('*.scss', ['sass']);

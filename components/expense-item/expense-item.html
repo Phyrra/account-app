@@ -5,7 +5,7 @@
 			Delete
 		</div>
 	</div>
-	<div class="expense-item-body" on-swipe-right="expenseItemCtrl.accountCtrl.deleteExpense(expenseItemCtrl.model)">
+	<div class="expense-item-body" on-swipe="expenseItemCtrl.accountCtrl.deleteExpense(expenseItemCtrl.model)" swipe-direction="right">
 		<div class="expense-item-display">
 			<div class="expense-item-title">{{ expenseItemCtrl.model.description }}</div>
 			<div class="expense-item-amount">({{ expenseItemCtrl.model.amount | number }} CHF)</div>
