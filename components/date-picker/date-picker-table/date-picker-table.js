@@ -9,7 +9,7 @@ app
         bindings: {
             year: '<',
             month: '<',
-            model: '=?'
+            model: '=?ngModel'
         }
     })
 
@@ -55,6 +55,12 @@ app
             });
         };
 
+        ctrl.isSelected = function(date) {
+            return ctrl.model.getFullYear() === date.getFullYear() &&
+                ctrl.model.getMonth() === date.getMonth() &&
+                ctrl.model.getDate() === date.getDate();
+        };
+
         ctrl.getDate = function(year, month, row, col) { // month 1 based
             var firstOfMonth = new Date(year, month - 1, 1);
             var firstOfMonthWeekDay = ctrl.getWeekDay(firstOfMonth);
@@ -77,11 +83,20 @@ app
                 result.isNextMonth = true;
             }
 
-            // TODO: evaluate isSelected
+            if (ctrl.isSelected(date)) {
+                result.isSelected = true;
+            }
 
             return result;
         };
 
+        ctrl.onDateSelected = function(date) {
+            ctrl.model = date;
+        };
+
         ctrl.$onInit = function() {
+            if (angular.isUndefined(ctrl.model)) {
+                ctrl.model = new Date();
+            }
         };
     }]);

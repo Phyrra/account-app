@@ -5,7 +5,7 @@ app
         controller: 'DatePickerController',
         controllerAs: 'dateCtrl',
         bindings: {
-            model: '<ngModel'
+            model: '=?ngModel'
         }
     })
 

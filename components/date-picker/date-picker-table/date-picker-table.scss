@@ -31,7 +31,7 @@ table.date-picker-table {
             color: $darkish-grey;
         }
 
-        .is-selected {
+        &.is-selected {
             background-color: $middle-blue;
             color: $white;
 
