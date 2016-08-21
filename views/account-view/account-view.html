@@ -8,6 +8,8 @@
     <div class="expense-filter foldout-animation" ng-show="accountCtrl.showFilterMenu">
         <account-dropdown ng-model="accountCtrl.selectedAccount"></account-dropdown>
         <category-filter src-model="accountCtrl.expenses" dst-model="accountCtrl.filteredExpenses"></category-filter>
+
+        <date-picker ng-model="accountCtrl.date"></date-picker>
     </div>
 
     <balance-block ng-repeat="balance in accountCtrl.balances" ng-model="balance" open-on-init="$index < accountCtrl.MAX_OPEN_ON_START">

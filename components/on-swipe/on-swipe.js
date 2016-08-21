@@ -1,5 +1,10 @@
 app
-    .directive('onSwipe', ['$parse', '$document', '$timeout', function($parse, $document, $timeout) {
+    .constant('SWIPE_DIRECTION', {
+        LEFT: 'left',
+        RIGHT: 'right'
+    })
+
+    .directive('onSwipe', ['$parse', '$document', '$timeout', 'SWIPE_DIRECTION', function($parse, $document, $timeout, SWIPE_DIRECTION) {
         return {
             restrict: 'A',
             link: function($scope, $element, $attrs) {
@@ -23,7 +28,7 @@ app
                     executeFraction = DEFAULT_EXECUTE_FRACTION;
                 }
 
-                var width = $element.parent().width();
+                var width = null;
 
                 var swipeDirection = null;
                 if ($attrs.hasOwnProperty('swipeDirection')) {
@@ -57,7 +62,9 @@ app
 
                     running = true;
                     startX = event.clientX;
-                    curX = Number.MIN_VALUE;
+                    curX = startX;
+
+                    width = $element.parent().width();
                 });
 
                 $element.on('mousemove touchmove', function(event) {
@@ -98,9 +105,15 @@ app
                                 done: function() {
                                     if (angular.isFunction(callback)) {
                                         $timeout(function() {
-                                            callback($scope);
+                                            callback(
+                                                $scope, {
+                                                    direction: left > 0 ? SWIPE_DIRECTION.RIGHT : SWIPE_DIRECTION.LEFT
+                                                }
+                                            );
                                         }, 0);
                                     }
+
+                                    $element.css('left', '');
                                 }
                             });
                         } else {

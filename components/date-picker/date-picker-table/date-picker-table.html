@@ -1,0 +1,15 @@
+<table class="date-picker-table">
+    <thead>
+        <tr>
+            <th ng-repeat="day in tableCtrl.calendarWeek">{{ day }}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="week in tableCtrl.calendarMonth"> <!-- ng-if="!$last || tableCtrl.hasRowDays(tableCtrl.year, tableCtrl.month, week)"> -->
+            <td ng-repeat="day in tableCtrl.calendarWeek" bind-value="date = tableCtrl.getDate(tableCtrl.year, tableCtrl.month, week, $index)" ng-class="{ 'prev-month': date.isPreviousMonth, 'next-month': date.isNextMonth, 'is-selected': date.isCurrentSelection }">
+                {{ date.date.getDate() | pad }}
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,59 @@
+@import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+
+$date-picker-header-size: 16px;
+
+.date-picker-container {
+    position: relative;
+
+    width: 100%;
+    overflow-x: hidden;
+
+    background-color: $light-grey;
+
+    > .date-picker-header {
+        border-radius: $border-radius $border-radius 0 0;
+    }
+
+    .date-picker-header {
+        display: flex;
+        flex-direction: row;
+
+        background-color: $dark-blue;
+        color: $white;
+
+        font-size: $date-picker-header-size;
+        font-weight: bold;
+
+        .date-picker-header-button {
+            padding: $default-padding;
+        }
+
+        .date-picker-header-title {
+            flex-grow: 1;
+            padding: $default-padding;
+
+            text-align: center;
+        }
+    }
+
+    .date-picker-table-container {
+        position: relative;
+
+        .date-picker-table-previous-month {
+            position: absolute;
+            left: -100%;
+            top: 0;
+
+            width: 100%;
+        }
+
+        .date-picker-table-next-month {
+            position: absolute;
+            right: -100%;
+            top: 0;
+
+            width: 100%;
+        }
+    }
+}
