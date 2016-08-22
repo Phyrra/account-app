@@ -1,0 +1,51 @@
+@import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+
+$input-toggler-width: 36px;
+$input-toggler-height: 18px;
+
+.toggle-input {
+	display: inline-block;
+
+	width: $input-toggler-width;
+	height: $input-toggler-height;
+
+	position: relative;
+
+	border: 1px solid $middle-blue;
+	border-radius: 16px;
+
+	cursor: pointer;
+
+	&.disabled {
+		border-color: $dark-grey;
+
+		.toggle-input-toggler {
+			background-color: $dark-grey;
+		}
+	}
+
+	.toggle-input-toggler {
+		position: absolute;
+		top: -1px;
+
+		width: $input-toggler-height;
+		height: $input-toggler-height;
+
+		border-radius: $input-toggler-height / 2;
+
+		background-color: $middle-blue;
+
+		&.toggle-input-off {
+			left: 0;
+
+			transition: $linear-transition;
+		}
+
+		&.toggle-input-on {
+			left: $input-toggler-width - $input-toggler-height - 1;
+
+			transition: $linear-transition;
+		}
+	}
+}
