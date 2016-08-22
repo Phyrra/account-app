@@ -5,7 +5,7 @@ app
 		controllerAs: 'buttonCtrl'
 	})
 
-	.controller('AddExpenseButtonController', ['ModalService', function(ModalService) {
+	.controller('AddExpenseButtonController', ['ModalService', '$scope', function(ModalService, $scope) {
 	    var ctrl = this;
 
 	    ctrl.onButtonClick = function() {
@@ -28,5 +28,16 @@ app
 				],
 				content: 'TODO'
 	        });
+	    };
+
+		$scope.$watch('buttonCtrl.accountCtrl.selectedAccount', function(value, oldValue) {
+			if (value && value !== oldValue) {
+				ctrl.accountId = value.id;
+			}
+		});
+
+	    ctrl.$onInit = function() {
+	    	// this is hacky, don't know how to require ng-view controller?
+	    	ctrl.accountCtrl = angular.element('div[ng-view]').scope().accountCtrl;
 	    };
 	}]);

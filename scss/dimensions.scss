@@ -4,6 +4,8 @@ $app-margin: 12px;
 
 $app-break-point-small: 360px;
 
+$default-font-size: 14px;
+
 $header-height: 50px;
 $footer-height: 50px;
 
@@ -31,3 +33,7 @@ $slow-transition: 1s ease all;
 $linear-transition: 0.5s linear all;
 
 $filter-item-padding: 8px;
+
+$input-mask-title-size: 18px;
+
+$foldout-animation-time: 0.5s; // Should match ng-animation-foldout.FOLDOUT_ANIMATION_DURATION

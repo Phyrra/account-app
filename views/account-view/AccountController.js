@@ -24,8 +24,11 @@ app
 			}
 
 			return function(expense) {
-				if (idx === 0) {
-					// idx 0 is a "mock" balance to catch all the newest expenses
+				if (idx === 0) { // idx 0 is a "mock" balance to catch all the newest expenses
+					if (ctrl.balances.length === 1) {
+						return false;
+					}
+
 					var lastBalance = ctrl.balances[1];
 
 					return expense.date >= lastBalance.date;

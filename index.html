@@ -91,28 +91,18 @@
 
         <script src="views/account-view/AccountController.js"></script>
 
-		<script src="components/on-long-click/on-long-click.js"></script>
-		<script src="components/on-swipe/on-swipe.js"></script>
-        <script src="components/expense-item/expense-item.js"></script>
-		<script src="components/add-expense-button/add-expense-button.js"></script>
-		<script src="components/account-header/account-header.js"></script>
-		<script src="components/app-sidebar/app-sidebar.js"></script>
-        <script src="components/expense-filter/category-filter/category-filter.js"></script>
-		<script src="components/ng-animation/ng-animation-foldout.js"></script>
-        <script src="components/expense-filter/account-dropdown/account-dropdown.js"></script>
-		<script src="components/balance-block/balance-block.js"></script>
-		<script src="components/expense-progress-chart/expense-progress-chart.js"></script>
-		<script src="components/fullscreen-modal/fullscreen-modal.js"></script>
-		<script src="components/expense-filter/add-category-button/add-category-button.js"></script>
-		<script src="components/date-picker/date-picker.js"></script>
-		<script src="components/bind-value/bind-value.js"></script>
-		<script src="components/date-picker/date-picker-table/date-picker-table.js"></script>
-		<script src="components/input/toggle-input/toggle-input.js"></script>
+		<script src="components.js"></script>
 	</head>
 
 	<body>
         <div class="main">
             <div class="view" ng-view></div>
         </div>
+
+		<div ng-controller="TmpController as tmpCtrl">
+			<fullscreen-modal header="Create" buttons="tmpCtrl.buttons">
+				<expense-input-mask></expense-input-mask>
+			</fullscreen-modal>
+		</div>
 	</body>
 </html>

@@ -2,35 +2,37 @@
 @import 'scss/z-order.scss';
 @import 'scss/colors.scss';
 
-.account-dropdown {
-	.account-dropdown-display {
+.dropdown-input {
+	.dropdown-input-display {
 	    background-color: $middle-blue;
 	    color: $white;
 
-	    font-size: $dropdown-display-size;
-	    font-weight: bold;
-
 		padding: $default-padding;
+
+		border-radius: $border-radius $border-radius 0 0;
+
+		&:not(.dropdown-input-foldout-open) {
+			border-radius: $border-radius;
+			transition-delay: $foldout-animation-time;
+		}
 
 		cursor: pointer;
 		
-		.account-dropdown-toggle {
+		.dropdown-input-toggle {
 			float: right;
-			width: $bigger-icon-size;
+			width: $default-icon-size;
 			text-align: center;
 		}
 	}
 
-	.account-dropdown-foldout {
+	.dropdown-input-foldout {
 		background-color: $light-blue;
 		color: $white;
 
 		border-radius: 0 0 $border-radius $border-radius;
 		
-		.account-dropdown-item {
+		.dropdown-input-option {
 			padding: $default-padding;
-
-			font-size: $dropdown-item-size;
 
 			cursor: pointer;
 			

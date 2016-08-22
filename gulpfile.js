@@ -2,13 +2,14 @@
  
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var concat = require('gulp-concat');
 var concatCss = require('gulp-concat-css');
 var browserSync = require('browser-sync').create();
  
 gulp.task('sass', function() {
 	gulp.src([
-		'scss/*.scss',
-		'components/**/*.scss'
+			'scss/*.scss',
+			'components/**/*.scss'
 		])
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest('build/.'))
@@ -16,7 +17,19 @@ gulp.task('sass', function() {
 		.pipe(gulp.dest('.'));
 });
 
-gulp.task('serve', ['sass'], function() {
+gulp.task('components', function() {
+	return gulp.src([
+			'components/**/*.js'
+		])
+		.pipe(concat('components.js'))
+		.pipe(gulp.dest('.'));
+});
+
+gulp.task('update', ['sass', 'components'], function() {
+	// do nothing
+});
+
+gulp.task('serve', ['update'], function() {
     browserSync.init({
         server: './',
         online: true // speeds up startup

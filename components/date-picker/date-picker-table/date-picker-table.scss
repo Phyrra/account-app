@@ -4,10 +4,8 @@
 $date-picker-table-header-size: 14px;
 
 table.date-picker-table {
-    width: 100%;
-
     border-collapse: collapse;
-    width: calc(100% - 1px);
+    width: 100%;
 
     th {
         background-color: $middle-blue;
@@ -38,14 +36,11 @@ table.date-picker-table {
             border-radius: $border-radius;
         }
 
-        /*
-        // would be new pattern -> don't use
         &:hover {
             background-color: $middle-blue;
             color: $white;
 
             border-radius: $border-radius;
         }
-        */
     }
 }

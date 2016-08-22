@@ -40,6 +40,10 @@
 
 			border-radius: $border-radius;
 
+			display: flex;
+			flex-direction: column;
+			max-height: 100%;
+
 			.modal-header {
 				border-radius: $border-radius $border-radius 0 0;
 
@@ -50,10 +54,17 @@
 
 				font-size: $header-title-size;
 				font-weight: bold;
+
+				min-height: $header-title-size + 2 * $default-padding + 2 + 1;
 			}
 
 			.modal-content {
+				flex-grow: 1;
+				overflow-y: auto;
+
 				padding: $default-padding;
+
+				background-color: $light-grey;
 
 				&:last-child {
 					border-radius: 0 0 $border-radius $border-radius;
@@ -69,6 +80,8 @@
 				display: flex;
 				flex-direction: row-reverse;
 				align-items: right;
+
+				min-height: $default-font-size + 2 * $default-padding + 2 + 2 * $default-padding + 2 + 1;
 
 				.modal-button {
 					cursor: pointer;

@@ -1,21 +1,21 @@
 app
 	.component('accountDropdown', {
 		templateUrl: 'components/expense-filter/account-dropdown/account-dropdown.html',
-		controller: 'accountDropdownController',
+		controller: 'AccountDropdownController',
 		controllerAs: 'accountDropdownCtrl',
 		bindings: {
 			model: '=ngModel'
 		}
 	})
 	
-	.controller('accountDropdownController', ['AccountService', '$location', '$scope', function(AccountService, $location, $scope) {
+	.controller('AccountDropdownController', ['AccountService', '$location', '$scope', function(AccountService, $location, $scope) {
 		var ctrl = this;
 		
 		ctrl.model = null;
 		ctrl.showFoldout = false;
 		
-		ctrl.setFoldoutState = function(state) {
-			ctrl.showFoldout = state;
+		ctrl.closeFoldout = function() {
+			ctrl.showFoldout = false;
 		};
 		
 		ctrl.onFoldoutToggle = function() {
@@ -26,7 +26,7 @@ app
 		    // will trigger $routeUpdate which sets model
 			$location.search('account', account.id);
 
-			ctrl.setFoldoutState(false);
+			ctrl.closeFoldout();
 		};
 
 		ctrl.setAccountById = function(id) {

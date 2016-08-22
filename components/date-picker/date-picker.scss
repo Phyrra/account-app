@@ -9,7 +9,8 @@ $date-picker-header-size: 16px;
     width: 100%;
     overflow: hidden;
 
-    background-color: $light-grey;
+    background-color: $lighter-grey;
+	border-radius: 0 0 $border-radius $border-radius;
 
     > .date-picker-header {
         border-radius: $border-radius $border-radius 0 0;

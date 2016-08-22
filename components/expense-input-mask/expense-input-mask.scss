@@ -1,0 +1,46 @@
+@import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+
+.expense-input-mask {
+	.expense-input-field {
+		.expense-input-field-title {
+			font-size: $input-mask-title-size;
+			padding: $default-padding;
+
+			// TODO: Does not look good yet..
+		}
+
+		.expense-input-field-value {
+			input {
+				padding: $default-padding;
+
+				border: 1px solid $darkish-grey;
+				border-radius: $border-radius;
+
+				width: 100%;
+
+				&:focus {
+					outline: none;
+
+					border: 1px solid $middle-blue;
+				}
+			}
+
+			textarea {
+				padding: $default-padding;
+
+				border: 1px solid $darkish-grey;
+				border-radius: $border-radius;
+
+				width: 100%;
+				resize: none;
+
+				&:focus {
+					outline: none;
+
+					border: 1px solid $middle-blue;
+				}
+			}
+		}
+	}
+}
