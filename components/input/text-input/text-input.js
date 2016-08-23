@@ -17,25 +17,17 @@ app
 		ctrl.onFocus = function() {
 			// a bit of a hack to get the animation running every time
 			$timeout(function() {
-				$element.find('.text-input-title')
-					.addClass('focus');
-
-				$element.find('input')
+				$element.find('.text-input')
 					.addClass('focus');
 			}, 0, false);
 		};
 
 		ctrl.onBlur = function() {
-			if (!ctrl.model) {
-				// a bit of a hack to get the animation running every time
-				$timeout(function() {
-					$element.find('.text-input-title')
-						.removeClass('focus');
-
-					$element.find('input')
-						.removeClass('focus');
-				}, 0, false);
-			}
+			// a bit of a hack to get the animation running every time
+			$timeout(function() {
+				$element.find('.text-input')
+					.removeClass('focus');
+			}, 0, false);
 		};
 
 		ctrl.$onInit = function() {

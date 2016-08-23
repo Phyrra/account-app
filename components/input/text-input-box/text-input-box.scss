@@ -9,6 +9,17 @@
 
 	cursor: pointer;
 
+	&.focus,
+	&.not-empty {
+		.text-input-title {
+			font-size: $text-input-title-size;
+		}
+
+		textarea {
+			padding-top: $default-padding + $text-input-title-size + $default-padding / 2;
+		}
+	}
+
 	.text-input-title {
 		pointer-events: none;
 
@@ -17,10 +28,6 @@
 		position: absolute;
 		top: $default-padding;
 		left: $default-padding;
-
-		&.focus {
-			font-size: $text-input-title-size;
-		}
 
 		transition: font-size $text-input-animation-duration linear;
 	}
@@ -32,9 +39,7 @@
 		border: 1px solid $darkish-grey;
 		border-radius: $border-radius;
 
-		padding-left: $default-padding;
-		padding-right: $default-padding;
-		padding-bottom: $default-padding;
+		padding: $default-padding;
 		padding-top: $default-padding;
 
 		font-family: inherit;
@@ -44,10 +49,6 @@
 			outline: none;
 
 			border-color: $middle-blue;
-		}
-
-		&.focus {
-			padding-top: $default-padding + $text-input-title-size + $default-padding / 2;
 		}
 
 		transition: padding-top $text-input-animation-duration linear;
