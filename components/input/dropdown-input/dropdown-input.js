@@ -5,7 +5,8 @@ app
 		controllerAs: 'inputCtrl',
 		bindings: {
 			model: '=ngModel',
-			options: '<'
+			options: '<',
+			placeholder: '@'
 		}
 	})
 	
@@ -14,7 +15,7 @@ app
 
 		ctrl.showFoldout = false;
 
-		ctrl.display = '-- Please select --';
+		ctrl.display = '';
 
 		ctrl.closeFoldout = function() {
 			ctrl.showFoldout = false;
@@ -32,6 +33,16 @@ app
 		};
 
 		ctrl.evalDisplayText = function() {
+			if (angular.isUndefined(ctrl.model)) {
+				if (angular.isDefined(ctrl.placeholder)) {
+					ctrl.display = ctrl.placeholder;
+				} else {
+					ctrl.display = '-- Please select --';
+				}
+
+				return;
+			}
+
 			ctrl.options.some(function(option) {
 				if (ctrl.model === option.value) {
 					ctrl.display = option.text;

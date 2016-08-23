@@ -13,9 +13,22 @@
 		padding: $default-padding;
 
 		cursor: pointer;
+        
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        
+        .account-dropdown-selection {
+            flex-grow: 1;
+
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow-x: hidden;
+
+            margin-right: $default-padding;
+        }
 		
 		.account-dropdown-toggle {
-			float: right;
 			width: $bigger-icon-size;
 			text-align: center;
 		}

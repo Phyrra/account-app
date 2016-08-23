@@ -1,6 +1,8 @@
 <div class="account-dropdown">
 	<div class="account-dropdown-display" ng-click="accountDropdownCtrl.onFoldoutToggle()">
-		{{ accountDropdownCtrl.model.name }}
+        <div class="account-dropdown-selection">
+            {{ accountDropdownCtrl.model.name }}
+        </div>
 		
 		<div class="account-dropdown-toggle">
 			<i class="fa" ng-class="{ 'fa-chevron-down': !accountDropdownCtrl.showFoldout, 'fa-chevron-left': accountDropdownCtrl.showFoldout }"></i>

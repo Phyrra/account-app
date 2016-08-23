@@ -15,6 +15,12 @@ app
 		ctrl.filteredExpenses = [];
 
 		ctrl.getExpensesInDateRange = function(balance) {
+            if (ctrl.balances.length === 1) { // there's always at least 1 "mock" balance
+                return function(expense) {
+                    return true;
+                }
+            }
+            
 			var idx = ctrl.balances.indexOf(balance);
 
 			if (idx === -1) {
@@ -24,11 +30,8 @@ app
 			}
 
 			return function(expense) {
-				if (idx === 0) { // idx 0 is a "mock" balance to catch all the newest expenses
-					if (ctrl.balances.length === 1) {
-						return false;
-					}
-
+				if (idx === 0) {
+                    // idx 0 is a "mock" balance to catch all the newest expenses
 					var lastBalance = ctrl.balances[1];
 
 					return expense.date >= lastBalance.date;

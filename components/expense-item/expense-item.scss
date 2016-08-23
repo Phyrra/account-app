@@ -29,8 +29,6 @@ expense-item {
         right: 0;
         height: 100%;
 
-        -webkit-user-select: none;
-
         background-color: $lighter-grey;
         color: $middle-grey;
 
@@ -46,7 +44,6 @@ expense-item {
         right: 0;
 
         cursor: pointer;
-        -webkit-user-select: none;
 
         z-index: $z-expense-item;
 
