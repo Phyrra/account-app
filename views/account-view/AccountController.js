@@ -83,8 +83,6 @@ app
 		};
 
 		ctrl.loadData = function(newExpense) {
-			console.log(newExpense);
-
 			$q.all({
 				balances: AccountService.getBalances(ctrl.selectedAccount),
 				expenses: AccountService.getExpenses(ctrl.selectedAccount)
@@ -95,11 +93,8 @@ app
 				ctrl.balances.unshift({});
 
 				if (angular.isObject(newExpense)) {
-					console.log('should try to set flag on one expense');
-
 					ctrl.expenses.some(function(expense) {
 						if (expense.id === newExpense.id) {
-							console.log('should set flag on one expense');
 							expense.isNew = true;
 
 							return true;
