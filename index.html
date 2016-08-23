@@ -61,13 +61,21 @@
 					{
 						isPrimary: true,
 						text: 'Save',
-						action: function() {
-							console.log('save');
+						action: function(content) {
+							var inputMask = content.find('.expense-input-mask');
+							var ctrl = inputMask.scope().inputMaskCtrl;
+
+							if (!ctrl.categoryId) {
+								inputMask.find('.category .dropdown-input').addClass('required');
+							}
+
+							if (!ctrl.amount) {
+								inputMask.find('.amount input').addClass('required');
+							}
 						}
 					}, {
 						text: 'Cancel',
-						action: function() {
-							console.log('cancel');
+						action: function(content) {
 						}
 					}
 				];
@@ -99,10 +107,12 @@
             <div class="view" ng-view></div>
         </div>
 
+		<!--
 		<div ng-controller="TmpController as tmpCtrl">
 			<fullscreen-modal header="Create" buttons="tmpCtrl.buttons">
 				<expense-input-mask></expense-input-mask>
 			</fullscreen-modal>
 		</div>
+		-->
 	</body>
 </html>

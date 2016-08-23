@@ -10,7 +10,7 @@
 			<div class="modal-content" ng-transclude></div>
 
 			<div class="modal-footer" ng-if="modalCtrl.buttons && modalCtrl.buttons.length > 0">
-				<div class="modal-button" ng-repeat="button in modalCtrl.buttons" ng-class="{ 'primary-action': button.isPrimary }" ng-click="button.action()">
+				<div class="modal-button" ng-repeat="button in modalCtrl.buttons" ng-class="{ 'primary-action': button.isPrimary }" ng-click="modalCtrl.onButtonClick(button)">
 					{{ button.text }}
 				</div>
 			</div>

@@ -1,6 +1,6 @@
 app
 	.filter('date', function() {
-		return function(date) {
+		return function(date, style) {
 			var pad = function(num) {
 				var s = num.toString();
 
@@ -11,6 +11,11 @@ app
 				return s;
 			};
 
-			return pad(date.getDate()) + '.' + pad(date.getMonth() + 1) + '.' + date.getFullYear();
+			switch (style) {
+				case 'iso':
+					return date.getFullYear() + '-' + pad(date.getMonth() + 1) + '-' + pad(date.getDate());
+				default:
+					return pad(date.getDate()) + '.' + pad(date.getMonth() + 1) + '.' + date.getFullYear();
+			};
 		};
 	});

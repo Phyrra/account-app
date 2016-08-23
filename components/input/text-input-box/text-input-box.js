@@ -19,6 +19,9 @@ app
 			$timeout(function() {
 				$element.find('.text-input-box')
 					.addClass('focus');
+
+				$element.find('textarea')
+					.removeClass('required');
 			}, 0, false);
 		};
 

@@ -26,6 +26,7 @@
         max-width: $app-max-size;
 
         margin: auto;
+        padding: 2 * $app-margin 0;
 
 		display: flex;
 		align-items: center;
@@ -35,8 +36,6 @@
 
 		.modal-body {
 			flex-grow: 1;
-
-			background-color: $lighter-grey;
 
 			border-radius: $border-radius;
 
@@ -76,6 +75,8 @@
 
 				border-top: 1px solid $darkish-grey;
 				border-radius: 0 0 $border-radius $border-radius;
+
+				background-color: $light-grey;
 
 				display: flex;
 				flex-direction: row-reverse;

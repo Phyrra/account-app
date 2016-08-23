@@ -82,19 +82,40 @@ app
 			}
 		};
 
+		ctrl.loadData = function(newExpense) {
+			console.log(newExpense);
+
+			$q.all({
+				balances: AccountService.getBalances(ctrl.selectedAccount),
+				expenses: AccountService.getExpenses(ctrl.selectedAccount)
+			}).then(function(result) {
+				ctrl.balances = result.balances;
+				ctrl.expenses = result.expenses;
+
+				ctrl.balances.unshift({});
+
+				if (angular.isObject(newExpense)) {
+					console.log('should try to set flag on one expense');
+
+					ctrl.expenses.some(function(expense) {
+						if (expense.id === newExpense.id) {
+							console.log('should set flag on one expense');
+							expense.isNew = true;
+
+							return true;
+						}
+
+						return false;
+					});
+				}
+
+				ctrl.buildExpenseProgress();
+			});
+		};
+
 		$scope.$watch('accountCtrl.selectedAccount', function(value, oldValue) {
 			if (value && value !== oldValue) {
-				$q.all({
-					balances: AccountService.getBalances(value),
-					expenses: AccountService.getExpenses(value)
-				}).then(function(result) {
-					ctrl.balances = result.balances;
-					ctrl.expenses = result.expenses;
-
-					ctrl.balances.unshift({});
-
-					ctrl.buildExpenseProgress();
-				});
+				ctrl.loadData();
 			}
 		});
 	}]);

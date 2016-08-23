@@ -10,7 +10,7 @@ app
 		}
 	})
 	
-	.controller('DropdownInputController', [function() {
+	.controller('DropdownInputController', ['$element', function($element) {
 		var ctrl = this;
 
 		ctrl.showFoldout = false;
@@ -30,6 +30,9 @@ app
 			ctrl.display = option.text;
 
 			ctrl.closeFoldout();
+
+			$element.find('.dropdown-input')
+				.removeClass('required');
 		};
 
 		ctrl.evalDisplayText = function() {

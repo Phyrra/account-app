@@ -33,23 +33,22 @@ app
     .factory('DataService', ['Data', function(Data) {
         var service = {};
 
+        var mapCategory = function(category) {
+        	return {
+				id: parseInt(category.id, 10),
+				name: category.sName
+			};
+        };
+
         service.getCategories = function() {
             return Data.getCategories().then(function(categories) {
-                return categories.map(function(category) {
-                    return {
-                        id: parseInt(category.id, 10),
-                        name: category.sName
-                    };
-                });
+                return categories.map(mapCategory);
             });
         };
 
         service.addCategory = function(name) {
         	return Data.addCategory(name).then(function(category) {
-        		return {
-        			id: parseInt(category.id, 10),
-        			name: category.sName
-        		};
+        		return mapCategory(category);
         	});
         };
 

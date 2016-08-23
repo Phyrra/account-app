@@ -39,6 +39,10 @@ expense-item {
     }
 
     .expense-item-body {
+    	&.is-new {
+    		background-color: $success-green;
+    	}
+
         position: relative;
         left: 0;
         right: 0;

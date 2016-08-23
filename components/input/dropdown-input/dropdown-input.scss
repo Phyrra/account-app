@@ -3,6 +3,12 @@
 @import 'scss/colors.scss';
 
 .dropdown-input {
+	&.required {
+		.dropdown-input-display {
+			background-color: $error-red;
+		}
+	}
+
 	.dropdown-input-display {
 	    background-color: $middle-blue;
 	    color: $white;
@@ -13,7 +19,7 @@
 
 		&:not(.dropdown-input-foldout-open) {
 			border-radius: $border-radius;
-			transition-delay: $foldout-animation-time;
+			transition: border-radius $foldout-animation-time / 4 linear $foldout-animation-time;
 		}
 
 		cursor: pointer;

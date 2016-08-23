@@ -46,6 +46,11 @@
 
 			border-color: $middle-blue;
 		}
+
+		&.required {
+			border-color: $error-red;
+		}
+
 		transition: padding-top $text-input-animation-duration linear;
 	}
 }

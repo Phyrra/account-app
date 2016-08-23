@@ -46,8 +46,15 @@ app
 		}
 	})
 
-	.controller('ModalController', ['ModalService', 'MODAL_ANIMATION_DURATION', function(ModalService, DURATION) {
+	.controller('ModalController', ['ModalService', 'MODAL_ANIMATION_DURATION', '$element', function(ModalService, DURATION, $element) {
 		var ctrl = this;
+
+		ctrl.onButtonClick = function(button) {
+			if (angular.isFunction(button.action)) {
+				// TODO: don't know any better way to pass the "content" of the modal
+				button.action($element.find('.modal-content'));
+			}
+		};
 
 		ctrl.$onInit = function() {
 			$('.modal-backdrop')
