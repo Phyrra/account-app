@@ -1,0 +1,51 @@
+@import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+
+.text-input {
+	width: 100%;
+	display: inline-block;
+
+	position: relative;
+
+	cursor: pointer;
+
+	.text-input-title {
+		pointer-events: none;
+
+		color: $dark-grey;
+
+		position: absolute;
+		top: $default-padding;
+		left: $default-padding;
+
+		&.focus {
+			font-size: $text-input-title-size;
+		}
+
+		transition: font-size $text-input-animation-duration linear;
+	}
+
+	input {
+		width: 100%;
+
+		border: 1px solid $darkish-grey;
+		border-radius: $border-radius;
+
+		padding-left: $default-padding;
+		padding-right: $default-padding;
+		padding-bottom: $default-padding;
+		padding-top: $default-padding;
+
+		&:focus {
+			outline: none;
+
+			border-color: $middle-blue;
+		}
+
+		&.focus {
+			padding-top: $default-padding + $text-input-title-size + $default-padding / 2;
+		}
+
+		transition: padding-top $text-input-animation-duration linear;
+	}
+}

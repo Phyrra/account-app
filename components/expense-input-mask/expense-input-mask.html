@@ -1,42 +1,18 @@
 <div class="expense-input-mask">
 	<div class="expense-input-field">
-		<div class="expense-input-field-title">
-			Category
-		</div>
-
-		<div class="expense-input-field-value">
-			<dropdown-input ng-model="inputMaskCtrl.categoryId" options="inputMaskCtrl.categories" placeholder="-- Category --"></dropdown-input>
-		</div>
+		<dropdown-input ng-model="inputMaskCtrl.categoryId" options="inputMaskCtrl.categories" placeholder="-- Category --"></dropdown-input>
 	</div>
 
 	<div class="expense-input-field">
-		<div class="expense-input-field-title">
-			Amount
-		</div>
-
-		<div class="expense-input-field-value">
-			<input ng-model="inputMaskCtrl.amount" type="number" placeholder="0.00" />
-		</div>
+		<text-input ng-model="inputMaskCtrl.amount" type="number" title="Amount" />
 	</div>
 
 	<div class="expense-input-field">
-		<div class="expense-input-field-title">
-			Description
-		</div>
-
-		<div class="expense-input-field-value">
-			<textarea ng-model="inputMaskCtrl.description" rows="3"></textarea>
-		</div>
+		<text-input-box ng-model="inputMaskCtrl.description" rows="3" title="Description"></text-input-box>
 	</div>
 
 	<div class="expense-input-field">
-		<div class="expense-input-field-title">
-			Date
-		</div>
-
-		<div class="expense-input-field-value">
-			<input ng-model="inputMaskCtrl.date" type="text" ng-disabled="true" />
-			<date-picker ng-model="inputMaskCtrl.date"></date-picker>
-		</div>
+		<text-input ng-model="inputMaskCtrl.date" type="text" ng-disabled="true" />
+		<date-picker ng-model="inputMaskCtrl.date"></date-picker>
 	</div>
 </div>
