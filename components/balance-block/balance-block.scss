@@ -8,6 +8,10 @@
 		background-color: $middle-blue;
 		color: $white;
 
+		&.is-new {
+			background-color: $success-green;
+		}
+
 		font-size: $item-title-size;
 		font-weight: bold;
 

@@ -47,7 +47,8 @@ app
 				}).then(function(expense) {
 					return {
 						success: true,
-						expense: expense
+						field: 'expenses',
+						id: expense.id
 					};
 				});
 			} else {

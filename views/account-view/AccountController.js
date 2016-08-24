@@ -82,7 +82,7 @@ app
 			}
 		};
 
-		ctrl.loadData = function(newExpense) {
+		ctrl.loadData = function(field, id) {
 			$q.all({
 				balances: AccountService.getBalances(ctrl.selectedAccount),
 				expenses: AccountService.getExpenses(ctrl.selectedAccount)
@@ -92,10 +92,10 @@ app
 
 				ctrl.balances.unshift({});
 
-				if (angular.isObject(newExpense)) {
-					ctrl.expenses.some(function(expense) {
-						if (expense.id === newExpense.id) {
-							expense.isNew = true;
+				if (angular.isDefined(field) && angular.isDefined(ctrl[field])) {
+					ctrl[field].some(function(obj) {
+						if (obj.id === id) {
+							obj.isNew = true;
 
 							return true;
 						}

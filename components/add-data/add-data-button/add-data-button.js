@@ -23,7 +23,7 @@ app
 									if (response.success) {
 										ModalService.close();
 
-										ctrl.accountCtrl.loadData(response.expense); // TODO: how to do with balance?
+										ctrl.accountCtrl.loadData(response.field, response.id);
 									}
 								});
 						}
