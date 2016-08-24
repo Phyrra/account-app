@@ -1,0 +1,6 @@
+<div class="add-data-dialog">
+	<content-tabs tabs="addDataCtrl.tabs" ng-model="addDataCtrl.selectedTab"></content-tabs>
+
+	<expense-input-mask ng-if="addDataCtrl.selectedTab === addDataCtrl.tabs[0].value"></expense-input-mask>
+	<balance-input-mask ng-if="addDataCtrl.selectedTab === addDataCtrl.tabs[1].value"></balance-input-mask>
+</div>

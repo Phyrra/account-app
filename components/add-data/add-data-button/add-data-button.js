@@ -5,7 +5,7 @@ app
 		controllerAs: 'buttonCtrl'
 	})
 
-	.controller('AddDataButtonController', ['ModalService', 'AccountService', function(ModalService, AccountService) {
+	.controller('AddDataButtonController', ['ModalService', function(ModalService) {
 	    var ctrl = this;
 
 	    ctrl.onButtonClick = function() {
@@ -16,34 +16,16 @@ app
 						isPrimary: true,
 						text: 'Save',
 						action: function(content) {
-							var inputMask = content.find('.expense-input-mask');
-							var inputMaskCtrl = inputMask.scope().inputMaskCtrl;
+							content
+								.find('.add-data-dialog').scope()
+								.addDataCtrl.onClickSave()
+								.then(function(response) {
+									if (response.success) {
+										ModalService.close();
 
-							if (!inputMaskCtrl.categoryId) {
-								inputMask.find('.category .dropdown-input').addClass('required');
-							}
-
-							if (!inputMaskCtrl.amount) {
-								inputMask.find('.amount input').addClass('required');
-							}
-
-							if (!inputMaskCtrl.description) {
-								inputMask.find('.description textarea').addClass('required');
-							}
-
-							if (inputMaskCtrl.categoryId && inputMaskCtrl.amount && inputMaskCtrl.description && inputMaskCtrl.date) {
-								AccountService.addExpense({
-									accountId: ctrl.accountCtrl.selectedAccount.id,
-									categoryId: inputMaskCtrl.categoryId,
-									amount: inputMaskCtrl.amount,
-									description: inputMaskCtrl.description,
-									date: inputMaskCtrl.date
-								}).then(function(expense) {
-									ModalService.close();
-
-									ctrl.accountCtrl.loadData(expense);
+										ctrl.accountCtrl.loadData(response.expense); // TODO: how to do with balance?
+									}
 								});
-							}
 						}
 					}, {
 						text: 'Cancel',
@@ -52,14 +34,8 @@ app
 						}
 					}
 				],
-				tabs: [{
-					value: 1,
-					text: 'Expense'
-				}, {
-					value: 2,
-					text: 'Balance'
-				}],
-				content: '<content-tabs tabs="tabs" ng-model="selectedTab"></content-tabs><expense-input-mask></expense-input-mask>'
+				accountId: ctrl.accountCtrl.selectedAccount.id,
+				content: '<add-data-dialog account-id="accountId"></add-data-dialog>'
 	        });
 	    };
 

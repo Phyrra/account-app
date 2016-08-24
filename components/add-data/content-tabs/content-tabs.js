@@ -26,7 +26,7 @@ app
 		};
 
 		ctrl.$onInit = function() {
-			if (angular.isUndefined(ctrl.model) && ctrl.tabs.length > 0) {
+			if (!ctrl.model && ctrl.tabs.length > 0) {
 				ctrl.model = ctrl.tabs[0].value;
 			}
 
