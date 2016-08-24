@@ -1,0 +1,50 @@
+@import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+
+// FIXME: this is a bit bollocks.. but otherwise background-color will be transparent :(
+content-tabs {
+	background-color: inherit;
+}
+
+.content-tabs-container {
+	width: 100%;
+
+	display: flex;
+	flex-direction: row;
+
+	padding: 0 $default-padding;
+
+	border-bottom: 1px solid $dark-blue;
+
+	background-color: inherit;
+
+	.content-tab {
+		flex-grow: 1;
+
+		padding: $default-padding;
+
+		text-align: center;
+
+		border: 1px solid $darkish-grey;
+		border-bottom-color: $dark-blue;
+
+		&:not(:last-child):not(.is-selected) {
+			border-right: none;
+		}
+
+		margin-bottom: -1px;
+
+		background-color: inherit;
+
+		cursor: pointer;
+
+		&.is-selected {
+			border-bottom: none;
+			border-color: $dark-blue;
+
+			&+ .content-tab {
+				border-left: none;
+			}
+		}
+	}
+}

@@ -1,11 +1,11 @@
 app
-	.component('addExpenseButton', {
-		templateUrl: 'components/add-expense-button/add-expense-button.html',
-		controller: 'AddExpenseButtonController',
+	.component('addDataButton', {
+		templateUrl: 'components/add-data/add-data-button/add-data-button.html',
+		controller: 'AddDataButtonController',
 		controllerAs: 'buttonCtrl'
 	})
 
-	.controller('AddExpenseButtonController', ['ModalService', 'AccountService', function(ModalService, AccountService) {
+	.controller('AddDataButtonController', ['ModalService', 'AccountService', function(ModalService, AccountService) {
 	    var ctrl = this;
 
 	    ctrl.onButtonClick = function() {
@@ -52,7 +52,14 @@ app
 						}
 					}
 				],
-				content: '<expense-input-mask></expense-input-mask>'
+				tabs: [{
+					value: 1,
+					text: 'Expense'
+				}, {
+					value: 2,
+					text: 'Balance'
+				}],
+				content: '<content-tabs tabs="tabs" ng-model="selectedTab"></content-tabs><expense-input-mask></expense-input-mask>'
 	        });
 	    };
 

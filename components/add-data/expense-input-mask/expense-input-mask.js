@@ -1,6 +1,6 @@
 app
 	.component('expenseInputMask', {
-		templateUrl: 'components/expense-input-mask/expense-input-mask.html',
+		templateUrl: 'components/add-data/expense-input-mask/expense-input-mask.html',
 		controller: 'ExpenseInputMaskController',
 		controllerAs: 'inputMaskCtrl'
 	})

@@ -1,0 +1,5 @@
+<div class="content-tabs-container">
+	<div class="content-tab" ng-repeat="tab in tabsCtrl.tabs" ng-class="{ 'is-selected': tabsCtrl.model === tab.value }" ng-click="tabsCtrl.onTabSelect(tab)">
+		{{ tab.text }}
+	</div>
+</div>
