@@ -33,12 +33,11 @@
 				    controllerAs: 'accountCtrl',
 				    reloadOnSearch: false
                 });
+
 				$routeProvider.otherwise({ redirectTo: '/' });
 			});
 
 			app.run(['$document', '$rootScope', function($document, $rootScope) {
-				console.log('run');
-				
 				$document.on('click', function(event) {
 					$rootScope.$broadcast('document-click', event);
 				});
@@ -54,39 +53,8 @@
 				return block() + block() + '-' + block() + '-' + block() + '-' + block() + '-' + block() + block() + block();
 			});
 
-			app.controller('TmpController', function() {
-				var ctrl = this;
-
-				ctrl.buttons = [
-					{
-						isPrimary: true,
-						text: 'Save',
-						action: function(content) {
-							var inputMask = content.find('.expense-input-mask');
-							var ctrl = inputMask.scope().inputMaskCtrl;
-
-							if (!ctrl.categoryId) {
-								inputMask.find('.category .dropdown-input').addClass('required');
-							}
-
-							if (!ctrl.amount) {
-								inputMask.find('.amount input').addClass('required');
-							}
-						}
-					}, {
-						text: 'Cancel',
-						action: function(content) {
-						}
-					}
-				];
-			});
-
 			$(document).ready(function() {
                 angular.bootstrap(document, ['app']);
-
-                $('.modal-backdrop').on('click', function() {
-                	$(this).addClass('enter');
-                });
 			});
 		</script>
 		
@@ -106,13 +74,5 @@
         <div class="main">
             <div class="view" ng-view></div>
         </div>
-
-		<!--
-		<div ng-controller="TmpController as tmpCtrl">
-			<fullscreen-modal header="Create" buttons="tmpCtrl.buttons">
-				<expense-input-mask></expense-input-mask>
-			</fullscreen-modal>
-		</div>
-		-->
 	</body>
 </html>
