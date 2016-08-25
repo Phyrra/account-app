@@ -1,0 +1,25 @@
+@import 'scss/dimensions.scss';
+
+@media screen and (max-width: #{$app-max-size}) {
+	body {
+		padding: 0;
+	}
+
+	.modal-wrapper div.modal-container {
+		padding: 0;
+	}
+
+	.view {
+		.header {
+			top: 0;
+		}
+
+		.footer {
+			bottom: 0;
+		}
+
+		.app-sidebar {
+			top: $header-height;
+		}
+	}
+}

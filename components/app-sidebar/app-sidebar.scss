@@ -4,8 +4,8 @@
 .app-sidebar {
     position: fixed;
 
-    top: $app-margin * 2 + $header-height;
-    bottom: $app-margin * 2;
+    top: $app-margin + $header-height;
+    bottom: $app-margin;
 
     z-index: $z-sidebar;
 
