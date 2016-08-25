@@ -7,7 +7,7 @@
 	</div>
 	<div class="expense-item-body" ng-class="{ 'is-new': expenseItemCtrl.model.isNew }" on-swipe="expenseItemCtrl.accountCtrl.deleteExpense(expenseItemCtrl.model)" swipe-direction="right">
 		<div class="expense-item-display">
-			<div class="expense-item-title">{{ expenseItemCtrl.model.description }}</div>
+			<div class="expense-item-title">{{ expenseItemCtrl.model.title }}</div>
 			<div class="expense-item-amount">({{ expenseItemCtrl.model.amount | number }} CHF)</div>
 
 			<div class="expense-item-toggle" ng-click="expenseItemCtrl.toggleDetail()">
@@ -22,6 +22,10 @@
 			the target-height attribute is a work-around-hack
 		-->
 		<div class="expense-item-detail foldout-animation" animation-time="300" target-height="600" ng-if="expenseItemCtrl.showDetail">
+			<div class="expense-item-description">
+				{{ expenseItemCtrl.model.description }}
+			</div>
+
 			<expense-progress-chart ng-model="expenseItemCtrl.model"></expense-progress-chart>
 
 			<div class="kvp-table">

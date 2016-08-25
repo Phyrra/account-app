@@ -39,6 +39,7 @@ app
 				data: {
 					'account-id': expense.accountId,
 					'category-id': expense.categoryId,
+					'title': expense.title,
 					'amount': expense.amount,
 					'description': expense.description,
 					'date': expense.date
@@ -84,6 +85,7 @@ app
 		var mapExpense = function(expense) {
 			return {
 				id: parseInt(expense.id, 10),
+				title: expense.sTitle,
 				amount: parseFloat(expense.fAmount),
 				description: expense.sDescription,
 				categoryId: parseInt(expense.idCategory, 10),
@@ -101,6 +103,7 @@ app
         	return Account.addExpense({
         		accountId: expense.accountId,
         		categoryId: expense.categoryId,
+        		title: expense.title,
         		amount: expense.amount,
         		description: expense.description ? expense.description : '',
         		date: $filter('date')(expense.date, 'iso')

@@ -33,14 +33,15 @@ app
 				inputMask.find('.amount input').addClass('required');
 			}
 
-			if (!inputMaskCtrl.description) {
-				inputMask.find('.description textarea').addClass('required');
+			if (!inputMaskCtrl.title) {
+				inputMask.find('.title input').addClass('required');
 			}
 
-			if (inputMaskCtrl.categoryId && inputMaskCtrl.amount && inputMaskCtrl.description && inputMaskCtrl.date) {
+			if (inputMaskCtrl.categoryId && inputMaskCtrl.amount && inputMaskCtrl.title && inputMaskCtrl.date) {
 				return AccountService.addExpense({
 					accountId: ctrl.accountId,
 					categoryId: inputMaskCtrl.categoryId,
+					title: inputMaskCtrl.title,
 					amount: inputMaskCtrl.amount,
 					description: inputMaskCtrl.description,
 					date: inputMaskCtrl.date
