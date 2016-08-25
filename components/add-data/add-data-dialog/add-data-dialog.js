@@ -59,9 +59,24 @@ app
 		};
 
 		ctrl.onSaveBalance = function() {
-			return $q.resolve({
-				success: false
-			});
+			var inputMask = $element.find('.balance-input-mask');
+			var inputMaskCtrl = inputMask.scope().inputMaskCtrl;
+
+			if (!inputMaskCtrl.amount) {
+				inputMask.find('.amount input').addClass('required');
+			}
+
+			if (inputMaskCtrl.amount) {
+				return $q.resolve({
+					success: true,
+					field: 'balances',
+					id: 0
+				});
+			} else {
+				return $q.resolve({
+					success: false
+				});
+			}
 		};
 
 		ctrl.onClickSave = function() {

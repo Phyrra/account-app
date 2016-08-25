@@ -1,0 +1,56 @@
+@import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+
+.input-wrapper {
+	width: 100%;
+	display: inline-block;
+
+	position: relative;
+
+	cursor: pointer;
+
+	&.focus,
+	&.not-empty {
+		.input-wrapper-title {
+			font-size: $input-wrapper-title-size;
+		}
+
+		.input-wrapper-body > * {
+			padding-top: $default-padding + $input-wrapper-title-size + $default-padding / 2;
+		}
+	}
+
+	.input-wrapper-title {
+		pointer-events: none;
+
+		color: $dark-grey;
+
+		position: absolute;
+		top: $default-padding;
+		left: $default-padding;
+
+		transition: font-size $input-wrapper-animation-duration linear;
+	}
+
+	.input-wrapper-body > * {
+		width: 100%;
+
+		border: 1px solid $darkish-grey;
+		border-radius: $border-radius;
+
+		padding: $default-padding;
+		padding-top: $default-padding;
+
+		&:focus {
+			outline: none;
+
+			border-color: $middle-blue;
+		}
+
+		&.required {
+			border-color: $error-red;
+		}
+
+		transition: padding-top $input-wrapper-animation-duration linear;
+	}
+}

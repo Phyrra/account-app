@@ -5,16 +5,16 @@ $app-margin: 12px;
 $app-break-point-small: 360px;
 
 $default-font-size: 14px;
+$default-padding: 12px;
 
 $header-height: 50px;
-$footer-height: 50px;
+$footer-height: 50 + 2 * $default-padding;
 
 $header-title-size: 20px;
 
 $sidebar-width: $app-max-size / 2;
 
 $border-radius: 8px;
-$default-padding: 12px;
 $button-size: 48px;
 
 $button-font-size: 20px;
@@ -36,5 +36,5 @@ $filter-item-padding: 8px;
 
 $foldout-animation-time: 0.5s; // Should match ng-animation-foldout.FOLDOUT_ANIMATION_DURATION
 
-$text-input-title-size: 12px;
-$text-input-animation-duration: 0.3s;
+$input-wrapper-title-size: 12px;
+$input-wrapper-animation-duration: 0.3s;

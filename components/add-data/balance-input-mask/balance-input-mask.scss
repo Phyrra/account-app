@@ -1,0 +1,8 @@
+@import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+
+.balance-input-mask {
+	.balance-input-field {
+		padding: $default-padding;
+	}
+}
