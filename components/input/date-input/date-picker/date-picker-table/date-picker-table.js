@@ -1,6 +1,6 @@
 app
     .component('datePickerTable', {
-        templateUrl: 'components/date-picker/date-picker-table/date-picker-table.html',
+        templateUrl: 'components/input/date-input/date-picker/date-picker-table/date-picker-table.html',
         controller: 'DatePickerTableController',
         controllerAs: 'tableCtrl',
         require: {

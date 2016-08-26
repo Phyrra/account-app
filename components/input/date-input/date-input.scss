@@ -1,0 +1,40 @@
+@import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+
+.date-input {
+    display: inline-block;
+    width: 100%;
+
+    .date-input-field {
+        cursor: pointer;
+
+        display: flex;
+        flex-direction: row;
+
+        text-input {
+            flex-grow: 1;
+
+            .input-wrapper .input-wrapper-body input {
+                border-radius: $border-radius 0 0 $border-radius;
+            }
+        }
+
+        .date-input-button {
+            width: $bigger-icon-size + 2 * $default-padding;
+
+            background-color: $dark-blue;
+            color: $white;
+
+            border-radius: 0 $border-radius $border-radius 0;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    date-picker {
+        width: 100%;
+    }
+}

@@ -21,7 +21,8 @@ app
 					.addClass('focus');
 
 				$element.find('.input-wrapper-body > *')
-					.removeClass('required');
+					.removeClass('required')
+                    .select();
 			}, 0, false);
 		};
 

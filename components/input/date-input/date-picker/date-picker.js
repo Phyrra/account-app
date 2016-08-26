@@ -1,6 +1,6 @@
 app
     .component('datePicker', {
-        templateUrl: 'components/date-picker/date-picker.html',
+        templateUrl: 'components/input/date-input/date-picker/date-picker.html',
         transclude: true,
         controller: 'DatePickerController',
         controllerAs: 'dateCtrl',
