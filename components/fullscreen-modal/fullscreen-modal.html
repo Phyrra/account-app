@@ -7,7 +7,7 @@
 				{{ modalCtrl.header }}
 			</div>
 
-			<div class="modal-content animation-foldout-scroll-parent" ng-transclude></div>
+			<div class="modal-content" ng-transclude></div>
 
 			<div class="modal-footer" ng-if="modalCtrl.buttons && modalCtrl.buttons.length > 0">
 				<div class="modal-button" ng-repeat="button in modalCtrl.buttons" ng-class="{ 'primary-action': button.isPrimary }" ng-click="modalCtrl.onButtonClick(button)">
