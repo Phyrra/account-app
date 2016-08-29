@@ -106,7 +106,11 @@ app
 
 				ctrl.buildExpenseProgress();
 
-				// FIXME: scrolls on first load now, so initial state is not at top :/
+				// FIXME: bit of a hack to prevent animation on first load
+				// the 1000 is a "measured-guess"
+				setTimeout(function() {
+					$('.view').addClass('animation-foldout-scroll-parent');
+				}, 1000);
 			});
 		};
 
