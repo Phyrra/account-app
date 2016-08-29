@@ -42,6 +42,9 @@ content-tabs {
 			border-bottom: none;
 			border-color: $dark-blue;
 
+			background-color: $dark-blue;
+			color: $white;
+
 			&+ .content-tab {
 				border-left: none;
 			}
