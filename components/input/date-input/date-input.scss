@@ -34,7 +34,9 @@
         }
     }
 
-    date-picker {
-        width: 100%;
-    }
+	.date-input-calendar {
+		date-picker {
+	    	width: 100%;
+	    }
+	}
 }

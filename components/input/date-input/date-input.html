@@ -6,6 +6,7 @@
         </div>
     </div>
 
-    <!-- FIXME: foldout-animation not working on foldout, but on foldin? -->
-    <date-picker class="foldout-animation" target-height="400" ng-model="dateInputCtrl.model" ng-if="dateInputCtrl.showCalendar"></date-picker>
+	<div class="date-input-calendar foldout-animation" target-height="400" ng-if="dateInputCtrl.showCalendar">
+		<date-picker ng-model="dateInputCtrl.model" ng-if="dateInputCtrl.showCalendar"></date-picker>
+	</div>
 </div>
