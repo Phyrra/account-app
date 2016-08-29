@@ -4,4 +4,5 @@ node_modules/
 build/
 *.css
 components.js
+templates.js
 backend_tmp/
