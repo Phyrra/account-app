@@ -105,6 +105,8 @@ app
 				}
 
 				ctrl.buildExpenseProgress();
+
+				// FIXME: scrolls on first load now, so initial state is not at top :/
 			});
 		};
 

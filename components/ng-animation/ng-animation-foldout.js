@@ -49,9 +49,31 @@ app
 				return findScrollParent(element.parent());
 			}
 
+			var interval = null;
+			var scrollParent = findScrollParent(element.parent());
+
+			var oldHeight = 0;
+
 			element.animate(animationTarget,
 			{
 				duration: getDuration(element),
+				step: function() {
+					if (scrollParent) {
+						var parentOffset = scrollParent.offset().top;
+						var parentHeight = scrollParent.outerHeight();
+
+						var elementOffset = element.offset().top;
+						var elementHeight = element.outerHeight();
+
+						var diff = (elementOffset + elementHeight - parentOffset - parentHeight) + 12;
+
+						if (diff > 0) {
+							var scrollTop = scrollParent.scrollTop();
+
+							scrollParent.scrollTop(scrollTop + diff);
+						}
+					}
+				},
 				done: function() {
 					element.css(target.property, '');
 					element.css('overflow-y', '');
