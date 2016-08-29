@@ -37,6 +37,39 @@ app
 			var animationTarget = {};
 			animationTarget[target.property] = target.value;
 
+			var findScrollParent = function(element) {
+				if (element.length === 0) {
+					return null;
+				}
+
+				if (element.hasClass('animation-foldout-scroll-parent')) {
+					return element;
+				}
+
+				return findScrollParent(element.parent());
+			}
+
+			// FIXME: This is still kinda hacky :/ not happy with it
+			var interval = null;
+			var scrollParent = findScrollParent(element.parent());
+
+			if (scrollParent) {
+				var FPS = 30.0;
+
+				var oldHeight = element.height();
+
+				var interval = setInterval(function() {
+					var newHeight = element.height();
+
+					if (scrollParent) {
+						var initial = scrollParent.scrollTop();
+						scrollParent.scrollTop(initial + (newHeight - oldHeight));
+
+						oldHeight = newHeight;
+					}
+				}, 1000.0 / FPS);
+			}
+
 			element.animate(animationTarget,
 			{
 				duration: getDuration(element),
@@ -45,6 +78,10 @@ app
 					element.css('overflow-y', '');
 
 					done();
+
+					if (interval) {
+						clearInterval(interval);
+					}
 				}
 			});
 		};
