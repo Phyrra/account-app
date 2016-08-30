@@ -50,11 +50,13 @@ app
 				var elementOffset = element.offset().top;
 				var targetHeight = target.value;
 
-				scrollParent.animate({
-					scrollTop: Math.max(0, elementOffset + targetHeight - parentOffset - parentHeight + scrollTop + parentPaddingBottom)
-				}, {
-					duration: duration
-				});
+				if (elementOffset < parentOffset || elementOffset + targetHeight > parentOffset + parentHeight - parentPaddingBottom) {
+					scrollParent.animate({
+						scrollTop: Math.max(0, elementOffset + targetHeight - parentOffset - parentHeight + scrollTop + parentPaddingBottom)
+					}, {
+						duration: duration
+					});
+				}
 			}
 
 			element.animate(animationTarget,
@@ -95,7 +97,6 @@ app
 			ng-show
 			*/
 			beforeRemoveClass: function(element, cls, done) {
-				console.log('hier');
 				enter(element, done);
 			},
 			beforeAddClass: function(element, cls, done) {
