@@ -50,6 +50,24 @@ app
 			});
         };
 
+        service.addBalance = function(balance) {
+        	return $http({
+        		method: 'POST',
+        		url: 'http://localhost/public/api/account/post-balance.php',
+        		headers: {
+        			'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        		},
+        		data: {
+        			'account-id': balance.accountId,
+        			'amount': balance.amount,
+        			'date': balance.date
+        		},
+        		transformRequest: $.param
+        	}).then(function(response) {
+        		return response.data[0];
+        	});
+        };
+
         return service;
     }])
 
@@ -80,6 +98,16 @@ app
             return Account.getBalances(account).then(function(balances) {
                 return balances.map(mapBalance);
             });
+        };
+
+        service.addBalance = function(balance) {
+        	return Account.addBalance({
+        		accountId: balance.accountId,
+        		amount: balance.amount,
+        		date: $filter('date')(balance.date, 'iso')
+        	}).then(function(balance) {
+        		return mapBalance(balance);
+        	});
         };
 
 		var mapExpense = function(expense) {

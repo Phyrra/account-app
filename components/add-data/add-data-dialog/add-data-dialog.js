@@ -68,10 +68,16 @@ app
 			}
 
 			if (inputMaskCtrl.amount) {
-				return $q.resolve({
-					success: true,
-					field: 'balances',
-					id: 0
+				return AccountService.addBalance({
+					accountId: ctrl.accountId,
+					amount: inputMaskCtrl.amount,
+					date: inputMaskCtrl.date
+				}).then(function(balance) {
+					return {
+						success: true,
+						field: 'balances',
+						id: balance.id
+					};
 				});
 			} else {
 				return $q.resolve({
