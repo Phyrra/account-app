@@ -116,11 +116,9 @@ app
         ctrl.onSwipeMonth = function(direction) {
             switch (direction) {
                 case SWIPE_DIRECTION.RIGHT:
-                    console.log('right');
                     ctrl.onPreviousMonth();
                     break;
                 case SWIPE_DIRECTION.LEFT:
-                    console.log('left');
                     ctrl.onNextMonth();
                     break;
             }

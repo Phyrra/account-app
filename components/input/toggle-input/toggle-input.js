@@ -24,8 +24,6 @@ app
 
 			ctrl.state = 1 - ctrl.state;
 			ctrl.model = ctrl.values[ctrl.state];
-
-			console.log('hier', ctrl.state);
 		};
 
 		ctrl.$onInit = function() {
