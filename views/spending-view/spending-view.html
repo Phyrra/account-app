@@ -1,0 +1,16 @@
+<div>
+	<account-header show-sidebar="spendingCtrl.showSidebar" show-filter-menu="spendingCtrl.showFilterMenu">
+		{{ spendingCtrl.selectedAccount.name }}
+	</account-header>
+
+	<app-sidebar show="spendingCtrl.showSidebar"></app-sidebar>
+
+	<div class="expense-filter foldout-animation" ng-show="spendingCtrl.showFilterMenu">
+		<account-dropdown ng-model="spendingCtrl.selectedAccount"></account-dropdown>
+	</div>
+
+	<div id="pie-chart" ng-if="spendingCtrl.expenses.length > 0"></div>
+	<div ng-if="spendingCtrl.expenses.length === 0" class="no-entry-message">No entries</div>
+
+	<div id="line-chart"></div>
+</div>

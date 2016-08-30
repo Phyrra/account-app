@@ -1,5 +1,6 @@
 @import 'scss/dimensions.scss';
 @import 'scss/z-order.scss';
+@import 'scss/colors.scss';
 
 .app-sidebar {
     position: fixed;
@@ -20,7 +21,29 @@
         height: 100%;
         width: $sidebar-width;
 
-        background-color: black;
+        background-color: $dark-blue;
+
+        .app-sidebar-item {
+        	display: block;
+
+        	padding: $default-padding;
+        	text-decoration: none;
+
+        	color: $white;
+
+        	&:active,
+        	&:visited {
+        		color: $white;
+        	}
+
+        	&:hover:not(.is-active) {
+        		background-color: $light-blue;
+        	}
+
+        	&.is-active {
+        		background-color: $middle-blue;
+        	}
+        }
     }
 
     &.ng-hide-remove {
