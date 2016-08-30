@@ -15,13 +15,7 @@
 			</div>
 		</div>
 
-		<!--
-			FIXME: the animation fails for automatic target-height
-			the chart is not ready when it starts
-			this could be fixed by using ng-show (but that makes the whole page slow)
-			the target-height attribute is a work-around-hack
-		-->
-		<div class="expense-item-detail foldout-animation" animation-time="300" target-height="600" ng-if="expenseItemCtrl.showDetail">
+		<div class="expense-item-detail foldout-animation" animation-time="300" target-height="450" ng-if="expenseItemCtrl.showDetail">
 			<div class="expense-item-description">
 				{{ expenseItemCtrl.model.description }}
 			</div>

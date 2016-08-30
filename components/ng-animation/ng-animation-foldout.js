@@ -37,43 +37,29 @@ app
 			var animationTarget = {};
 			animationTarget[target.property] = target.value;
 
-			var findScrollParent = function(element) {
-				if (element.length === 0) {
-					return null;
-				}
+			var duration = getDuration(element);
 
-				if (element.hasClass('animation-foldout-scroll-parent')) {
-					return element;
-				}
+			var scrollParent = element.closest('.animation-foldout-scroll-parent');
+			if (scrollParent.length > 0) {
+				var scrollTop = scrollParent.scrollTop();
 
-				return findScrollParent(element.parent());
+				var parentOffset = scrollParent.offset().top;
+				var parentHeight = scrollParent.outerHeight();
+				var parentPaddingBottom = parseInt(scrollParent.css('padding-bottom').replace(/px/, '') || '0', 10);
+
+				var elementOffset = element.offset().top;
+				var targetHeight = target.value;
+
+				scrollParent.animate({
+					scrollTop: Math.max(0, elementOffset + targetHeight - parentOffset - parentHeight + scrollTop + parentPaddingBottom)
+				}, {
+					duration: duration
+				});
 			}
-
-			var interval = null;
-			var scrollParent = findScrollParent(element.parent());
-
-			var oldHeight = 0;
 
 			element.animate(animationTarget,
 			{
-				duration: getDuration(element),
-				step: function() {
-					if (scrollParent) {
-						var parentOffset = scrollParent.offset().top;
-						var parentHeight = scrollParent.outerHeight();
-
-						var elementOffset = element.offset().top;
-						var elementHeight = element.outerHeight();
-
-						var diff = (elementOffset + elementHeight - parentOffset - parentHeight) + 12;
-
-						if (diff > 0) {
-							var scrollTop = scrollParent.scrollTop();
-
-							scrollParent.scrollTop(scrollTop + diff);
-						}
-					}
-				},
+				duration: duration,
 				done: function() {
 					element.css(target.property, '');
 					element.css('overflow-y', '');
@@ -109,6 +95,7 @@ app
 			ng-show
 			*/
 			beforeRemoveClass: function(element, cls, done) {
+				console.log('hier');
 				enter(element, done);
 			},
 			beforeAddClass: function(element, cls, done) {
