@@ -1,0 +1,27 @@
+@import 'scss/colors.scss';
+@import 'scss/dimensions.scss';
+
+.analysis-block {
+	.analysis-block-header {
+		cursor: pointer;
+
+		background-color: $middle-blue;
+		color: $white;
+
+		font-size: $item-title-size;
+		font-weight: bold;
+
+		padding: $default-padding;
+
+		.analysis-block-toggle {
+			width: $bigger-icon-size;
+			text-align: center;
+
+			float: right;
+		}
+	}
+
+	.analysis-block-content {
+		padding: $default-padding;
+	}
+}

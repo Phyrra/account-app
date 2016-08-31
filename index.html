@@ -27,21 +27,14 @@
 			var app = angular.module('app', ['ngAnimate', 'ngRoute']);
 
             app.config(function($routeProvider) {
-				$routeProvider.when('/account', {
+				$routeProvider.when('/', {
 				    templateUrl: 'views/account-view/account-view.html',
 				    controller: 'AccountController',
 				    controllerAs: 'accountCtrl',
 				    reloadOnSearch: false
                 });
 
-                $routeProvider.when('/spending', {
-                	templateUrl: 'views/spending-view/spending-view.html',
-                	controller: 'SpendingController',
-                	controllerAs: 'spendingCtrl',
-                	reloadOnSearch: false
-                });
-
-				$routeProvider.otherwise({ redirectTo: '/account' });
+				$routeProvider.otherwise({ redirectTo: '/' });
 			});
 
 			app.run(['$document', '$rootScope', function($document, $rootScope) {
@@ -77,7 +70,6 @@
 		<script src="components.js"></script>
 
 		<script src="views/account-view/AccountController.js"></script>
-		<script src="views/spending-view/SpendingController.js"></script>
 	</head>
 
 	<body>

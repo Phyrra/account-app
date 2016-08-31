@@ -1,14 +1,25 @@
 app
-    .controller('SpendingController', ['$scope', 'AccountService', 'DataService', '$q', '$timeout', '$filter', function($scope, AccountService, DataService, $q, $timeout, $filter) {
+	.component('analysisBlock', {
+		templateUrl: 'components/analysis-block/analysis-block.html',
+		controller: 'AnalysisBlockController',
+		controllerAs: 'analysisCtrl',
+		bindings: {
+			expenses: '='
+		}
+	})
+
+	.controller('AnalysisBlockController', ['DataService', '$timeout', '$filter', function(DataService, $timeout, $filter) {
 		var ctrl = this;
 
-		ctrl.showSidebar = false;
+		ctrl.showContent = false;
 
-		ctrl.selectedAccount = null;
+		ctrl.onContentToggle = function() {
+			ctrl.showContent = !ctrl.showContent;
 
-		ctrl.categories = [];
-		ctrl.balances = [];
-		ctrl.expenses = [];
+			if (ctrl.showContent) {
+				ctrl.buildChart();
+			}
+		};
 
 		// http://nikolay.rocks/2015-10-29-rainbows-generator-in-javascript
 		// don't really like it :/
@@ -59,12 +70,12 @@ app
 			};
 		};
 
-		ctrl.buildPieChart = function() {
-			var data = ctrl.getPieChartData();
+		ctrl.buildChart = function() {
+			$timeout(function() { // timing hack to let ng-if draw
+				var data = ctrl.getPieChartData();
 
-			$timeout(function() {
 				c3.generate({
-					bindto: '#pie-chart',
+					bindto: '#analysis-pie-chart',
 					data: {
 						type: 'pie',
 						columns: data.columns
@@ -93,25 +104,13 @@ app
 			}, 0, false);
 		};
 
-		ctrl.loadData = function() {
-			$q.all({
-				categories: DataService.getCategories(),
-				balances: AccountService.getBalances(ctrl.selectedAccount),
-				expenses: AccountService.getExpenses(ctrl.selectedAccount)
-			}).then(function(result) {
-				ctrl.categories = result.categories;
-				ctrl.balances = result.balances;
-				ctrl.expenses = result.expenses;
-
-				if (ctrl.expenses.length > 0) {
-					ctrl.buildPieChart();
-				}
-			});
+		ctrl.getChartHeight = function() {
+			return $('#analysis-pie-chart').width() / 2.0;
 		};
 
-		$scope.$watch('spendingCtrl.selectedAccount', function(value, oldValue) {
-			if (value && value !== oldValue) {
-				ctrl.loadData();
-			}
-		});
+		ctrl.$onInit = function() {
+			DataService.getCategories().then(function(categories) {
+				ctrl.categories = categories;
+			});
+		};
 	}]);

@@ -10,6 +10,8 @@
         <category-filter src-model="accountCtrl.expenses" dst-model="accountCtrl.filteredExpenses"></category-filter>
     </div>
 
+    <analysis-block expenses="accountCtrl.expenses"></analysis-block>
+
     <balance-block ng-repeat="balance in accountCtrl.balances" ng-model="balance" open-on-init="$index < accountCtrl.MAX_OPEN_ON_START">
         <expense-item ng-repeat="expense in filteredList = (accountCtrl.filteredExpenses | filter : accountCtrl.getExpensesInDateRange(balance))" ng-model="expense"></expense-item>
 

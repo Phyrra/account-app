@@ -1,0 +1,13 @@
+<div class="analysis-block">
+	<div class="analysis-block-header" ng-click="analysisCtrl.onContentToggle()">
+		Analysis
+
+		<div class="analysis-block-toggle">
+			<i class="fa" ng-class="{ 'fa-chevron-down': !analysisCtrl.showContent, 'fa-chevron-left': analysisCtrl.showContent }"></i>
+		</div>
+	</div>
+
+	<div class="analysis-block-content foldout-animation" ng-if="analysisCtrl.showContent">
+		<div id="analysis-pie-chart" ng-style="{ height: analysisCtrl.getChartHeight() }"></div>
+	</div>
+</div>
