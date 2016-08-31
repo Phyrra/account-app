@@ -19,18 +19,61 @@ app
 		ctrl.swipeFadeout = 500;
 
 		ctrl.getChartData = function() {
+			var column = [];
+			var labels = [];
+			var regionIdx = -1;
+
+			var tmpExpenses = ctrl.expenses.slice().reverse();
+			var curIdx = 0;
+
+			var tmpBalances = ctrl.balances.slice(1).reverse(); // remove the "mock"
+			var balanceIdx = [];
+
+			var current;
+			var lastDate;
+
+			var filter = $filter('date');
+
+			tmpBalances
+				.forEach(function(balance, idx) {
+					column.push(balance.amount);
+					labels.push(filter(balance.date));
+					balanceIdx.push(column.length - 1);
+
+					current = balance.amount;
+					lastDate = balance.date;
+
+					var next = idx < tmpBalances.length - 1 ? tmpBalances[idx + 1] : null;
+
+					for (; curIdx < tmpExpenses.length; ++curIdx) {
+						var expense = tmpExpenses[curIdx];
+
+						if (next !== null && expense.date >= next.date) {
+							break;
+						}
+
+						if (expense.date >= balance.date) {
+							current -= expense.amount;
+
+							if (lastDate.getTime() === expense.date.getTime()) {
+								column[column.length - 1] = current;
+							} else {
+								column.push(current);
+                            	labels.push(filter(expense.date));
+							}
+
+							if (ctrl.model.id === expense.id) {
+								regionIdx = column.length - 1;
+							}
+						}
+					}
+				});
+
 			return {
-				columns: ctrl.expenses.slice().reverse().map(function(expense) {
-					return expense.amount;
-				}),
-				labels: ctrl.expenses.slice().reverse().map(function(expense) {
-					return $filter('date')(expense.date);
-				}),
-				region: ctrl.expenses.slice().reverse().map(function(expense, idx) {
-					return expense.id === ctrl.model.id ? idx : -1;
-				}).filter(function(i) {
-					return i !== -1;
-				})[0]
+				column: column,
+				balanceIdx: balanceIdx,
+				labels: labels,
+				regionIdx: regionIdx
 			};
 		};
 
@@ -106,8 +149,16 @@ app
 					bindto: '#' + ctrl.id,
 					data: {
 						type: 'line',
+						xs: {
+							'data1': 'x1',
+							'data2': 'x2'
+						},
 						columns: [
-							['data'].concat(ctrl.chartData.columns)
+							['x1'].concat(ctrl.chartData.column.map(function(value, idx) { return idx; })),
+							['data1'].concat(ctrl.chartData.column),
+
+							['x2'].concat(ctrl.chartData.balanceIdx),
+							['data2'].concat(ctrl.balances.slice(1).reverse().map(function(balance) { return balance.amount; }))
 						]
 					},
 					axis: {
@@ -143,8 +194,8 @@ app
 					},
 					regions: [{
 						axis: 'x',
-						start: ctrl.chartData.region - 0.5,
-						end: ctrl.chartData.region + 0.5,
+						start: ctrl.chartData.regionIdx - 0.5,
+						end: ctrl.chartData.regionIdx + 0.5,
 						class: 'current-expense'
 					}]
 				});
