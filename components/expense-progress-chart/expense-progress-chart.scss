@@ -1,5 +1,25 @@
 @import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+
+$chart-height: 320px;
 
 .expense-progress-chart {
 	padding: $default-padding;
+
+	.chart-wrapper {
+		position: relative;
+		width: 100%;
+		height: $chart-height;
+
+		overflow: hidden;
+
+		.chart {
+			position: absolute;
+
+			.current-expense {
+				background-color: $light-blue;
+				opacity: 0.5;
+			}
+		}
+	}
 }

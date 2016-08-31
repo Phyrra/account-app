@@ -16,11 +16,7 @@
 		</div>
 
 		<div class="expense-item-detail foldout-animation" animation-time="300" target-height="450" ng-if="expenseItemCtrl.showDetail">
-			<div class="expense-item-description">
-				{{ expenseItemCtrl.model.description }}
-			</div>
-
-			<expense-progress-chart ng-model="expenseItemCtrl.model"></expense-progress-chart>
+			<div class="expense-item-description" ng-bind-html="expenseItemCtrl.model.description | html"></div>
 
 			<div class="kvp-table">
 				<div>
@@ -31,11 +27,9 @@
 					<div>Amount</div>
 					<div>{{ expenseItemCtrl.model.amount | number }} CHF</div>
 				</div>
-				<div>
-					<div>New Balance</div>
-					<div>{{ expenseItemCtrl.model.currentBalance | number }} CHF</div>
-				</div>
 			</div>
+
+			<expense-progress-chart ng-model="expenseItemCtrl.model" balances="expenseItemCtrl.accountCtrl.balances" expenses="expenseItemCtrl.accountCtrl.expenses"></expense-progress-chart>
 		</div>
 	</div>
 </div>

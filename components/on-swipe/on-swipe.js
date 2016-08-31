@@ -13,11 +13,11 @@ app
 
                 var swipeValidator = {
                     'left': function(newX, oldX) {
-                        return newX < oldX;
+                        return newX <= oldX;
                     },
 
                     'right': function(newX, oldX) {
-                        return newX > oldX;
+                        return newX >= oldX;
                     }
                 }
 
@@ -59,6 +59,7 @@ app
 
                 $element.on('mousedown touchstart', function(event) {
                     event.preventDefault();
+                    event.stopPropagation();
 
                     running = true;
                     startX = event.clientX;
@@ -70,15 +71,17 @@ app
                 $element.on('mousemove touchmove', function(event) {
                     event.preventDefault();
 
-                    var newX = event.clientX;
-                    var timeStamp = event.timeStamp;
+					if (running) {
+						var newX = event.clientX;
+						var timeStamp = event.timeStamp;
 
-                    if (angular.isFunction(swipeValidator[swipeDirection])) {
-                        if (!swipeValidator[swipeDirection](newX, curX)) {
-                            $element.css('left', '');
+						if (angular.isFunction(swipeValidator[swipeDirection])) {
+							if (!swipeValidator[swipeDirection](newX, curX)) {
+								$element.css('left', '');
 
-                            reset();
-                        }
+								reset();
+							}
+						}
                     }
 
                     if (running) {

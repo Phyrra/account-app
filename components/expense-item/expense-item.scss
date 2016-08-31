@@ -97,6 +97,10 @@ expense-item {
         .expense-item-detail {
             padding-top: $default-padding;
 
+            .expense-item-description {
+            	padding: $default-padding 0;
+            }
+
             .kvp-table {
             	color: $dark-grey;
 				width: $app-max-size / 3;
