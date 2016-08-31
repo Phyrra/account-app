@@ -97,6 +97,9 @@ app
 				);
 			};
 
+			// fix initial scroll
+			$element.css('left', cropValue($element.offset().left - parent.offset().left));
+
 			$element.on('mousedown touchstart', function(event) {
 				event.preventDefault();
 				event.stopPropagation();
@@ -200,7 +203,13 @@ app
 					}]
 				});
 
-				ctrl.initSliding($('#' + ctrl.id));
+				var $element = $('#' + ctrl.id);
+
+				if (ctrl.chartData.regionIdx !== -1) {
+					$element.css('left', -ctrl.chartData.regionIdx * ctrl.sliceWidth + $element.parent().outerWidth() / 4.0);
+				}
+
+				ctrl.initSliding($element);
 			}, 0, false);
 		};
 	}]);
