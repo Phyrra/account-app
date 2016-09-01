@@ -17,8 +17,13 @@ app
                 var eventStart = null;
                 var eventInterval = null;
 
-                $element.on('mousedown touchstart', function() {
+                var startX;
+
+                $element.on('mousedown touchstart', function(event) {
+                	event.preventDefault();
+
                     eventStart = new Date();
+                    startX = event.clientX;
 
                     eventInterval = $interval(function() {
                         if (new Date() - eventStart > timeDelay) {
@@ -30,6 +35,17 @@ app
                             eventInterval = null;
                         }
                     }, 10);
+                });
+
+                $element.on('mousemove touchmove', function(event) {
+                	var newX = event.clientX;
+
+                	if (Math.abs(newX - startX) > 10) {
+                		if (eventInterval) {
+                			$interval.cancel(eventInterval);
+                			eventInterval = null;
+                		}
+                	}
                 });
 
                 $element.on('mouseup touchend mouseout mouseleave', function() {

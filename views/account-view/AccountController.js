@@ -52,9 +52,26 @@ app
 				AccountService.deleteExpense(expense).then(function(response) {
 					if (response.success) {
 						ctrl.expenses.splice(idx, 1);
+
 						ctrl.expenses = ctrl.expenses.slice(); // do this to trigger the update across the scopes
 					}
 				});
+			}
+		};
+
+		ctrl.updateExpense = function(expense) {
+			// indexOf does not work here, it's a new object
+			var idx = -1;
+			for (var i = 0; i < ctrl.expenses.length; ++i) {
+				idx = i;
+				break;
+			}
+
+			if (idx !== -1) {
+				expense.isNew = true;
+				ctrl.expenses[idx] = expense;
+
+				ctrl.expenses = ctrl.expenses.slice(); // do this to trigger the update across the scopes
 			}
 		};
 

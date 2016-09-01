@@ -10,7 +10,7 @@ app
 		}
 	})
 	
-	.controller('DropdownInputController', ['$element', function($element) {
+	.controller('DropdownInputController', ['$element', '$scope', function($element, $scope) {
 		var ctrl = this;
 
 		ctrl.showFoldout = false;
@@ -53,11 +53,17 @@ app
 			});
 		};
 
-		ctrl.$onInit = function() {
-			if (angular.isUndefined(ctrl.model) && ctrl.options.length > 0) {
-				ctrl.model = ctrl.options[0].value;
+		var modelWatcher = $scope.$watch('inputCtrl.model', function(value) {
+			if (value) {
+				ctrl.evalDisplayText();
+				modelWatcher();
 			}
+		});
 
-			ctrl.evalDisplayText();
-		};
+		var optionsWatcher = $scope.$watch('inputCtrl.options', function(value) {
+			if (value && value.length > 0) {
+				ctrl.evalDisplayText();
+				optionsWatcher();
+			}
+		});
 	}]);

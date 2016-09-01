@@ -8,7 +8,7 @@ app
 		}
 	})
 
-	.controller('AddDataDialogController', ['$element', '$q', 'AccountService', function($element, $q, AccountService) {
+	.controller('AddDataDialogController', ['$element', '$q', function($element, $q) {
 		var ctrl = this;
 
 		ctrl.tabs = [{
@@ -22,30 +22,12 @@ app
 		ctrl.selectedTab = null;
 
 		ctrl.onSaveExpense = function() {
-			var inputMask = $element.find('.expense-input-mask');
-			var inputMaskCtrl = inputMask.scope().inputMaskCtrl;
+			var inputMaskCtrl =  $element.find('.expense-input-mask').scope().inputMaskCtrl;
 
-			if (!inputMaskCtrl.categoryId) {
-				inputMask.find('.category .dropdown-input').addClass('required');
-			}
-
-			if (!inputMaskCtrl.amount) {
-				inputMask.find('.amount input').addClass('required');
-			}
-
-			if (!inputMaskCtrl.title) {
-				inputMask.find('.title input').addClass('required');
-			}
+			inputMaskCtrl.validate();
 
 			if (inputMaskCtrl.categoryId && inputMaskCtrl.amount && inputMaskCtrl.title && inputMaskCtrl.date) {
-				return AccountService.addExpense({
-					accountId: ctrl.accountId,
-					categoryId: inputMaskCtrl.categoryId,
-					title: inputMaskCtrl.title,
-					amount: inputMaskCtrl.amount,
-					description: inputMaskCtrl.description,
-					date: inputMaskCtrl.date
-				}).then(function(expense) {
+				return inputMaskCtrl.onCreate(ctrl.accountId).then(function(expense) {
 					return {
 						success: true,
 						field: 'expenses',
@@ -60,19 +42,12 @@ app
 		};
 
 		ctrl.onSaveBalance = function() {
-			var inputMask = $element.find('.balance-input-mask');
-			var inputMaskCtrl = inputMask.scope().inputMaskCtrl;
+			var inputMaskCtrl = $element.find('.balance-input-mask').scope().inputMaskCtrl;
 
-			if (!inputMaskCtrl.amount) {
-				inputMask.find('.amount input').addClass('required');
-			}
+			inputMaskCtrl.validate();
 
 			if (inputMaskCtrl.amount) {
-				return AccountService.addBalance({
-					accountId: ctrl.accountId,
-					amount: inputMaskCtrl.amount,
-					date: inputMaskCtrl.date
-				}).then(function(balance) {
+				return inputMaskCtrl.onCreate(ctrl.accountId).then(function(balance) {
 					return {
 						success: true,
 						field: 'balances',

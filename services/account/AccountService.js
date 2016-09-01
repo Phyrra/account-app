@@ -87,6 +87,28 @@ app
         	});
         };
 
+        service.updateExpense = function(expense) {
+        	return $http({
+				method: 'POST',
+				url: 'http://localhost/public/api/account/update-expense.php',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+				},
+				data: {
+					'expense-id': expense.id,
+					'account-id': expense.accountId,
+					'category-id': expense.categoryId,
+					'title': expense.title,
+					'amount': expense.amount,
+					'description': expense.description,
+					'date': expense.date
+				},
+				transformRequest: $.param
+			}).then(function(response) {
+				return response.data[0];
+			});
+        };
+
         return service;
     }])
 
@@ -166,6 +188,20 @@ app
         		id: expense.id
         	}).then(function(response) {
         		return response;
+        	});
+        };
+
+        service.updateExpense = function(expense) {
+        	return Account.updateExpense({
+        		accountId: expense.accountId,
+        		categoryId: expense.categoryId,
+        		id: expense.id,
+        		title: expense.title,
+        		amount: expense.amount,
+        		description: expense.description,
+        		date: $filter('date')(expense.date, 'iso')
+        	}).then(function(expense) {
+        		return mapExpense(expense);
         	});
         };
 
