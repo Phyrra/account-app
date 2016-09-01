@@ -68,6 +68,25 @@ app
         	});
         };
 
+        service.deleteExpense = function(expense) {
+        	return $http({
+        		method: 'POST',
+        		url: 'http://localhost/public/api/account/delete-expense.php',
+        		headers: {
+        			'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        		},
+        		data: {
+        			'account-id': expense.accountId,
+        			'expense-id': expense.id
+        		},
+        		transformRequest: $.param
+        	}).then(function(response) {
+        		return {
+        			success: true
+        		};
+        	});
+        };
+
         return service;
     }])
 
@@ -117,6 +136,7 @@ app
 				amount: parseFloat(expense.fAmount),
 				description: expense.sDescription,
 				categoryId: parseInt(expense.idCategory, 10),
+				accountId: parseInt(expense.idAccount, 10),
 				date: new Date(expense.dtDate)
 			};
 		};
@@ -137,6 +157,15 @@ app
         		date: $filter('date')(expense.date, 'iso')
         	}).then(function(expense) {
         		return mapExpense(expense);
+        	});
+        };
+
+        service.deleteExpense = function(expense) {
+        	return Account.deleteExpense({
+        		accountId: expense.accountId,
+        		id: expense.id
+        	}).then(function(response) {
+        		return response;
         	});
         };
 

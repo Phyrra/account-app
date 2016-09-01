@@ -49,8 +49,12 @@ app
 			var idx = ctrl.expenses.indexOf(expense);
 
 			if (idx !== -1) {
-				ctrl.expenses.splice(idx, 1);
-				ctrl.expenses = ctrl.expenses.slice(0); // do this to trigger the update across the scopes
+				AccountService.deleteExpense(expense).then(function(response) {
+					if (response.success) {
+						ctrl.expenses.splice(idx, 1);
+						ctrl.expenses = ctrl.expenses.slice(); // do this to trigger the update across the scopes
+					}
+				});
 			}
 		};
 
