@@ -9,24 +9,12 @@ body {
 	margin: 0;
 }
 
-body {
-	padding: $app-margin 0;
-	background-color: $backlight;
-}
-
 * {
 	box-sizing: border-box;
 }
 
 .fa:not(.non-clickable) {
 	cursor: pointer;
-}
-
-.main {
-    height: 100%;
-    max-width: $app-max-size;
-
-    margin: auto;
 }
 
 .view {
@@ -40,20 +28,14 @@ body {
 	overflow-x: hidden;
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
-	
-	border-radius: $border-radius;
+
 	background-color: $light-grey;
 
 	.header {
         position: fixed;
-        top: $app-margin;
+        top: 0;
 
         height: $header-height;
-
-        width: 100%;
-        max-width: $app-max-size;
-
-        border-radius: $border-radius $border-radius 0 0;
 
         background-color: $dark-blue;
         color: $white;
@@ -66,14 +48,10 @@ body {
 
     .footer {
         position: fixed;
-        bottom: $app-margin;
+        bottom: 0;
 
         height: $footer-height;
-
         width: 100%;
-        max-width: $app-max-size;
-
-        border-radius: 0 0 $border-radius $border-radius;
 
         z-index: $z-header-footer;
 

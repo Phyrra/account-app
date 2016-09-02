@@ -1,8 +1,4 @@
-$app-max-size: 640px;
-// $app-min-size does not really work (fixed position won't scroll horizontally)
-$app-margin: 24px;
-
-$app-break-point-small: 360px;
+$app-break-point-small: 320px;
 
 $default-font-size: 14px;
 $default-padding: 12px;
@@ -12,7 +8,7 @@ $footer-height: 50 + 2 * $default-padding;
 
 $header-title-size: 20px;
 
-$sidebar-width: $app-max-size / 2;
+$sidebar-width: 320px;
 
 $border-radius: 8px;
 $button-size: 48px;

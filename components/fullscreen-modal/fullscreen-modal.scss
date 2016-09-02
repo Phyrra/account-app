@@ -11,22 +11,11 @@
 
 	z-index: $z-modal;
 
-	.modal-backdrop {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-
-		background-color: $lighter-grey;
-	}
-
 	.modal-container {
 		height: 100%;
-        max-width: $app-max-size;
 
         margin: auto;
-        padding: $app-margin 0;
+        padding: 0;
 
 		display: flex;
 		align-items: center;

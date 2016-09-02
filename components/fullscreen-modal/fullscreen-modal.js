@@ -57,14 +57,6 @@ app
 		};
 
 		ctrl.$onInit = function() {
-			$('.modal-backdrop')
-				.css('opacity', 0)
-				.animate({
-					opacity: 0.5
-				}, {
-					duration: DURATION
-				});
-
 			$('.modal-body')
 				.css('opacity', 0)
 				.animate({

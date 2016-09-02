@@ -1,6 +1,8 @@
 @import 'scss/dimensions.scss';
 
 .account-header {
+	width: 100%;
+
     padding: $default-padding;
 
     > span {
