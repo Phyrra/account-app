@@ -63,8 +63,10 @@ app
 			// indexOf does not work here, it's a new object
 			var idx = -1;
 			for (var i = 0; i < ctrl.expenses.length; ++i) {
-				idx = i;
-				break;
+				if (ctrl.expenses[i].id === expense.id) {
+					idx = i;
+					break;
+				}
 			}
 
 			if (idx !== -1) {
