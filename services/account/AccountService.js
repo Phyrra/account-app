@@ -1,112 +1,33 @@
 app
-    .factory('Account', ['$http', function($http) {
+    .factory('Account', ['$q', function($q) {
         var service = {};
 
         service.getAccounts = function() {
-            return $http({
-                method: 'GET',
-                url: 'http://localhost/public/api/account/get-accounts.php'
-            }).then(function(response) {
-                return response.data;
-            });
+            return $q.resolve(JSON.parse(Android.getAccounts()));
         };
 
         service.getBalances = function(account) {
-            return $http({
-                method: 'GET',
-                url: 'http://localhost/public/api/account/get-balances.php?account-id=' + account.id
-            }).then(function(response) {
-                return response.data;
-            });
+            return $q.resolve(JSON.parse(Android.getBalances(account.id)));
         };
 
         service.getExpenses = function(account) {
-            return $http({
-                method: 'GET',
-                url: 'http://localhost/public/api/account/get-expenses.php?account-id=' + account.id
-            }).then(function(response) {
-                return response.data;
-            });
+            return $q.resolve(JSON.parse(Android.getExpenses(account.id)));
         };
 
         service.addExpense = function(expense) {
-        	return $http({
-				method: 'POST',
-				url: 'http://localhost/public/api/account/post-expense.php',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-				},
-				data: {
-					'account-id': expense.accountId,
-					'category-id': expense.categoryId,
-					'title': expense.title,
-					'amount': expense.amount,
-					'description': expense.description,
-					'date': expense.date
-				},
-				transformRequest: $.param
-			}).then(function(response) {
-				return response.data[0];
-			});
+            return $q.resolve(JSON.parse(Android.addExpense(expense.accountId, expense.categoryId, expense.amount, expense.date, expense.description, expense.title)))
         };
 
         service.addBalance = function(balance) {
-        	return $http({
-        		method: 'POST',
-        		url: 'http://localhost/public/api/account/post-balance.php',
-        		headers: {
-        			'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        		},
-        		data: {
-        			'account-id': balance.accountId,
-        			'amount': balance.amount,
-        			'date': balance.date
-        		},
-        		transformRequest: $.param
-        	}).then(function(response) {
-        		return response.data[0];
-        	});
+            return $q.resolve(JSON.parse(Android.addBalance(balance.accountId, balance.amount, balance.date)));
         };
 
         service.deleteExpense = function(expense) {
-        	return $http({
-        		method: 'POST',
-        		url: 'http://localhost/public/api/account/delete-expense.php',
-        		headers: {
-        			'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        		},
-        		data: {
-        			'account-id': expense.accountId,
-        			'expense-id': expense.id
-        		},
-        		transformRequest: $.param
-        	}).then(function(response) {
-        		return {
-        			success: true
-        		};
-        	});
+            return $q.resolve({ success: fase });
         };
 
         service.updateExpense = function(expense) {
-        	return $http({
-				method: 'POST',
-				url: 'http://localhost/public/api/account/update-expense.php',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-				},
-				data: {
-					'expense-id': expense.id,
-					'account-id': expense.accountId,
-					'category-id': expense.categoryId,
-					'title': expense.title,
-					'amount': expense.amount,
-					'description': expense.description,
-					'date': expense.date
-				},
-				transformRequest: $.param
-			}).then(function(response) {
-				return response.data[0];
-			});
+            return $q.resolve({ success: false });
         };
 
         return service;
