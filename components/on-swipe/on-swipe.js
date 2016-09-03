@@ -59,10 +59,9 @@ app
 
                 $element.on('mousedown touchstart', function(event) {
                     event.preventDefault();
-                    event.stopPropagation();
 
                     running = true;
-                    startX = event.clientX;
+                    startX = event.clientX || event.originalEvent.touches[0].clientX;
                     curX = startX;
 
                     width = $element.parent().width();
@@ -72,7 +71,7 @@ app
                     event.preventDefault();
 
 					if (running) {
-						var newX = event.clientX;
+						var newX = event.clientX || event.originalEvent.touches[0].clientX;
 						var timeStamp = event.timeStamp;
 
 						if (angular.isFunction(swipeValidator[swipeDirection])) {
