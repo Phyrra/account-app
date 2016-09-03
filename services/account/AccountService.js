@@ -23,7 +23,7 @@ app
         };
 
         service.deleteExpense = function(expense) {
-            return $q.resolve({ success: fase });
+            return $q.resolve({ success: false });
         };
 
         service.updateExpense = function(expense) {
