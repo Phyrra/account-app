@@ -106,8 +106,8 @@ app
 
 				swiping = true;
 
-				startX = event.clientX;
-				curX = event.clientX;
+				startX = event.clientX || event.originalEvent.touches[0].clientX;
+				curX = startX;
 				curTimeStamp = event.timeStamp;
 
 				initialX = $element.offset().left - parent.offset().left;

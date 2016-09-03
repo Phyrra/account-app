@@ -23,7 +23,7 @@ app
                 	event.preventDefault();
 
                     eventStart = new Date();
-                    startX = event.clientX;
+                    startX = event.clientX || event.originalEvent.touches[0].clientX;
 
                     eventInterval = $interval(function() {
                         if (new Date() - eventStart > timeDelay) {
@@ -38,7 +38,7 @@ app
                 });
 
                 $element.on('mousemove touchmove', function(event) {
-                	var newX = event.clientX;
+                	var newX = event.clientX || event.originalEvent.touches[0].clientX;
 
                 	if (Math.abs(newX - startX) > 10) {
                 		if (eventInterval) {
