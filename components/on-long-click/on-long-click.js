@@ -19,22 +19,28 @@ app
 
                 var startX;
 
+                var reset = function() {
+                    $interval.cancel(eventInterval);
+                    eventInterval = null;
+                };
+
                 $element.on('mousedown touchstart', function(event) {
                 	event.preventDefault();
 
                     eventStart = new Date();
                     startX = event.clientX || event.originalEvent.touches[0].clientX;
 
-                    eventInterval = $interval(function() {
-                        if (new Date() - eventStart > timeDelay) {
-                            $timeout(function() {
-                                callback($scope);
-                            }, 0);
+                    if (!eventInterval) {
+                        eventInterval = $interval(function() {
+                            if (new Date().getTime() - eventStart.getTime() > timeDelay) {
+                                $timeout(function() {
+                                    callback($scope);
+                                }, 0);
 
-                            $interval.cancel(eventInterval);
-                            eventInterval = null;
-                        }
-                    }, 10);
+                                reset();
+                            }
+                        }, 10);
+                    }
                 });
 
                 $element.on('mousemove touchmove', function(event) {
@@ -42,16 +48,14 @@ app
 
                 	if (Math.abs(newX - startX) > 10) {
                 		if (eventInterval) {
-                			$interval.cancel(eventInterval);
-                			eventInterval = null;
+                			reset();
                 		}
                 	}
                 });
 
                 $element.on('mouseup touchend mouseout mouseleave', function() {
                     if (eventInterval) {
-                        $interval.cancel(eventInterval);
-                        eventInterval = null;
+                        reset();
                     }
                 });
             }
