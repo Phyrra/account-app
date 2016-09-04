@@ -20,8 +20,6 @@ app
                 var startX;
 
                 $element.on('mousedown touchstart', function(event) {
-                	event.preventDefault();
-
                     eventStart = new Date();
                     startX = event.clientX || event.originalEvent.touches[0].clientX;
 

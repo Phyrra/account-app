@@ -58,8 +58,6 @@ app
                 }
 
                 $element.on('mousedown touchstart', function(event) {
-                    event.preventDefault();
-
                     running = true;
                     startX = event.clientX || event.originalEvent.touches[0].clientX;
                     curX = startX;
@@ -68,8 +66,6 @@ app
                 });
 
                 $element.on('mousemove touchmove', function(event) {
-                    event.preventDefault();
-
 					if (running) {
 						var newX = event.clientX || event.originalEvent.touches[0].clientX;
 						var timeStamp = event.timeStamp;
