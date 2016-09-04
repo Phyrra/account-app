@@ -25,7 +25,9 @@ app
 		ctrl.onClickPlus = function() {
 			if (ctrl.isOpen) {
 				if (ctrl.name.length > 0) {
-					DataService.addCategory(ctrl.name).then(function(category) {
+					DataService.addCategory({
+					    name: ctrl.name
+                    }).then(function(category) {
 						ctrl.categoryFilterCtrl.addCategory(category);
 
 						ctrl.name = '';

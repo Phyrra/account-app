@@ -1,13 +1,30 @@
 app
-    .factory('Data', ['$q', function($q) {
+    .factory('Data', ['$http', function($http) {
         var service = {};
 
         service.getCategories = function() {
-            return $q.resolve(JSON.parse(Android.getCategories()));
+            return $http({
+                method: 'GET',
+                url: 'http://localhost/public/api/data/get-categories.php'
+            }).then(function(response) {
+                return response.data;
+            });
         };
 
-        service.addCategory = function(name) {
-            return $q.resolve(JSON.parse(Android.addCategory(name)));
+        service.addCategory = function(category) {
+        	return $http({
+        		method: 'POST',
+        		url: 'http://localhost/public/api/data/post-category.php',
+        		headers: {
+        			'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+				},
+        		data: {
+        			'category-name': category.name
+        		},
+        		transformRequest: $.param
+        	}).then(function(response) {
+        		return response.data[0];
+        	});
         };
 
         return service;
@@ -29,8 +46,10 @@ app
             });
         };
 
-        service.addCategory = function(name) {
-        	return Data.addCategory(name).then(function(category) {
+        service.addCategory = function(category) {
+        	return Data.addCategory({
+        	    name: category.name
+        	}).then(function(category) {
         		return mapCategory(category);
         	});
         };
