@@ -11,7 +11,7 @@ app
             });
         };
 
-        service.addCategory = function(name) {
+        service.addCategory = function(category) {
         	return $http({
         		method: 'POST',
         		url: 'http://localhost/public/api/data/post-category.php',
@@ -19,7 +19,7 @@ app
         			'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
 				},
         		data: {
-        			'category-name': name
+        			'category-name': category.name
         		},
         		transformRequest: $.param
         	}).then(function(response) {
@@ -46,8 +46,10 @@ app
             });
         };
 
-        service.addCategory = function(name) {
-        	return Data.addCategory(name).then(function(category) {
+        service.addCategory = function(category) {
+        	return Data.addCategory({
+        	    name: category.name
+        	}).then(function(category) {
         		return mapCategory(category);
         	});
         };
