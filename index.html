@@ -13,6 +13,7 @@
 		<script src="bower_components/angular/angular.min.js"></script>
 		<script src="bower_components/angular-animate/angular-animate.min.js"></script>
 		<script src="bower_components/angular-route/angular-route.min.js"></script>
+		<script src="bower_components/angular-touch/angular-touch.min.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="styles.css" />
@@ -24,7 +25,7 @@
 				return this.is($arg) || $.contains($arg[0], this[0]);
 			};
 
-			var app = angular.module('app', ['ngAnimate', 'ngRoute']);
+			var app = angular.module('app', ['ngAnimate', 'ngRoute', 'ngTouch']);
 
             app.config(function($routeProvider) {
 				$routeProvider.when('/', {
