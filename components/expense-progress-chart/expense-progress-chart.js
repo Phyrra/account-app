@@ -101,7 +101,6 @@ app
 			$element.css('left', cropValue($element.offset().left - parent.offset().left));
 
 			$element.on('mousedown touchstart', function(event) {
-				event.preventDefault();
 				event.stopPropagation();
 
 				swiping = true;
@@ -114,10 +113,8 @@ app
 			});
 
 			$element.on('mousemove touchmove', function(event) {
-				event.preventDefault();
-
 				if (swiping) {
-					var newX = event.clientX;
+					var newX = event.clientX || event.originalEvent.touches[0].clientX;
 					var timeStamp = event.timeStamp;
 
 					swipeXSpeed = (newX - curX) / (timeStamp - curTimeStamp);

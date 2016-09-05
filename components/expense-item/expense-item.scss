@@ -99,12 +99,16 @@ expense-item {
 
             .kvp-table {
             	color: $dark-grey;
-				width: 33%;
+				width: 66%;
 
 				padding: $default-padding 0;
 
-				> div > div:nth-child(2) {
-					text-align: right;
+				> div > div {
+					white-space: nowrap;
+
+					&:nth-child(2) {
+						text-align: right;
+					}
 				}
             }
         }
