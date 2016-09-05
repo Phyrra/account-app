@@ -117,7 +117,7 @@ app
 				event.preventDefault();
 
 				if (swiping) {
-					var newX = event.clientX;
+					var newX = event.clientX || event.originalEvent.touches[0].clientX;
 					var timeStamp = event.timeStamp;
 
 					swipeXSpeed = (newX - curX) / (timeStamp - curTimeStamp);
