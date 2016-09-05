@@ -1,7 +1,7 @@
 app
 	.constant('MODAL_ANIMATION_DURATION', 500)
 
-	.service('ModalService', ['$compile', '$rootScope', '$document', 'MODAL_ANIMATION_DURATION', function($compile, $rootScope, $document, DURATION) {
+	.service('ModalService', ['$compile', '$rootScope', '$document', 'MODAL_ANIMATION_DURATION', '$window', function($compile, $rootScope, $document, DURATION, $window) {
 		var service = {};
 
 		service.open = function(options) {
@@ -17,6 +17,8 @@ app
 			$document
 				.find('body')
 				.append($element);
+
+			Android.onOpenModal();
 		};
 
 		service.close = function() {
@@ -30,7 +32,11 @@ app
 						$('fullscreen-modal').remove();
 					}
 				});
+
+			Android.onCloseModal();
 		};
+
+		$window.closeModal = service.close;
 
 		return service;
 	}])
