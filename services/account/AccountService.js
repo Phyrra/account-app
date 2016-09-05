@@ -51,7 +51,7 @@ app
         	return {
 				id: parseInt(balance.id, 10),
 				accountId: parseInt(balance.idAccount, 10),
-				amount: parseFloat(balance.fSaldo),
+				amount: parseFloat(balance.fAmount),
 				date: new Date(balance.dtDate)
 			};
         };
