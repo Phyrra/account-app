@@ -20,9 +20,14 @@ app
             ctrl.showCalendar = !ctrl.showCalendar;
         };
 
+        ctrl.closeCalendar = function() {
+        	ctrl.showCalendar = false;
+        };
+
         $scope.$watch('dateInputCtrl.model', function(value) {
             if (value) {
                 ctrl.displayModel = $filter('date')(value);
+                ctrl.closeCalendar();
             }
         });
 
