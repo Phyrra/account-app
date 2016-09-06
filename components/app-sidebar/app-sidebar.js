@@ -13,11 +13,8 @@ app
     	var ctrl = this;
 
     	ctrl.items = [{
-    		link: '#/account',
+    		link: '#/',
     		text: 'Account'
-    	}, {
-    		link: '#/spending',
-    		text: 'Spending'
     	}];
 
     	ctrl.isActive = function(item) {
