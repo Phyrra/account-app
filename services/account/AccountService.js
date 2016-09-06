@@ -23,11 +23,11 @@ app
         };
 
         service.deleteExpense = function(expense) {
-            return $q.resolve({ success: false });
+            return $q.resolve(JSON.parse(Android.deleteExpense(expense.id)));
         };
 
         service.updateExpense = function(expense) {
-            return $q.resolve({ success: false });
+            return $q.resolve(JSON.parse(Android.updateExpense(expense.id, expense.accountId, expense.categoryId, expense.amount, expense.date, expense.description, expense.title)));
         };
 
         return service;
