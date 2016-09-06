@@ -21,25 +21,27 @@ app
 			}
 		};
 
-		// http://nikolay.rocks/2015-10-29-rainbows-generator-in-javascript
-		// don't really like it :/
 		ctrl.buildRainbowColors = function(n) {
-			var sinToHex = function(i, phase) {
-				var sin = Math.sin(Math.PI / n * 2 * i + phase);
-				var int = Math.floor(sin * 127) + 128;
-				var hex = int.toString(16);
+			var decToHex = function(value) {
+				var h = value.toString(16);
 
-				return hex.length === 1 ? '0' + hex : hex;
-			};
+				if (h.length === 1) {
+					return '0' + h;
+			  	}
+
+				return h;
+			}
+
+			var frequency = Math.PI / n;
+			console.log(n);
 
 			var colors = [];
-
 			for (var i = 0; i < n; ++i) {
-				var r = sinToHex(i, 0 * Math.PI * 2.0 / 3.0); // 0 deg
-				var g = sinToHex(i, 1 * Math.PI * 2.0 / 3.0); // 120 deg
-				var b = sinToHex(i, 2 * Math.PI * 2.0 / 3.0); // 240 deg
+			   red   = Math.floor(Math.sin(frequency * i + 0) * 127) + 128;
+			   green = Math.floor(Math.sin(frequency * i + 2 * Math.PI / 3) * 127) + 128;
+			   blue  = Math.floor(Math.sin(frequency * i + 4 * Math.PI / 3) * 127) + 128;
 
-				colors.push('#' + r + g + b);
+				colors.push('#' + decToHex(red) + decToHex(green) + decToHex(blue));
 			}
 
 			return colors;
@@ -81,7 +83,7 @@ app
 						columns: data.columns
 					},
 					color: {
-						pattern: ctrl.buildRainbowColors(data.columns.length).reverse()
+						pattern: ctrl.buildRainbowColors(data.columns.length)
 					},
 					pie: {
 						label: {
