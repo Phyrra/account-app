@@ -43,6 +43,7 @@ app
                 var running = false;
 
                 var startX;
+                var startY;
                 var curX;
 
                 var lastTimeStamp;
@@ -50,6 +51,7 @@ app
 
                 var reset = function() {
                     startX = null;
+                    startY = null;
                     curX = null;
                     lastTimeStamp = null;
                     swipeXSpeed = null;
@@ -62,6 +64,7 @@ app
 
                     running = true;
                     startX = event.clientX || event.originalEvent.touches[0].clientX;
+                    startY = event.clientY || event.originalEvent.touches[0].clientY;
                     curX = startX;
 
                     width = $element.parent().width();
@@ -72,14 +75,26 @@ app
 
 					if (running) {
 						var newX = event.clientX || event.originalEvent.touches[0].clientX;
+						var newY = event.clientY || event.originalEvent.touches[0].clientY;
+
 						var timeStamp = event.timeStamp;
+
+						var doReset = false;
 
 						if (angular.isFunction(swipeValidator[swipeDirection])) {
 							if (!swipeValidator[swipeDirection](newX, curX)) {
-								$element.css('left', '');
-
-								reset();
+								doReset = true;
 							}
+						}
+
+						if (Math.abs(startY - newY) > 10) {
+							doReset = true;
+						}
+
+						if (doReset) {
+							$element.css('left', '');
+
+							reset();
 						}
                     }
 

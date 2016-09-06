@@ -18,6 +18,7 @@ app
                 var eventInterval = null;
 
                 var startX;
+                var startY;
 
                 var reset = function() {
                     $interval.cancel(eventInterval);
@@ -29,6 +30,7 @@ app
 
                     eventStart = new Date();
                     startX = event.clientX || event.originalEvent.touches[0].clientX;
+                    startY = event.clientY || event.originalEvent.touches[0].clientY;
 
                     if (!eventInterval) {
                         eventInterval = $interval(function() {
@@ -45,8 +47,9 @@ app
 
                 $element.on('mousemove touchmove', function(event) {
                 	var newX = event.clientX || event.originalEvent.touches[0].clientX;
+                	var newY = event.clientY || event.originalEvent.touches[0].clientY;
 
-                	if (Math.abs(newX - startX) > 10) {
+                	if (Math.abs(newX - startX) > 10 || Math.abs(newY - startY) > 10) {
                 		if (eventInterval) {
                 			reset();
                 		}
