@@ -10,6 +10,18 @@ app
             return $q.resolve(JSON.parse(Android.getBalances(account.id)));
         };
 
+		service.addBalance = function(balance) {
+			return $q.resolve(JSON.parse(Android.addBalance(balance.accountId, balance.amount, balance.date)));
+		};
+
+		service.deleteBalance = function(balance) {
+			return $q.resolve(JSON.parse(Android.deleteBalance(balance.id)));
+		};
+
+		service.updateBalance = function(balance) {
+			return $q.resolve(JSON.parse(Android.updateBalance(balance.id, balance.accountId, balance.amount, balance.date)));
+		};
+
         service.getExpenses = function(account) {
             return $q.resolve(JSON.parse(Android.getExpenses(account.id)));
         };
@@ -18,20 +30,12 @@ app
             return $q.resolve(JSON.parse(Android.addExpense(expense.accountId, expense.categoryId, expense.amount, expense.date, expense.description, expense.title)))
         };
 
-        service.addBalance = function(balance) {
-            return $q.resolve(JSON.parse(Android.addBalance(balance.accountId, balance.amount, balance.date)));
-        };
-
         service.deleteExpense = function(expense) {
             return $q.resolve(JSON.parse(Android.deleteExpense(expense.id)));
         };
 
         service.updateExpense = function(expense) {
             return $q.resolve(JSON.parse(Android.updateExpense(expense.id, expense.accountId, expense.categoryId, expense.amount, expense.date, expense.description, expense.title)));
-        };
-
-        service.updateBalance = function(balance) {
-        	return $q.resolve(JSON.parse(Android.updateBalance(balance.id, balance.accountId, balance.amount, balance.date)));
         };
 
         return service;
@@ -74,6 +78,14 @@ app
         	}).then(function(balance) {
         		return mapBalance(balance);
         	});
+        };
+
+        service.deleteBalance = function(balance) {
+			return Account.deleteBalance({
+				id: balance.id
+			}).then(function(response) {
+				return response;
+			});
         };
 
         service.updateBalance = function(balance) {
@@ -120,7 +132,6 @@ app
 
         service.deleteExpense = function(expense) {
         	return Account.deleteExpense({
-        		accountId: expense.accountId,
         		id: expense.id
         	}).then(function(response) {
         		return response;
