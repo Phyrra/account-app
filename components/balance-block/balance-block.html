@@ -1,5 +1,5 @@
 <div class="balance-block">
-	<div class="balance-block-header" ng-class="{ 'is-new': blockCtrl.model.isNew }" ng-click="blockCtrl.onContentToggle()">
+	<div class="balance-block-header" ng-class="{ 'is-new': blockCtrl.model.isNew }" on-long-click="blockCtrl.onEdit()" ng-click="blockCtrl.onContentToggle()">
 		<div class="balance-block-title">
 			<span ng-if="blockCtrl.model.date">{{blockCtrl.model.date | date }}</span>
 			<span ng-if="!blockCtrl.model.date">Newest</span>

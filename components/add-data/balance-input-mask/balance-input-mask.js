@@ -2,7 +2,10 @@ app
 	.component('balanceInputMask', {
 		templateUrl: 'components/add-data/balance-input-mask/balance-input-mask.html',
 		controller: 'BalanceInputMaskController',
-		controllerAs: 'inputMaskCtrl'
+		controllerAs: 'inputMaskCtrl',
+		bindings: {
+			model: '<?ngModel'
+		}
 	})
 
 	.controller('BalanceInputMaskController', ['AccountService', '$element', function(AccountService, $element) {
@@ -16,9 +19,25 @@ app
 			});
 		};
 
+		ctrl.onUpdate = function() {
+			return AccountService.updateBalance({
+				id: ctrl.model.id,
+				accountId: ctrl.model.accountId,
+				amount: ctrl.amount,
+				date: ctrl.date
+			});
+		};
+
 		ctrl.validate = function() {
 			if (!ctrl.amount) {
 				$element.find('.amount input').addClass('required');
+			}
+		};
+
+		ctrl.$onInit = function() {
+			if (angular.isDefined(ctrl.model)) {
+				ctrl.amount = ctrl.model.amount;
+				ctrl.date = ctrl.model.date;
 			}
 		};
 	}]);

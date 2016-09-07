@@ -30,6 +30,10 @@ app
             return $q.resolve(JSON.parse(Android.updateExpense(expense.id, expense.accountId, expense.categoryId, expense.amount, expense.date, expense.description, expense.title)));
         };
 
+        service.updateBalance = function(balance) {
+        	return $q.resolve(JSON.parse(Android.updateBalance(balance.id, balance.accountId, balance.amount, balance.date)));
+        };
+
         return service;
     }])
 
@@ -64,6 +68,17 @@ app
 
         service.addBalance = function(balance) {
         	return Account.addBalance({
+        		accountId: balance.accountId,
+        		amount: balance.amount,
+        		date: $filter('date')(balance.date, 'iso')
+        	}).then(function(balance) {
+        		return mapBalance(balance);
+        	});
+        };
+
+        service.updateBalance = function(balance) {
+        	return Account.updateBalance({
+        		id: balance.id,
         		accountId: balance.accountId,
         		amount: balance.amount,
         		date: $filter('date')(balance.date, 'iso')

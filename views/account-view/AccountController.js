@@ -60,21 +60,11 @@ app
 		};
 
 		ctrl.updateExpense = function(expense) {
-			// indexOf does not work here, it's a new object
-			var idx = -1;
-			for (var i = 0; i < ctrl.expenses.length; ++i) {
-				if (ctrl.expenses[i].id === expense.id) {
-					idx = i;
-					break;
-				}
-			}
+			ctrl.loadData('expenses', expense.id);
+		};
 
-			if (idx !== -1) {
-				expense.isNew = true;
-				ctrl.expenses[idx] = expense;
-
-				ctrl.expenses = ctrl.expenses.slice(); // do this to trigger the update across the scopes
-			}
+		ctrl.updateBalance = function(balance) {
+			ctrl.loadData('balances', balance.id);
 		};
 
 		ctrl.loadData = function(field, id) {

@@ -61,7 +61,6 @@ app
 			});
 
 			if (angular.isDefined(ctrl.model)) {
-				ctrl.expenseId = ctrl.model.id;
 				ctrl.categoryId = ctrl.model.categoryId;
 				ctrl.title = ctrl.model.title;
 				ctrl.amount = ctrl.model.amount;
