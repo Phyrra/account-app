@@ -1,5 +1,5 @@
 <div class="app-sidebar" ng-show="sidebarCtrl.show">
     <div class="app-sidebar-content" ng-transclude>
-		<a class="app-sidebar-item" ng-repeat="item in sidebarCtrl.items" ng-class="{ 'is-active': sidebarCtrl.isActive(item) }" ng-href="{{ item.link }}">{{ item.text }}</a>
+		<div class="app-sidebar-item" ng-repeat="item in sidebarCtrl.items" ng-class="{ 'is-active': sidebarCtrl.isActive(item) }" ng-click="item.action()">{{ item.text }}</div>
     </div>
 </div>
