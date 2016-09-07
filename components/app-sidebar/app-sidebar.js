@@ -18,7 +18,12 @@ app
     		action: function() {
     			$location.url('/');
     		}
-    	}];
+    	}, {
+			text: 'Backup',
+			action: function() {
+				Android.createBackupDump();
+			}
+		}];
 
     	ctrl.isActive = function(item) {
     		return '#' + $location.url().replace(/\?.*$/, '') === item.link;
