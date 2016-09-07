@@ -39,10 +39,6 @@ expense-item {
     }
 
     .expense-item-body {
-    	&.is-new {
-    		background-color: $success-green;
-    	}
-
         position: relative;
         left: 0;
         right: 0;
@@ -51,9 +47,13 @@ expense-item {
 
         z-index: $z-expense-item;
 
-        padding: $default-padding;
-
         .expense-item-display {
+            &.is-new {
+                background-color: $success-green;
+            }
+            
+            padding: $default-padding;
+            
             font-size: $item-title-size;
             font-weight: bold;
 
@@ -95,7 +95,7 @@ expense-item {
         }
 
         .expense-item-detail {
-            padding-top: $default-padding;
+            padding: $default-padding;
 
             .kvp-table {
             	color: $dark-grey;

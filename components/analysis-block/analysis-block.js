@@ -33,7 +33,6 @@ app
 			}
 
 			var frequency = Math.PI / n;
-			console.log(n);
 
 			var colors = [];
 			for (var i = 0; i < n; ++i) {
@@ -72,11 +71,22 @@ app
 			};
 		};
 
+		ctrl.getPercentages = function(columns) {
+			var sum = columns.reduce(function(iter, column) {
+				return iter + column[1];
+			}, 0);
+
+			return columns.map(function(column) {
+				return column[1] / sum * 100;
+			});
+		};
+
 		ctrl.buildChart = function() {
 			$timeout(function() { // timing hack to let ng-if draw
 				var data = ctrl.getPieChartData();
+				var percentages = ctrl.getPercentages(data.columns);
 
-				c3.generate({
+				var chart = c3.generate({
 					bindto: '#analysis-pie-chart',
 					data: {
 						type: 'pie',
@@ -98,16 +108,53 @@ app
 							value: function(value, ratio, id) {
 								var filter = $filter('number');
 
-								return filter(ratio, 2) + '% (' + filter(value, 2) + 'CHF)';
+								return filter(ratio * 100, 2) + '% (' + filter(value, 2) + 'CHF)';
 							}
 						}
+					},
+					legend: {
+						show: false
 					}
 				});
+
+				d3.select('.analysis-block-content')
+					.insert('div')
+					.attr('class', 'chart-legend')
+					.insert('div')
+					.attr('class', 'chart-legend-content')
+					.selectAll()
+					.data(data.columns.map(function(column) {
+						return column[0];
+					}))
+					.enter()
+						.append('div')
+						.attr('class', 'chart-legend-label')
+						.html(function(id, idx) {
+							return '<i class="chart-legend-label-icon" style="background-color: ' + chart.color(id) + '"></i>' +
+								id +
+								', ' +
+								$filter('number')(percentages[idx]) + '%' +
+								' ' +
+								'(' + $filter('number')(data.columns[idx][1]) + 'CHF)';
+						})
+						.on('mouseover', function(id) {
+							chart.focus(id);
+						})
+						.on('mouseout', function() {
+							chart.revert();
+						})
+						.on('click', function(id) {
+							chart.toggle(id);
+						});
 			}, 0, false);
 		};
 
 		ctrl.getChartHeight = function() {
 			return $('#analysis-pie-chart').width() / 2.0;
+		}
+
+		ctrl.getChartContainerHeight = function() {
+			return ctrl.getChartHeight() + ctrl.categories.length * 45; // magic number
 		};
 
 		ctrl.$onInit = function() {
