@@ -1,14 +1,14 @@
 app
-	.component('addCategoryButton', {
-		templateUrl: 'components/expense-filter/add-category-button/add-category-button.html',
-		controller: 'AddCategoryButtonController',
-		controllerAs: 'buttonCtrl',
-		require: {
-			categoryFilterCtrl: '^categoryFilter' // CategoryFilterController
+	.component('addInputField', {
+		templateUrl: 'components/input/add-input-field/add-input-field.html',
+		controller: 'AddInputFieldController',
+		controllerAs: 'inputCtrl',
+		bindings: {
+			onSubmit: '='
 		}
 	})
 
-	.controller('AddCategoryButtonController', ['$element','$timeout', '$scope', 'DataService', function($element, $timeout, $scope, DataService) {
+	.controller('AddInputFieldController', ['$element','$timeout', '$scope', function($element, $timeout, $scope) {
 		var ctrl = this;
 
 		ctrl.isOpen = false;
@@ -24,14 +24,10 @@ app
 
 		ctrl.onClickPlus = function() {
 			if (ctrl.isOpen) {
-				if (ctrl.name.length > 0) {
-					DataService.addCategory({
-					    name: ctrl.name
-                    }).then(function(category) {
-						ctrl.categoryFilterCtrl.addCategory(category);
+				if (ctrl.model && ctrl.model.length > 0) {
+					ctrl.onSubmit(ctrl.model);
 
-						ctrl.name = '';
-					});
+					ctrl.model = '';
 				}
 
 				ctrl.isOpen = false;
@@ -48,7 +44,7 @@ app
 		$scope.$on('document-click', function($event, event) {
 			var $target = $(event.target);
 
-            if (!$target.isOrChildOf('add-category-button')) {
+            if (!$target.isOrChildOf('add-input-field')) {
             	$timeout(function() {
             		ctrl.onBlurClose();
             	}, 0);
