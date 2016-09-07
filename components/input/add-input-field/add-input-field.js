@@ -4,8 +4,7 @@ app
 		controller: 'AddInputFieldController',
 		controllerAs: 'inputCtrl',
 		bindings: {
-			onSubmit: '=',
-			model: '=ngModel'
+			onSubmit: '='
 		}
 	})
 
@@ -25,7 +24,7 @@ app
 
 		ctrl.onClickPlus = function() {
 			if (ctrl.isOpen) {
-				if (ctrl.model.length > 0) {
+				if (ctrl.model && ctrl.model.length > 0) {
 					ctrl.onSubmit(ctrl.model);
 
 					ctrl.model = '';
