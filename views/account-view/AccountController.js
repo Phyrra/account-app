@@ -59,6 +59,20 @@ app
 			}
 		};
 
+		ctrl.deleteBalance = function(balance) {
+			var idx = ctrl.balances.indexOf(balance);
+
+			if (idx !== -1) {
+				AccountService.deleteBalance(balance).then(function(response) {
+					if (response.success) {
+						ctrl.balances.splice(idx, 1);
+
+						ctrl.balances = ctrl.balances.slice(); // do this to trigger the update across the scopes
+					}
+				});
+			}
+		};
+
 		ctrl.updateExpense = function(expense) {
 			ctrl.loadData('expenses', expense.id);
 		};

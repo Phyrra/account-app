@@ -20,6 +20,39 @@ app
             });
         };
 
+		service.addBalance = function(balance) {
+			return $http({
+				method: 'POST',
+				url: 'http://localhost/public/api/account/post-balance.php',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+				},
+				data: {
+					'account-id': balance.accountId,
+					'amount': balance.amount,
+					'date': balance.date
+				},
+				transformRequest: $.param
+			}).then(function(response) {
+				return response.data[0];
+			});
+		};
+
+		service.deleteBalance = function(balance) {
+			return $q.resolve({
+				success: true
+			});
+		};
+
+		service.updateBalance = function(balance) {
+			return $q.resolve({
+				id: balance.id,
+				idAccount: balance.accountId,
+				fAmount: balance.amount,
+				dtDate: balance.date
+			});
+		};
+
         service.getExpenses = function(account) {
             return $http({
                 method: 'GET',
@@ -50,24 +83,6 @@ app
 			});
         };
 
-        service.addBalance = function(balance) {
-        	return $http({
-        		method: 'POST',
-        		url: 'http://localhost/public/api/account/post-balance.php',
-        		headers: {
-        			'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        		},
-        		data: {
-        			'account-id': balance.accountId,
-        			'amount': balance.amount,
-        			'date': balance.date
-        		},
-        		transformRequest: $.param
-        	}).then(function(response) {
-        		return response.data[0];
-        	});
-        };
-
         service.deleteExpense = function(expense) {
         	return $http({
         		method: 'POST',
@@ -76,7 +91,6 @@ app
         			'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         		},
         		data: {
-        			'account-id': expense.accountId,
         			'expense-id': expense.id
         		},
         		transformRequest: $.param
@@ -107,15 +121,6 @@ app
 			}).then(function(response) {
 				return response.data[0];
 			});
-        };
-
-        service.updateBalance = function(balance) {
-        	return $q.resolve({
-        		id: balance.id,
-        		idAccount: balance.accountId,
-        		fAmount: balance.amount,
-        		dtDate: balance.date
-        	});
         };
 
         return service;
@@ -158,6 +163,14 @@ app
         	}).then(function(balance) {
         		return mapBalance(balance);
         	});
+        };
+
+        service.deleteBalance = function(balance) {
+			return Account.deleteBalance({
+				id: balance.id
+			}).then(function(response) {
+				return response;
+			});
         };
 
         service.updateBalance = function(balance) {
@@ -204,7 +217,6 @@ app
 
         service.deleteExpense = function(expense) {
         	return Account.deleteExpense({
-        		accountId: expense.accountId,
         		id: expense.id
         	}).then(function(response) {
         		return response;

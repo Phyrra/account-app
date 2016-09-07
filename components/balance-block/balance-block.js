@@ -49,6 +49,13 @@ app
 							}
 						}
 					}, {
+						text: 'Delete',
+						action: function(content) {
+							ctrl.accountCtrl.deleteBalance(ctrl.model);
+
+							ModalService.close();
+						}
+					}, {
 						text: 'Cancel',
 						action: function(content) {
 							ModalService.close();
