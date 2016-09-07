@@ -22,7 +22,7 @@ app
 
 		ctrl.onEdit = function() {
 			ModalService.open({
-				header: 'Create',
+				header: 'Edit',
 				buttons: [
 					{
 						isPrimary: true,

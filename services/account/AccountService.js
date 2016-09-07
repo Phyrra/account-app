@@ -1,5 +1,5 @@
 app
-    .factory('Account', ['$http', function($http) {
+    .factory('Account', ['$http', '$q', function($http, $q) {
         var service = {};
 
         service.getAccounts = function() {
@@ -109,6 +109,15 @@ app
 			});
         };
 
+        service.updateBalance = function(balance) {
+        	return $q.resolve({
+        		id: balance.id,
+        		idAccount: balance.accountId,
+        		fAmount: balance.amount,
+        		dtDate: balance.date
+        	});
+        };
+
         return service;
     }])
 
@@ -143,6 +152,17 @@ app
 
         service.addBalance = function(balance) {
         	return Account.addBalance({
+        		accountId: balance.accountId,
+        		amount: balance.amount,
+        		date: $filter('date')(balance.date, 'iso')
+        	}).then(function(balance) {
+        		return mapBalance(balance);
+        	});
+        };
+
+        service.updateBalance = function(balance) {
+        	return Account.updateBalance({
+        		id: balance.id,
         		accountId: balance.accountId,
         		amount: balance.amount,
         		date: $filter('date')(balance.date, 'iso')
