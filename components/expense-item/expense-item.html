@@ -5,8 +5,8 @@
 			Delete
 		</div>
 	</div>
-	<div class="expense-item-body" ng-class="{ 'is-new': expenseItemCtrl.model.isNew }" on-long-click="expenseItemCtrl.onEdit()" on-swipe="expenseItemCtrl.accountCtrl.deleteExpense(expenseItemCtrl.model)" swipe-direction="right">
-		<div class="expense-item-display">
+	<div class="expense-item-body" on-long-click="expenseItemCtrl.onEdit()" on-swipe="expenseItemCtrl.accountCtrl.deleteExpense(expenseItemCtrl.model)" swipe-direction="right">
+		<div class="expense-item-display" ng-class="{ 'is-new': expenseItemCtrl.model.isNew }">
 			<div class="expense-item-title">{{ expenseItemCtrl.model.title }}</div>
 			<div class="expense-item-amount">({{ expenseItemCtrl.model.amount | number }} CHF)</div>
 
