@@ -26,17 +26,12 @@
         background-color: $dark-blue;
 
         .app-sidebar-item {
-        	display: block;
-
         	padding: $default-padding;
         	text-decoration: none;
 
         	color: $white;
 
-        	&:active,
-        	&:visited {
-        		color: $white;
-        	}
+        	cursor: pointer;
 
         	&:hover:not(.is-active) {
         		background-color: $light-blue;

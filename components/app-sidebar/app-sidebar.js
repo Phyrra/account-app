@@ -13,8 +13,11 @@ app
     	var ctrl = this;
 
     	ctrl.items = [{
+    		text: 'Account',
     		link: '#/',
-    		text: 'Account'
+    		action: function() {
+    			$location.url('/');
+    		}
     	}];
 
     	ctrl.isActive = function(item) {
