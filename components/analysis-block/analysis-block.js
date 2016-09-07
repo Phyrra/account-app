@@ -132,7 +132,7 @@ app
 						.html(function(id, idx) {
 							return '<i class="chart-legend-label-icon" style="background-color: ' + chart.color(id) + '"></i>' +
 								id +
-								' ' +
+								', ' +
 								$filter('number')(percentages[idx]) + '%' +
 								' ' +
 								'(' + $filter('number')(data.columns[idx][1]) + 'CHF)';
