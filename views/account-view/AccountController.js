@@ -14,24 +14,20 @@ app
 		ctrl.expenses = [];
 		ctrl.filteredExpenses = [];
 
-		ctrl.getExpensesInDateRange = function(balance) {
-            if (ctrl.balances.length === 1) { // there's always at least 1 "mock" balance
-                return function(expense) {
-                    return true;
-                }
-            }
-            
-			var idx = ctrl.balances.indexOf(balance);
+		ctrl.getExpensesInDateRange = function(expenses, balance) {
+			return expenses.filter(function(expense) {
+				if (ctrl.balances.length === 1) { // there's always at least 1 "mock" balance
+					return true;
+				}
 
-			if (idx === -1) {
-				return function(expense) {
+				var idx = ctrl.balances.indexOf(balance);
+
+				if (idx === -1) {
 					return false;
-				};
-			}
+				}
 
-			return function(expense) {
 				if (idx === 0) {
-                    // idx 0 is a "mock" balance to catch all the newest expenses
+					// idx 0 is a "mock" balance to catch all the newest expenses
 					var lastBalance = ctrl.balances[1];
 
 					return expense.date >= lastBalance.date;
@@ -42,7 +38,7 @@ app
 
 					return expense.date >= previousBalance.date && expense.date < balance.date;
 				}
-			};
+			});
 		};
 
 		ctrl.deleteExpense = function(expense) {

@@ -14,6 +14,20 @@
 		</div>
 	</div>
 
-	<!-- TODO: maybe not transclude? -->
-	<div class="foldout-animation" ng-if="blockCtrl.showContent" ng-transclude></div>
+	<div class="balance-block-content foldout-animation" ng-if="blockCtrl.showContent">
+		<div class="balance-block-summary" ng-if="blockCtrl.filteredExpenses.length > 0">
+			<div>
+				Sum
+			</div>
+			<div class="balance-block-summary-amount">
+				{{ blockCtrl.expenseSum | number }} CHF
+			</div>
+		</div>
+
+		<expense-item ng-repeat="expense in blockCtrl.filteredExpenses" ng-model="expense"></expense-item>
+
+		<div ng-show="blockCtrl.filteredExpenses.length === 0" class="no-entry-message">
+			No entries
+		</div>
+	</div>
 </div>
