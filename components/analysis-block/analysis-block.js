@@ -8,8 +8,10 @@ app
 		}
 	})
 
-	.controller('AnalysisBlockController', ['DataService', '$timeout', '$filter', function(DataService, $timeout, $filter) {
+	.controller('AnalysisBlockController', ['DataService', '$timeout', '$filter', '$scope', function(DataService, $timeout, $filter, $scope) {
 		var ctrl = this;
+
+		var ANALYSIS_BLOCK_CHART = '.analysis-block-chart';
 
 		ctrl.showContent = false;
 
@@ -17,6 +19,14 @@ app
 			ctrl.showContent = !ctrl.showContent;
 
 			if (ctrl.showContent) {
+				if (angular.isUndefined(ctrl.startDate)) {
+					ctrl.startDate = ctrl.expenses[ctrl.expenses.length - 1].date;
+				}
+
+				if (angular.isUndefined(ctrl.endDate)) {
+					ctrl.endDate = ctrl.expenses[0].date;
+				}
+
 				ctrl.buildChart();
 			}
 		};
@@ -52,7 +62,7 @@ app
 					category.name,
 					ctrl.expenses
 						.filter(function(expense) {
-							return expense.categoryId === category.id;
+							return expense.categoryId === category.id && expense.date >= ctrl.startDate && expense.date <= ctrl.endDate;
 						})
 						.map(function(expense) {
 							return expense.amount
@@ -83,6 +93,10 @@ app
 
 		ctrl.buildChart = function() {
 			$timeout(function() { // timing hack to let ng-if draw
+				$(ANALYSIS_BLOCK_CHART)
+					.empty()
+					.append('<div id="analysis-pie-chart" style="height: ' + ctrl.getChartHeight() + 'px;"></div>');
+
 				var data = ctrl.getPieChartData();
 				var percentages = ctrl.getPercentages(data.columns);
 
@@ -117,7 +131,7 @@ app
 					}
 				});
 
-				d3.select('.analysis-block-content')
+				d3.select(ANALYSIS_BLOCK_CHART)
 					.insert('div')
 					.attr('class', 'chart-legend')
 					.insert('div')
@@ -150,12 +164,24 @@ app
 		};
 
 		ctrl.getChartHeight = function() {
-			return $('#analysis-pie-chart').width() / 2.0;
+			return $(ANALYSIS_BLOCK_CHART).width() / 2.0;
 		}
 
 		ctrl.getChartContainerHeight = function() {
 			return ctrl.getChartHeight() + ctrl.categories.length * 45; // magic number
 		};
+
+		$scope.$watch('analysisCtrl.startDate', function(value, oldValue) {
+			if (value && value !== oldValue) {
+				ctrl.buildChart();
+			}
+		});
+
+		$scope.$watch('analysisCtrl.endDate', function(value, oldValue) {
+			if (value && value !== oldValue) {
+				ctrl.buildChart();
+			}
+		});
 
 		ctrl.$onInit = function() {
 			DataService.getCategories().then(function(categories) {

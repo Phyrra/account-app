@@ -7,7 +7,12 @@
 		</div>
 	</div>
 
-	<div class="analysis-block-content foldout-animation" ng-if="analysisCtrl.showContent" ng-style="{ height: analysisCtrl.getChartContainerHeight() }">
-		<div id="analysis-pie-chart" ng-style="{ height: analysisCtrl.getChartHeight() }"></div>
+	<div class="analysis-block-content foldout-animation" ng-if="analysisCtrl.showContent">
+		<div class="analysis-block-options">
+			<date-input title="Start Date" ng-model="analysisCtrl.startDate"></date-input>
+			<date-input title="End Date" ng-model="analysisCtrl.endDate"></date-input>
+		</div>
+
+		<div class="analysis-block-chart" ng-style="{ height: analysisCtrl.getChartContainerHeight() }"></div>
 	</div>
 </div>

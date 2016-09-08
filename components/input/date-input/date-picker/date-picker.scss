@@ -26,6 +26,8 @@ $date-picker-header-size: 16px;
         font-size: $date-picker-header-size;
         font-weight: bold;
 
+        cursor: pointer;
+
         .date-picker-header-button {
             padding: $default-padding;
         }

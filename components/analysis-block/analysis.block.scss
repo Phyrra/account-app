@@ -51,5 +51,17 @@
 				}
 			}
 		}
+
+		.analysis-block-options {
+			display: flex;
+
+			date-input {
+				width: 50%;
+
+				&:not(:last-child) {
+					margin-right: $default-padding;
+				}
+			}
+		}
 	}
 }
