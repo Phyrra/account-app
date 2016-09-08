@@ -4,6 +4,7 @@ app
             restrict: 'A',
             link: function($scope, $element, $attrs) {
                 var DEFAULT_TIME_DELAY = 1000;
+                var TOLERANCE = 16;
 
                 var timeDelay;
                 if ($attrs.hasOwnProperty('timeDelay')) {
@@ -47,7 +48,7 @@ app
                 	var newX = event.clientX || event.originalEvent.touches[0].clientX;
                 	var newY = event.clientY || event.originalEvent.touches[0].clientY;
 
-                	if (Math.abs(newX - startX) > 10 || Math.abs(newY - startY) > 10) {
+                	if (Math.abs(newX - startX) > TOLERANCE || Math.abs(newY - startY) > TOLERANCE) {
                 		if (eventInterval) {
                 			reset();
                 		}

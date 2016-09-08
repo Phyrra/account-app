@@ -10,6 +10,7 @@ app
             link: function($scope, $element, $attrs) {
                 var DEFAULT_EXECUTE_FRACTION = 0.5;
                 var MIN_ANIMATION_TIME = 500;
+                var Y_TOLERANCE = 32;
 
                 var swipeValidator = {
                     'left': function(newX, oldX) {
@@ -83,7 +84,7 @@ app
 							}
 						}
 
-						if (Math.abs(startY - newY) > 10) {
+						if (Math.abs(startY - newY) > Y_TOLERANCE) {
 							doReset = true;
 						}
 
