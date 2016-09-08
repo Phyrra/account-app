@@ -24,7 +24,7 @@
 			</div>
 		</div>
 
-		<expense-item ng-repeat="expense in blockCtrl.filteredExpenses" ng-model="expense"></expense-item>
+		<expense-item ng-repeat="expense in blockCtrl.filteredExpenses" ng-model="expense" is-last-block="blockCtrl.isLast"></expense-item>
 
 		<div ng-show="blockCtrl.filteredExpenses.length === 0" class="no-entry-message">
 			No entries

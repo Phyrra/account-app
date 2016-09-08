@@ -7,7 +7,8 @@ app
 		    accountCtrl: '^ngController' // AccountController
 		},
 		bindings: {
-			model: '<?ngModel'
+			model: '<ngModel',
+			isLastBlock: '<'
 		}
 	})
 	

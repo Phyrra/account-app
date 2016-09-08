@@ -4,7 +4,7 @@ app
 		bindings: {
 			title: '@',
 			model: '=ngModel',
-			disabled: '=?ngDisabled'
+			disabled: '<?ngDisabled'
 		}
 	})
 

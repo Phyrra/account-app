@@ -7,9 +7,10 @@ app
 			accountCtrl: '^ngController' // AccountController
 		},
 		bindings: {
-			model: '=ngModel',
-			expenses: '=',
-			openOnInit: '<'
+			model: '<ngModel',
+			expenses: '<',
+			openOnInit: '<',
+			isLast: '<'
 		}
 	})
 

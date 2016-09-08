@@ -4,7 +4,7 @@ app
 		controller: 'AnalysisBlockController',
 		controllerAs: 'analysisCtrl',
 		bindings: {
-			expenses: '='
+			expenses: '<'
 		}
 	})
 
