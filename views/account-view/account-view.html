@@ -12,13 +12,13 @@
 
     <analysis-block expenses="accountCtrl.expenses"></analysis-block>
 
-    <balance-block ng-repeat="balance in accountCtrl.balances" ng-model="balance" open-on-init="$index < accountCtrl.MAX_OPEN_ON_START">
-        <expense-item ng-repeat="expense in filteredList = (accountCtrl.filteredExpenses | filter : accountCtrl.getExpensesInDateRange(balance))" ng-model="expense"></expense-item>
-
-        <div ng-show="filteredList.length === 0" class="no-entry-message">
-			No entries
-		</div>
-    </balance-block>
+    <balance-block
+            ng-repeat="balance in accountCtrl.balances"
+			ng-model="balance"
+			expenses="accountCtrl.filteredExpenses"
+			open-on-init="$index < accountCtrl.MAX_OPEN_ON_START"
+			is-last="$last"
+	></balance-block>
 
     <div class="footer">
         <add-data-button></add-data-button>

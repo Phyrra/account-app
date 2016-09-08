@@ -1,19 +1,20 @@
 app
 	.component('balanceBlock', {
 		templateUrl: 'components/balance-block/balance-block.html',
-		transclude: true,
 		controller: 'BalanceBlockController',
 		controllerAs: 'blockCtrl',
 		require: {
 			accountCtrl: '^ngController' // AccountController
 		},
 		bindings: {
-			model: '=ngModel',
-			openOnInit: '<'
+			model: '<ngModel',
+			expenses: '<',
+			openOnInit: '<',
+			isLast: '<'
 		}
 	})
 
-	.controller('BalanceBlockController', ['ModalService', function(ModalService) {
+	.controller('BalanceBlockController', ['ModalService', '$scope', function(ModalService, $scope) {
 		var ctrl = this;
 
 		ctrl.showContent = ctrl.openOnInit === true;
@@ -65,5 +66,19 @@ app
 				balance: ctrl.model,
 				content: '<balance-input-mask ng-model="balance"></balance-input-mask>'
 			});
+		};
+
+		$scope.$watch('blockCtrl.expenses', function(value) {
+			if (value) {
+				ctrl.filteredExpenses = ctrl.accountCtrl.getExpensesInDateRange(ctrl.expenses, ctrl.model);
+
+				ctrl.expenseSum = ctrl.filteredExpenses.reduce(function(iter, expense) {
+					return iter + expense.amount;
+				}, 0);
+			}
+		});
+
+		ctrl.$onInit = function() {
+
 		};
 	}]);

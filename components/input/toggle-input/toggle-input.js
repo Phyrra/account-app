@@ -7,7 +7,7 @@ app
 			model: '=ngModel',
 			onValue: '@?',
 			offValue: '@?',
-			disabled: '=ngDisabled'
+			disabled: '<ngDisabled'
 		}
 	})
 

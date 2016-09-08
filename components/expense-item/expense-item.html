@@ -8,14 +8,14 @@
 	<div class="expense-item-body" on-long-click="expenseItemCtrl.onEdit()" on-swipe="expenseItemCtrl.accountCtrl.deleteExpense(expenseItemCtrl.model)" swipe-direction="right">
 		<div class="expense-item-display" ng-class="{ 'is-new': expenseItemCtrl.model.isNew }">
 			<div class="expense-item-title">{{ expenseItemCtrl.model.title }}</div>
-			<div class="expense-item-amount">({{ expenseItemCtrl.model.amount | number }} CHF)</div>
+			<div class="expense-item-amount">{{ expenseItemCtrl.model.amount | number }} CHF</div>
 
 			<div class="expense-item-toggle" ng-click="expenseItemCtrl.onToggleDetail()">
 				<i class="fa" ng-class="{ 'fa-plus': !expenseItemCtrl.showDetail, 'fa-minus': expenseItemCtrl.showDetail }"></i>
 			</div>
 		</div>
 
-		<div class="expense-item-detail foldout-animation" animation-time="300" target-height="450" ng-if="expenseItemCtrl.showDetail">
+		<div class="expense-item-detail foldout-animation" target-height="450" ng-if="expenseItemCtrl.showDetail">
 			<div class="expense-item-description" ng-bind-html="expenseItemCtrl.model.description | html"></div>
 
 			<div class="kvp-table">
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 
-			<expense-progress-chart ng-model="expenseItemCtrl.model" balances="expenseItemCtrl.accountCtrl.balances" expenses="expenseItemCtrl.accountCtrl.expenses"></expense-progress-chart>
+			<expense-progress-chart ng-if="!expenseItemCtrl.isLastBlock" ng-model="expenseItemCtrl.model" balances="expenseItemCtrl.accountCtrl.balances" expenses="expenseItemCtrl.accountCtrl.expenses"></expense-progress-chart>
 		</div>
 	</div>
 </div>
