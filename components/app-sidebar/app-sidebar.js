@@ -23,6 +23,11 @@ app
 			action: function() {
 				Android.createBackupDump();
 			}
+		}, {
+			text: 'Restore',
+			action: function() {
+				Android.restoreBackupDump();
+			}
 		}];
 
     	ctrl.onItemClick = function(item) {
