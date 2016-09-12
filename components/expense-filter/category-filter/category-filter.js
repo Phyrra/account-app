@@ -9,7 +9,7 @@ app
         }
     })
 
-    .controller('CategoryFilterController', ['DataService', '$scope', function(DataService, $scope) {
+    .controller('CategoryFilterController', ['DataService', '$scope', 'ModalService', function(DataService, $scope, ModalService) {
         var ctrl = this;
 
         ctrl.categories = [];
@@ -27,16 +27,36 @@ app
         	ctrl.categories.push(category);
         };
 
+        ctrl.updateCategory = function(category) {
+			for (var i = 0; i < ctrl.categories.length; ++i) {
+				var cat = ctrl.categories[i];
+
+				if (cat.id === category.id) {
+					cat.name = category.name;
+
+					break;
+				}
+			}
+		};
+
+		ctrl.deleteCategory = function(category) {
+			for (var i = 0; i < ctrl.categories.length; ++i) {
+				var cat = ctrl.categories[i];
+
+				if (cat.id === category.id) {
+					ctrl.categories.splice(i, 1);
+
+					break;
+				}
+			}
+
+			ctrl.performFilter();
+		};
+
         ctrl.selectAllCategories = function() {
             ctrl.categories.forEach(function(category) {
                 category.checked = true;
             });
-        };
-
-        ctrl.toggleCategory = function(category) {
-            category.checked = !category.checked;
-
-            ctrl.performFilter();
         };
 
         ctrl.isCategorySelected = function(categoryId) {

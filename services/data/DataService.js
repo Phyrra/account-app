@@ -1,5 +1,5 @@
 app
-    .factory('Data', ['$http', function($http) {
+    .factory('Data', ['$http', '$q', function($http, $q) {
         var service = {};
 
         service.getCategories = function() {
@@ -27,6 +27,19 @@ app
         	});
         };
 
+		service.deleteCategory = function(category) {
+			return $q.resolve({
+				success: true
+			});
+		};
+
+        service.updateCategory = function(category) {
+        	return $q.resolve({
+        		id: category.id,
+        		sName: category.name
+        	});
+        };
+
         return service;
     }])
 
@@ -46,9 +59,26 @@ app
             });
         };
 
+        service.deleteCategory = function(category) {
+			return Data.deleteCategory({
+				id: category.id
+			}).then(function(response) {
+				return response;
+			});
+        };
+
         service.addCategory = function(category) {
         	return Data.addCategory({
         	    name: category.name
+        	}).then(function(category) {
+        		return mapCategory(category);
+        	});
+        };
+
+        service.updateCategory = function(category) {
+        	return Data.updateCategory({
+        		id: category.id,
+        		name: category.name
         	}).then(function(category) {
         		return mapCategory(category);
         	});

@@ -1,4 +1,3 @@
-@import 'scss/colors.scss';
 @import 'scss/dimensions.scss';
 
 .category-filter {
@@ -9,37 +8,4 @@
     flex-wrap: wrap;
 
     margin-top: -$default-padding / 2;
-
-    .category-filter-item {
-        background-color: $white;
-        color: $dark-grey;
-
-        padding: $filter-item-padding $filter-item-padding * 1.5;
-        border-radius: $filter-item-padding * 2;
-
-        margin-right: $default-padding;
-        margin-top: $default-padding / 2;
-
-        -webkit-user-select: none;
-        cursor: pointer;
-
-        &.selected {
-            background-color: $light-blue;
-            color: $white;
-        }
-
-        &:not(.selected) {
-            background-color: $middle-grey;
-        }
-
-        .fa-times,
-        .fa-check {
-            position: relative;
-
-            top: 1px;
-            right: -$filter-item-padding / 2;
-
-            width: $default-icon-size;
-        }
-    }
 }

@@ -4,7 +4,7 @@ app
         controller: 'DatePickerTableController',
         controllerAs: 'tableCtrl',
         require: {
-            dateCtrl: '^datePicker' // DatePickerController
+            dateCtrl: '^^datePicker' // DatePickerController
         },
         bindings: {
             year: '<',

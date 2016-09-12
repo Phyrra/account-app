@@ -4,7 +4,7 @@ app
 		controller: 'expenseItemController',
 		controllerAs: 'expenseItemCtrl',
 		require: {
-		    accountCtrl: '^ngController' // AccountController
+		    accountCtrl: '^^ngController' // AccountController
 		},
 		bindings: {
 			model: '<ngModel',
@@ -37,9 +37,9 @@ app
 
 							if (inputMaskCtrl.categoryId && inputMaskCtrl.amount && inputMaskCtrl.title && inputMaskCtrl.date) {
 								inputMaskCtrl.onUpdate().then(function(expense) {
-									ModalService.close();
-
 									ctrl.accountCtrl.updateExpense(expense);
+
+									ModalService.close();
 								});
 							}
 						}

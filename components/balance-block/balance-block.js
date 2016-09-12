@@ -4,7 +4,7 @@ app
 		controller: 'BalanceBlockController',
 		controllerAs: 'blockCtrl',
 		require: {
-			accountCtrl: '^ngController' // AccountController
+			accountCtrl: '^^ngController' // AccountController
 		},
 		bindings: {
 			model: '<ngModel',

@@ -39,15 +39,6 @@ app
 	        });
 	    };
 
-		/*
-		// not needed live
-		$scope.$watch('buttonCtrl.accountCtrl.selectedAccount', function(value, oldValue) {
-			if (value && value !== oldValue) {
-				ctrl.accountId = value.id;
-			}
-		});
-		*/
-
 	    ctrl.$onInit = function() {
 	    	// TODO: this is hacky, don't know how to require ng-view controller?
 	    	ctrl.accountCtrl = angular.element('div[ng-view]').scope().accountCtrl;
