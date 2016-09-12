@@ -27,6 +27,9 @@ app
 			text: 'Restore',
 			action: function() {
 				Android.restoreBackupDump();
+
+				// TODO: this is hacky, don't know how to require ng-view controller?
+				angular.element('div[ng-view]').scope().accountCtrl.loadData();
 			}
 		}];
 
