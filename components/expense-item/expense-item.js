@@ -4,7 +4,7 @@ app
 		controller: 'expenseItemController',
 		controllerAs: 'expenseItemCtrl',
 		require: {
-		    accountCtrl: '^ngController' // AccountController
+		    accountCtrl: '^^ngController' // AccountController
 		},
 		bindings: {
 			model: '<ngModel',
@@ -27,7 +27,7 @@ app
 				buttons: [
 					{
 						isPrimary: true,
-						text: 'Save',
+						icon: 'fa-floppy-o',
 						action: function(content) {
 							var inputMaskCtrl = content
 								.find('.expense-input-mask').scope()
@@ -37,21 +37,21 @@ app
 
 							if (inputMaskCtrl.categoryId && inputMaskCtrl.amount && inputMaskCtrl.title && inputMaskCtrl.date) {
 								inputMaskCtrl.onUpdate().then(function(expense) {
-									ModalService.close();
-
 									ctrl.accountCtrl.updateExpense(expense);
+
+									ModalService.close();
 								});
 							}
 						}
 					}, {
-						text: 'Delete',
+						icon: 'fa-trash-o',
 						action: function(content) {
 							ctrl.accountCtrl.deleteExpense(ctrl.model);
 
 							ModalService.close();
 						}
 					}, {
-						text: 'Cancel',
+						icon: 'fa-times',
 						action: function(content) {
 							ModalService.close();
 						}

@@ -10,6 +10,14 @@ app
             return $q.resolve(JSON.parse(Android.addCategory(category.name)));
         };
 
+		service.deleteCategory = function(category) {
+			return $q.resolve(JSON.parse(Android.deleteCategory(category.id)));
+		};
+
+        service.updateCategory = function(category) {
+        	return $q.resolve(JSON.parse(Android.updateCategory(category.id, category.name)));
+        };
+
         return service;
     }])
 
@@ -29,9 +37,26 @@ app
             });
         };
 
+        service.deleteCategory = function(category) {
+			return Data.deleteCategory({
+				id: category.id
+			}).then(function(response) {
+				return response;
+			});
+        };
+
         service.addCategory = function(category) {
         	return Data.addCategory({
         	    name: category.name
+        	}).then(function(category) {
+        		return mapCategory(category);
+        	});
+        };
+
+        service.updateCategory = function(category) {
+        	return Data.updateCategory({
+        		id: category.id,
+        		name: category.name
         	}).then(function(category) {
         		return mapCategory(category);
         	});

@@ -8,7 +8,7 @@ app
 		}
 	})
 
-	.controller('ExpenseInputMaskController', ['DataService', 'AccountService', '$scope', '$filter', '$element', function(DataService, AccountService, $scope, $filter, $element) {
+	.controller('ExpenseInputMaskController', ['DataService', 'AccountService', '$element', function(DataService, AccountService, $element) {
 		var ctrl = this;
 
 		ctrl.categories = [];

@@ -14,7 +14,7 @@ app
 	        	buttons: [
 					{
 						isPrimary: true,
-						text: 'Save',
+						icon: 'fa-floppy-o',
 						action: function(content) {
 							content
 								.find('.add-data-dialog').scope()
@@ -28,7 +28,7 @@ app
 								});
 						}
 					}, {
-						text: 'Cancel',
+						icon: 'fa-times',
 						action: function(content) {
 							ModalService.close();
 						}
@@ -38,15 +38,6 @@ app
 				content: '<add-data-dialog account-id="accountId"></add-data-dialog>'
 	        });
 	    };
-
-		/*
-		// not needed live
-		$scope.$watch('buttonCtrl.accountCtrl.selectedAccount', function(value, oldValue) {
-			if (value && value !== oldValue) {
-				ctrl.accountId = value.id;
-			}
-		});
-		*/
 
 	    ctrl.$onInit = function() {
 	    	// TODO: this is hacky, don't know how to require ng-view controller?

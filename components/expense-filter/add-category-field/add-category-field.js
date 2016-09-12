@@ -4,7 +4,7 @@ app
 		controller: 'AddCategoryFieldController',
 		controllerAs: 'addCategoryCtrl',
 		require: {
-			categoryFilterCtrl: '^categoryFilter' // CategoryFilterController
+			categoryFilterCtrl: '^^categoryFilter' // CategoryFilterController
 		}
 	})
 
