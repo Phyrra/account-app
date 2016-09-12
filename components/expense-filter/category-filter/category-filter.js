@@ -40,17 +40,17 @@ app
 		};
 
 		ctrl.deleteCategory = function(category) {
-			for (var i = 0; i < ctrl.categories.length; ++i) {
-				var cat = ctrl.categories[i];
+			var idx = ctrl.categories.indexOf(category);
 
-				if (cat.id === category.id) {
-					ctrl.categories.splice(i, 1);
+			if (idx !== -1) {
+				DataService.deleteCategory(category).then(function(response) {
+					if (response.success) {
+						ctrl.categories.splice(idx, 1);
 
-					break;
-				}
+						ctrl.performFilter();
+					}
+				});
 			}
-
-			ctrl.performFilter();
 		};
 
         ctrl.selectAllCategories = function() {
