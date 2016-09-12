@@ -92,6 +92,8 @@
 
 					border-radius: $border-radius;
 
+					text-align: center;
+
 					&.primary-action {
 						background-color: $dark-blue;
 						color: $white;
@@ -99,6 +101,10 @@
 
 					&:not(.primary-action) {
 						background-color: $darkish-grey;
+					}
+
+					.fa {
+						width: $default-icon-size;
 					}
 				}
 			}

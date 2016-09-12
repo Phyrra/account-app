@@ -12,6 +12,7 @@
 			<div class="modal-footer" ng-if="modalCtrl.buttons && modalCtrl.buttons.length > 0">
 				<div class="modal-button" ng-repeat="button in modalCtrl.buttons" ng-class="{ 'primary-action': button.isPrimary }" ng-click="modalCtrl.onButtonClick(button)">
 					{{ button.text }}
+					<i class="fa {{ button.icon }}"></i>
 				</div>
 			</div>
 		</div>

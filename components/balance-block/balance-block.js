@@ -33,7 +33,7 @@ app
 				buttons: [
 					{
 						isPrimary: true,
-						text: 'Save',
+						icon: 'fa-floppy-o',
 						action: function(content) {
 							var inputMaskCtrl = content
 								.find('.balance-input-mask').scope()
@@ -50,14 +50,14 @@ app
 							}
 						}
 					}, {
-						text: 'Delete',
+						icon: 'fa-trash-o',
 						action: function(content) {
 							ctrl.accountCtrl.deleteBalance(ctrl.model);
 
 							ModalService.close();
 						}
 					}, {
-						text: 'Cancel',
+						icon: 'fa-times',
 						action: function(content) {
 							ModalService.close();
 						}

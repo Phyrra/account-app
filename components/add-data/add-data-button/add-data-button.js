@@ -14,7 +14,7 @@ app
 	        	buttons: [
 					{
 						isPrimary: true,
-						text: 'Save',
+						icon: 'fa-floppy-o',
 						action: function(content) {
 							content
 								.find('.add-data-dialog').scope()
@@ -28,7 +28,7 @@ app
 								});
 						}
 					}, {
-						text: 'Cancel',
+						icon: 'fa-times',
 						action: function(content) {
 							ModalService.close();
 						}
