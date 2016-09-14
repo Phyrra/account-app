@@ -1,0 +1,41 @@
+@import 'scss/colors.scss';
+@import 'scss/dimensions.scss';
+
+.balance-block-summary {
+	.balance-block-summary-display {
+		background-color: $light-blue;
+		color: $white;
+
+		padding: $default-padding;
+
+		display: flex;
+		justify-content: space-between;
+
+		font-size: $default-font-size;
+		font-weight: bold;
+
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+
+		.balance-block-summary-title {
+			flex-grow: 1;
+
+			margin-right: $default-padding;
+		}
+
+		.balance-block-summary-amount {
+			text-align: right;
+			white-space: nowrap;
+
+			margin-right: $default-padding;
+			padding-top: 1px; // MAGIC
+		}
+
+		.balance-block-summary-toggle {
+			font-size: $item-title-size;
+			width: $bigger-icon-size;
+			text-align: center;
+		}
+	}
+}

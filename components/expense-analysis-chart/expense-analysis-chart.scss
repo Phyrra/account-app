@@ -1,6 +1,8 @@
 @import 'scss/dimensions.scss';
 
 .expense-analysis-chart {
+	padding: $default-padding;
+
 	.chart-legend {
 		text-align: center;
 

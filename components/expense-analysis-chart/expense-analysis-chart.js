@@ -54,6 +54,9 @@ app
 						}, 0)
 				];
 			})
+			.filter(function(value) {
+				return value[1] > 0;
+			})
 			.sort(function(a, b) {
 				return a[1] < b[1] ? 1 : -1;
 			});
@@ -76,15 +79,15 @@ app
 		ctrl.buildChart = function() {
 			$timeout(function() { // timing hack to let ng-if draw
 				$element
-					.find('.expense-analysis-chart')
+					.find('#' + CHART_ID + ctrl.id)
 					.empty()
-					.append('<div id="' + CHART_ID + ctrl.id + '" style="height: ' + ctrl.getChartHeight() + 'px;"></div>');
+					.append('<div id="' + CHART_ID + ctrl.id + '-chart" style="height: ' + ctrl.getChartHeight() + 'px;"></div>');
 
 				var data = ctrl.getPieChartData();
 				var percentages = ctrl.getPercentages(data.columns);
 
 				var chart = c3.generate({
-					bindto: '#' + CHART_ID + ctrl.id,
+					bindto: '#' + CHART_ID + ctrl.id + '-chart',
 					data: {
 						type: 'pie',
 						columns: data.columns
@@ -127,6 +130,10 @@ app
 						.append('div')
 						.attr('class', 'chart-legend-label')
 						.html(function(id, idx) {
+							if (data.columns[idx][1] === 0) {
+								return '';
+							}
+
 							return '<i class="chart-legend-label-icon" style="background-color: ' + chart.color(id) + '"></i>' +
 								id +
 								', ' +
@@ -148,11 +155,6 @@ app
 
 		ctrl.getChartHeight = function() {
 			return $element.parent().width() / 2.0;
-		}
-
-		// FIXME: the loading of categories comes too late, the animation will jump
-		ctrl.getContainerHeight = function() {
-			return ctrl.getChartHeight() + (ctrl.categories || []).length * 45; // magic number
 		};
 
 		$scope.$watch('chartCtrl.expenses', function(value) {

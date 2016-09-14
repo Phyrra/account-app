@@ -44,24 +44,6 @@
 	}
 
 	.balance-block-content {
-		.balance-block-summary {
-			background-color: $light-blue;
-			color: $white;
-
-			padding: $default-padding;
-
-			display: flex;
-			justify-content: space-between;
-
-			font-size: $default-font-size;
-			font-weight: bold;
-			white-space: nowrap;
-
-			.balance-block-summary-amount {
-				margin-right: $default-padding + $bigger-icon-size;
-			}
-		}
-
 		.no-entry-message {
 			padding: $default-padding;
 
