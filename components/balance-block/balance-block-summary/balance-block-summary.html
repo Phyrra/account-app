@@ -1,0 +1,17 @@
+<div class="balance-block-summary" ng-if="summaryCtrl.expenses.length > 0">
+	<div class="balance-block-summary-display" ng-click="summaryCtrl.onToggleContent()">
+		<div class="balance-block-summary-title">
+			Sum
+		</div>
+		<div class="balance-block-summary-amount">
+			{{ summaryCtrl.expenseSum | number }} CHF
+		</div>
+		<div class="balance-block-summary-toggle">
+			<i class="fa" ng-class="{ 'fa-chevron-left': summaryCtrl.showContent, 'fa-chevron-down': !summaryCtrl.showContent }"></i>
+		</div>
+	</div>
+
+	<div class="balance-block-summary-content foldout-animation" ng-if="summaryCtrl.showContent">
+		<expense-analysis-chart expenses="summaryCtrl.expenses"></expense-analysis-chart>
+	</div>
+</div>

@@ -1,0 +1,33 @@
+@import 'scss/dimensions.scss';
+
+.expense-analysis-chart {
+	padding: $default-padding;
+
+	.chart-legend {
+		text-align: center;
+
+		.chart-legend-content {
+			display: inline-block;
+			text-align: left;
+
+			.chart-legend-label {
+				cursor: pointer;
+
+				padding: $default-padding;
+
+				.chart-legend-label-icon {
+					display: inline-block;
+
+					width: $default-icon-size;
+					height: $default-icon-size;
+
+					margin-right: $default-padding;
+
+					vertical-align: middle;
+					position: relative;
+					top: -1px; // magic
+				}
+			}
+		}
+	}
+}

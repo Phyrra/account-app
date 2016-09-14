@@ -15,14 +15,7 @@
 	</div>
 
 	<div class="balance-block-content foldout-animation" ng-if="blockCtrl.showContent">
-		<div class="balance-block-summary" ng-if="blockCtrl.filteredExpenses.length > 0">
-			<div>
-				Sum
-			</div>
-			<div class="balance-block-summary-amount">
-				{{ blockCtrl.expenseSum | number }} CHF
-			</div>
-		</div>
+		<balance-block-summary expenses="blockCtrl.filteredExpenses"></balance-block-summary>
 
 		<expense-item ng-repeat="expense in blockCtrl.filteredExpenses" ng-model="expense" is-last-block="blockCtrl.isLast"></expense-item>
 

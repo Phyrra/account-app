@@ -71,10 +71,6 @@ app
 		$scope.$watch('blockCtrl.expenses', function(value) {
 			if (value) {
 				ctrl.filteredExpenses = ctrl.accountCtrl.getExpensesInDateRange(ctrl.expenses, ctrl.model);
-
-				ctrl.expenseSum = ctrl.filteredExpenses.reduce(function(iter, expense) {
-					return iter + expense.amount;
-				}, 0);
 			}
 		});
 

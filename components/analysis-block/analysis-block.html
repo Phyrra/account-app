@@ -8,11 +8,13 @@
 	</div>
 
 	<div class="analysis-block-content foldout-animation" ng-if="analysisCtrl.showContent">
-		<div class="analysis-block-options">
-			<date-input title="Start Date" ng-model="analysisCtrl.startDate"></date-input>
-			<date-input title="End Date" ng-model="analysisCtrl.endDate"></date-input>
-		</div>
+		<date-block-option
+				date-start="analysisCtrl.dateStart"
+				date-end="analysisCtrl.dateEnd"
+				on-change-start="analysisCtrl.filterExpenses()"
+				on-change-end="analysisCtrl.filterExpenses()"
+		></date-block-option>
 
-		<div class="analysis-block-chart" ng-style="{ height: analysisCtrl.getChartContainerHeight() }"></div>
+		<expense-analysis-chart expenses="analysisCtrl.filteredExpenses"></expense-analysis-chart>
 	</div>
 </div>
