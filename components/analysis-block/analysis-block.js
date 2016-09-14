@@ -19,12 +19,12 @@ app
 			ctrl.showContent = !ctrl.showContent;
 
 			if (ctrl.showContent) {
-				if (angular.isUndefined(ctrl.startDate)) {
-					ctrl.startDate = ctrl.expenses[ctrl.expenses.length - 1].date;
+				if (angular.isUndefined(ctrl.dateStart)) {
+					ctrl.dateStart = ctrl.expenses[ctrl.expenses.length - 1].date;
 				}
 
-				if (angular.isUndefined(ctrl.endDate)) {
-					ctrl.endDate = ctrl.expenses[0].date;
+				if (angular.isUndefined(ctrl.dateEnd)) {
+					ctrl.dateEnd = ctrl.expenses[0].date;
 				}
 
 				ctrl.buildChart();
@@ -62,7 +62,7 @@ app
 					category.name,
 					ctrl.expenses
 						.filter(function(expense) {
-							return expense.categoryId === category.id && expense.date >= ctrl.startDate && expense.date <= ctrl.endDate;
+							return expense.categoryId === category.id && expense.date >= ctrl.dateStart && expense.date <= ctrl.dateEnd;
 						})
 						.map(function(expense) {
 							return expense.amount
@@ -171,13 +171,13 @@ app
 			return ctrl.getChartHeight() + ctrl.categories.length * 45; // magic number
 		};
 
-		$scope.$watch('analysisCtrl.startDate', function(value, oldValue) {
+		$scope.$watch('analysisCtrl.dateStart', function(value, oldValue) {
 			if (value && value !== oldValue) {
 				ctrl.buildChart();
 			}
 		});
 
-		$scope.$watch('analysisCtrl.endDate', function(value, oldValue) {
+		$scope.$watch('analysisCtrl.dateEnd', function(value, oldValue) {
 			if (value && value !== oldValue) {
 				ctrl.buildChart();
 			}
