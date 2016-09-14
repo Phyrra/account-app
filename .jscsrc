@@ -1,0 +1,64 @@
+{
+	"preset": "crockford",
+	"validateIndentation": "\t",
+	"requireLineFeedAtFileEnd": null,
+	"requireSpaceAfterKeywords": [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do",
+		"switch",
+		"try",
+		"catch"
+	],
+	"disallowSpaceAfterKeywords": [
+		"function"
+	],
+	"requireSpacesInAnonymousFunctionExpression": {
+		"beforeOpeningCurlyBrace": true
+	},
+	"disallowTrailingWhitespace": null,
+	"requireVarDeclFirst": null,
+	"requireMultipleVarDecl": null,
+	"disallowMultipleVarDecl": true,
+	"requireSpaceBetweenArguments": true,
+	"disallowTrailingComma": true,
+	"disallowFunctionDeclarations": true,
+	"disallowKeywordsOnNewLine": [
+		"else",
+		"while"
+	],
+	"disallowKeywords": [
+		"do"
+	],
+	"disallowMultiLineTernary": true,
+	"disallowMultipleLineBreaks": true,
+	"disallowMultipleSpaces": true,
+	"disallowNamedUnassignedFunctions": true,
+	"disallowNewlineBeforeBlockStatements": true,
+	"requireSpaceAfterBinaryOperators": true,
+	"requireAnonymousFunctions": true,
+	"requireCamelCaseOrUpperCaseIdentifiers": true,
+	"requireCommaBeforeLineBreak": true,
+	"requireCurlyBraces": [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do",
+		"try",
+		"catch"
+	],
+	"requireParenthesesAroundIIFE": true,
+	"requireSemicolons": true,
+	"requireSpaceAfterLineComment": true,
+	"disallowSpaceAfterPrefixUnaryOperators": true,
+	"disallowSpaceBeforeComma": true,
+	"requireSpaceBeforeObjectValues": true,
+	"disallowSpaceBeforePostfixUnaryOperators": true,
+	"disallowSpacesInCallExpression": true,
+	"requireSpacesInConditionalExpression": true,
+	"requireSpacesInForStatement": true,
+	"requireBlocksOnNewline": 1
+}

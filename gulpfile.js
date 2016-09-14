@@ -6,6 +6,7 @@ var concat = require('gulp-concat');
 var concatCss = require('gulp-concat-css');
 var html2js = require('gulp-ng-html2js');
 var browserSync = require('browser-sync').create();
+var jscs = require('gulp-jscs');
  
 gulp.task('sass', function() {
 	gulp.src([
@@ -57,11 +58,19 @@ gulp.task('update', ['sass', 'components'], function() {
 });
 
 gulp.task('serve', ['update'], function() {
-    browserSync.init({
-        server: './',
-        online: true // speeds up startup
-    });
+	browserSync.init({
+		server: './',
+		online: true // speeds up startup
+	});
+});
 
-    //gulp.watch('*.scss', ['sass']);
-    //gulp.watch(['*.html', '*.css', '*.js']).on('change', browserSync.reload);
+gulp.task('jscs', function() {
+	return gulp.src([
+			'components/**/*.js',
+			'filters/**/*.js',
+			'services/**/*.js',
+			'views/**/*.js'
+		])
+		.pipe(jscs())
+		.pipe(jscs.reporter());
 });
