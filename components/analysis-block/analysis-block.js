@@ -171,18 +171,6 @@ app
 			return ctrl.getChartHeight() + ctrl.categories.length * 45; // magic number
 		};
 
-		$scope.$watch('analysisCtrl.dateStart', function(value, oldValue) {
-			if (value && value !== oldValue) {
-				ctrl.buildChart();
-			}
-		});
-
-		$scope.$watch('analysisCtrl.dateEnd', function(value, oldValue) {
-			if (value && value !== oldValue) {
-				ctrl.buildChart();
-			}
-		});
-
 		ctrl.$onInit = function() {
 			DataService.getCategories().then(function(categories) {
 				ctrl.categories = categories;

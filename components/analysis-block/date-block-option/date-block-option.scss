@@ -1,6 +1,8 @@
 @import 'scss/dimensions.scss';
 
 .date-block-option {
+	padding: $default-padding;
+
 	.date-input {
 		margin-bottom: $default-padding;
 	}

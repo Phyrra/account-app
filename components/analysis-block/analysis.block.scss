@@ -22,8 +22,6 @@
 	}
 
 	.analysis-block-content {
-		padding: $default-padding;
-
 		.chart-legend {
 			text-align: center;
 
@@ -49,12 +47,6 @@
 						top: -1px; // magic
 					}
 				}
-			}
-		}
-
-		.analysis-block-options {
-			.date-input {
-				margin-bottom: $default-padding;
 			}
 		}
 	}
