@@ -11,10 +11,10 @@
 		<date-block-option
 				date-start="analysisCtrl.dateStart"
 				date-end="analysisCtrl.dateEnd"
-				on-change-start="analysisCtrl.buildChart()"
-				on-change-end="analysisCtrl.buildChart()"
+				on-change-start="analysisCtrl.filterExpenses()"
+				on-change-end="analysisCtrl.filterExpenses()"
 		></date-block-option>
 
-		<div class="analysis-block-chart" ng-style="{ height: analysisCtrl.getChartContainerHeight() }"></div>
+		<expense-analysis-chart expenses="analysisCtrl.filteredExpenses"></expense-analysis-chart>
 	</div>
 </div>
