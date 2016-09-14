@@ -11,6 +11,12 @@
         display: flex;
         flex-direction: row;
 
+		&.focus {
+			text-input .input-wrapper .input-wrapper-body input {
+				border-color: $middle-blue;
+			}
+		}
+
         text-input {
             flex-grow: 1;
 
