@@ -1,10 +1,10 @@
 <div class="date-input">
-    <div class="date-input-field" ng-click="dateInputCtrl.onToggleCalendar()" ng-class="{ focus: dateInputCtrl.showCalendar }">
-        <text-input ng-model="dateInputCtrl.displayModel" ng-disabled="true" title="{{ dateInputCtrl.title }}"></text-input>
-        <div class="date-input-button">
-            <i class="fa fa-calendar"></i>
-        </div>
-    </div>
+	<div class="date-input-field" ng-click="dateInputCtrl.onToggleCalendar()" ng-class="{ focus: dateInputCtrl.showCalendar }">
+		<text-input ng-model="dateInputCtrl.displayModel" ng-disabled="true" title="{{ dateInputCtrl.title }}"></text-input>
+		<div class="date-input-button">
+			<i class="fa fa-calendar"></i>
+		</div>
+	</div>
 
 	<div class="date-input-calendar foldout-animation" target-height="400" ng-if="dateInputCtrl.showCalendar">
 		<date-picker ng-model="dateInputCtrl.model" ng-if="dateInputCtrl.showCalendar"></date-picker>

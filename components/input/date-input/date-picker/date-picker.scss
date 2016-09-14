@@ -4,59 +4,59 @@
 $date-picker-header-size: 16px;
 
 .date-picker-container {
-    position: relative;
+	position: relative;
 
-    width: 100%;
-    overflow: hidden;
+	width: 100%;
+	overflow: hidden;
 
-    background-color: $lighter-grey;
+	background-color: $lighter-grey;
 	border-radius: 0 0 $border-radius $border-radius;
 
-    > .date-picker-header {
-        border-radius: $border-radius $border-radius 0 0;
-    }
+	> .date-picker-header {
+		border-radius: $border-radius $border-radius 0 0;
+	}
 
-    .date-picker-header {
-        display: flex;
-        flex-direction: row;
+	.date-picker-header {
+		display: flex;
+		flex-direction: row;
 
-        background-color: $dark-blue;
-        color: $white;
+		background-color: $dark-blue;
+		color: $white;
 
-        font-size: $date-picker-header-size;
-        font-weight: bold;
+		font-size: $date-picker-header-size;
+		font-weight: bold;
 
-        cursor: pointer;
+		cursor: pointer;
 
-        .date-picker-header-button {
-            padding: $default-padding;
-        }
+		.date-picker-header-button {
+			padding: $default-padding;
+		}
 
-        .date-picker-header-title {
-            flex-grow: 1;
-            padding: $default-padding;
+		.date-picker-header-title {
+			flex-grow: 1;
+			padding: $default-padding;
 
-            text-align: center;
-        }
-    }
+			text-align: center;
+		}
+	}
 
-    .date-picker-table-container {
-        position: relative;
+	.date-picker-table-container {
+		position: relative;
 
-        .date-picker-table-previous-month {
-            position: absolute;
-            left: -100%;
-            top: 0;
+		.date-picker-table-previous-month {
+			position: absolute;
+			left: -100%;
+			top: 0;
 
-            width: 100%;
-        }
+			width: 100%;
+		}
 
-        .date-picker-table-next-month {
-            position: absolute;
-            right: -100%;
-            top: 0;
+		.date-picker-table-next-month {
+			position: absolute;
+			right: -100%;
+			top: 0;
 
-            width: 100%;
-        }
-    }
+			width: 100%;
+		}
+	}
 }

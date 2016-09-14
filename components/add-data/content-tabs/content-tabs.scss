@@ -28,13 +28,13 @@ content-tabs {
 		border: 1px solid $darkish-grey;
 		border-bottom-color: $dark-blue;
 
-        &:first-child {
-            border-radius: $border-radius 0 0 0;
-        }
+		&:first-child {
+			border-radius: $border-radius 0 0 0;
+		}
 
-        &:last-child {
-            border-radius: 0 $border-radius 0 0;
-        }
+		&:last-child {
+			border-radius: 0 $border-radius 0 0;
+		}
 
 		&:not(:last-child):not(.is-selected) {
 			border-right: none;

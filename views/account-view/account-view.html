@@ -1,26 +1,26 @@
 <div>
-    <account-header show-sidebar="accountCtrl.showSidebar" show-filter-menu="accountCtrl.showFilterMenu">
-        {{ accountCtrl.selectedAccount.name }}
-    </account-header>
+	<account-header show-sidebar="accountCtrl.showSidebar" show-filter-menu="accountCtrl.showFilterMenu">
+		{{ accountCtrl.selectedAccount.name }}
+	</account-header>
 
-    <app-sidebar show="accountCtrl.showSidebar"></app-sidebar>
+	<app-sidebar show="accountCtrl.showSidebar"></app-sidebar>
 
-    <div class="expense-filter foldout-animation" ng-show="accountCtrl.showFilterMenu">
-        <account-dropdown ng-model="accountCtrl.selectedAccount"></account-dropdown>
-        <category-filter src-model="accountCtrl.expenses" dst-model="accountCtrl.filteredExpenses"></category-filter>
-    </div>
+	<div class="expense-filter foldout-animation" ng-show="accountCtrl.showFilterMenu">
+		<account-dropdown ng-model="accountCtrl.selectedAccount"></account-dropdown>
+		<category-filter src-model="accountCtrl.expenses" dst-model="accountCtrl.filteredExpenses"></category-filter>
+	</div>
 
-    <analysis-block expenses="accountCtrl.expenses"></analysis-block>
+	<analysis-block expenses="accountCtrl.expenses"></analysis-block>
 
-    <balance-block
-            ng-repeat="balance in accountCtrl.balances"
+	<balance-block
+			ng-repeat="balance in accountCtrl.balances"
 			ng-model="balance"
 			expenses="accountCtrl.filteredExpenses"
 			open-on-init="$index < accountCtrl.MAX_OPEN_ON_START"
 			is-last="$last"
 	></balance-block>
 
-    <div class="footer">
-        <add-data-button></add-data-button>
-    </div>
+	<div class="footer">
+		<add-data-button></add-data-button>
+	</div>
 </div>

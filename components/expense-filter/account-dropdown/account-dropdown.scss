@@ -4,29 +4,29 @@
 
 .account-dropdown {
 	.account-dropdown-display {
-	    background-color: $middle-blue;
-	    color: $white;
+		background-color: $middle-blue;
+		color: $white;
 
-	    font-size: $dropdown-display-size;
-	    font-weight: bold;
+		font-size: $dropdown-display-size;
+		font-weight: bold;
 
 		padding: $default-padding;
 
 		cursor: pointer;
-        
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        
-        .account-dropdown-selection {
-            flex-grow: 1;
 
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow-x: hidden;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
 
-            margin-right: $default-padding;
-        }
+		.account-dropdown-selection {
+			flex-grow: 1;
+
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow-x: hidden;
+
+			margin-right: $default-padding;
+		}
 		
 		.account-dropdown-toggle {
 			width: $bigger-icon-size;

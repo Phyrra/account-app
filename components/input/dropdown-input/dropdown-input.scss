@@ -10,8 +10,8 @@
 	}
 
 	.dropdown-input-display {
-	    background-color: $middle-blue;
-	    color: $white;
+		background-color: $middle-blue;
+		color: $white;
 
 		padding: $default-padding;
 
@@ -23,20 +23,20 @@
 		}
 
 		cursor: pointer;
-        
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        
-        .dropdown-input-selection {
-            flex-grow: 1;
 
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow-x: hidden;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
 
-            margin-right: $default-padding;
-        }
+		.dropdown-input-selection {
+			flex-grow: 1;
+
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow-x: hidden;
+
+			margin-right: $default-padding;
+		}
 		
 		.dropdown-input-toggle {
 			width: $default-icon-size;

@@ -6,12 +6,12 @@ app
 	})
 
 	.controller('AddDataButtonController', ['ModalService', function(ModalService) {
-	    var ctrl = this;
+		var ctrl = this;
 
-	    ctrl.onButtonClick = function() {
-	        ModalService.open({
-	        	header: 'Create',
-	        	buttons: [
+		ctrl.onButtonClick = function() {
+			ModalService.open({
+				header: 'Create',
+				buttons: [
 					{
 						isPrimary: true,
 						icon: 'fa-floppy-o',
@@ -36,11 +36,11 @@ app
 				],
 				accountId: ctrl.accountCtrl.selectedAccount.id,
 				content: '<add-data-dialog account-id="accountId"></add-data-dialog>'
-	        });
-	    };
+			});
+		};
 
-	    ctrl.$onInit = function() {
-	    	// TODO: this is hacky, don't know how to require ng-view controller?
-	    	ctrl.accountCtrl = angular.element('div[ng-view]').scope().accountCtrl;
-	    };
+		ctrl.$onInit = function() {
+			// TODO: this is hacky, don't know how to require ng-view controller?
+			ctrl.accountCtrl = angular.element('div[ng-view]').scope().accountCtrl;
+		};
 	}]);

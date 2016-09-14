@@ -4,43 +4,43 @@
 $date-picker-table-header-size: 14px;
 
 table.date-picker-table {
-    border-collapse: collapse;
-    width: 100%;
+	border-collapse: collapse;
+	width: 100%;
 
-    th {
-        background-color: $middle-blue;
-        color: $white;
+	th {
+		background-color: $middle-blue;
+		color: $white;
 
-        padding: $default-padding;
+		padding: $default-padding;
 
-        font-size: $date-picker-table-header-size;
-        font-weight: bold;
-    }
+		font-size: $date-picker-table-header-size;
+		font-weight: bold;
+	}
 
-    td {
-        padding: $default-padding;
+	td {
+		padding: $default-padding;
 
-        cursor: pointer;
-        text-align: center;
-        vertical-align: middle;
+		cursor: pointer;
+		text-align: center;
+		vertical-align: middle;
 
-        &.prev-month,
-        &.next-month {
-            color: $darkish-grey;
-        }
+		&.prev-month,
+		&.next-month {
+			color: $darkish-grey;
+		}
 
-        &.is-selected {
-            background-color: $middle-blue;
-            color: $white;
+		&.is-selected {
+			background-color: $middle-blue;
+			color: $white;
 
-            border-radius: $border-radius;
-        }
+			border-radius: $border-radius;
+		}
 
-        &:hover {
-            background-color: $middle-blue;
-            color: $white;
+		&:hover {
+			background-color: $middle-blue;
+			color: $white;
 
-            border-radius: $border-radius;
-        }
-    }
+			border-radius: $border-radius;
+		}
+	}
 }

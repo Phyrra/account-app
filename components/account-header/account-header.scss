@@ -3,18 +3,18 @@
 .account-header {
 	width: 100%;
 
-    padding: $default-padding;
+	padding: $default-padding;
 
-    > span {
-        margin-left: $default-padding;
-    }
+	> span {
+		margin-left: $default-padding;
+	}
 
-    .filter-menu-toggle {
-        float: right;
+	.filter-menu-toggle {
+		float: right;
 
-        .fa-chevron-down,
-        .fa-chevron-left {
-            width: $bigger-icon-size;
-        }
-    }
+		.fa-chevron-down,
+		.fa-chevron-left {
+			width: $bigger-icon-size;
+		}
+	}
 }

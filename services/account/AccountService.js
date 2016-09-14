@@ -1,14 +1,14 @@
 app
-    .factory('Account', ['$q', function($q) {
-        var service = {};
+	.factory('Account', ['$q', function($q) {
+		var service = {};
 
-        service.getAccounts = function() {
-            return $q.resolve(JSON.parse(Android.getAccounts()));
-        };
+		service.getAccounts = function() {
+			return $q.resolve(JSON.parse(Android.getAccounts()));
+		};
 
-        service.getBalances = function(account) {
-            return $q.resolve(JSON.parse(Android.getBalances(account.id)));
-        };
+		service.getBalances = function(account) {
+			return $q.resolve(JSON.parse(Android.getBalances(account.id)));
+		};
 
 		service.addBalance = function(balance) {
 			return $q.resolve(JSON.parse(Android.addBalance(balance.accountId, balance.amount, balance.date)));
@@ -22,82 +22,82 @@ app
 			return $q.resolve(JSON.parse(Android.updateBalance(balance.id, balance.accountId, balance.amount, balance.date)));
 		};
 
-        service.getExpenses = function(account) {
-            return $q.resolve(JSON.parse(Android.getExpenses(account.id)));
-        };
+		service.getExpenses = function(account) {
+			return $q.resolve(JSON.parse(Android.getExpenses(account.id)));
+		};
 
-        service.addExpense = function(expense) {
-            return $q.resolve(JSON.parse(Android.addExpense(expense.accountId, expense.categoryId, expense.amount, expense.date, expense.description, expense.title)))
-        };
+		service.addExpense = function(expense) {
+			return $q.resolve(JSON.parse(Android.addExpense(expense.accountId, expense.categoryId, expense.amount, expense.date, expense.description, expense.title)));
+		};
 
-        service.deleteExpense = function(expense) {
-            return $q.resolve(JSON.parse(Android.deleteExpense(expense.id)));
-        };
+		service.deleteExpense = function(expense) {
+			return $q.resolve(JSON.parse(Android.deleteExpense(expense.id)));
+		};
 
-        service.updateExpense = function(expense) {
-            return $q.resolve(JSON.parse(Android.updateExpense(expense.id, expense.accountId, expense.categoryId, expense.amount, expense.date, expense.description, expense.title)));
-        };
+		service.updateExpense = function(expense) {
+			return $q.resolve(JSON.parse(Android.updateExpense(expense.id, expense.accountId, expense.categoryId, expense.amount, expense.date, expense.description, expense.title)));
+		};
 
-        return service;
-    }])
+		return service;
+	}])
 
-    .factory('AccountService', ['Account', '$filter', function(Account, $filter) {
-        var service = {};
+	.factory('AccountService', ['Account', '$filter', function(Account, $filter) {
+		var service = {};
 
-        service.getAccounts = function() {
-            return Account.getAccounts().then(function(accounts) {
-                return accounts.map(function(account) {
-                    return {
-                        id: parseInt(account.id, 10),
-                        name: account.sName
-                    };
-                });
-            });
-        };
+		service.getAccounts = function() {
+			return Account.getAccounts().then(function(accounts) {
+				return accounts.map(function(account) {
+					return {
+						id: parseInt(account.id, 10),
+						name: account.sName
+					};
+				});
+			});
+		};
 
-        var mapBalance = function(balance) {
-        	return {
+		var mapBalance = function(balance) {
+			return {
 				id: parseInt(balance.id, 10),
 				accountId: parseInt(balance.idAccount, 10),
 				amount: parseFloat(balance.fAmount),
 				date: new Date(balance.dtDate)
 			};
-        };
+		};
 
-        service.getBalances = function(account) {
-            return Account.getBalances(account).then(function(balances) {
-                return balances.map(mapBalance);
-            });
-        };
+		service.getBalances = function(account) {
+			return Account.getBalances(account).then(function(balances) {
+				return balances.map(mapBalance);
+			});
+		};
 
-        service.addBalance = function(balance) {
-        	return Account.addBalance({
-        		accountId: balance.accountId,
-        		amount: balance.amount,
-        		date: $filter('date')(balance.date, 'iso')
-        	}).then(function(balance) {
-        		return mapBalance(balance);
-        	});
-        };
+		service.addBalance = function(balance) {
+			return Account.addBalance({
+				accountId: balance.accountId,
+				amount: balance.amount,
+				date: $filter('date')(balance.date, 'iso')
+			}).then(function(balance) {
+				return mapBalance(balance);
+			});
+		};
 
-        service.deleteBalance = function(balance) {
+		service.deleteBalance = function(balance) {
 			return Account.deleteBalance({
 				id: balance.id
 			}).then(function(response) {
 				return response;
 			});
-        };
+		};
 
-        service.updateBalance = function(balance) {
-        	return Account.updateBalance({
-        		id: balance.id,
-        		accountId: balance.accountId,
-        		amount: balance.amount,
-        		date: $filter('date')(balance.date, 'iso')
-        	}).then(function(balance) {
-        		return mapBalance(balance);
-        	});
-        };
+		service.updateBalance = function(balance) {
+			return Account.updateBalance({
+				id: balance.id,
+				accountId: balance.accountId,
+				amount: balance.amount,
+				date: $filter('date')(balance.date, 'iso')
+			}).then(function(balance) {
+				return mapBalance(balance);
+			});
+		};
 
 		var mapExpense = function(expense) {
 			return {
@@ -111,46 +111,46 @@ app
 			};
 		};
 
-        service.getExpenses = function(account) {
-            return Account.getExpenses(account).then(function(expenses) {
-                return expenses.map(mapExpense);
-            });
-        };
+		service.getExpenses = function(account) {
+			return Account.getExpenses(account).then(function(expenses) {
+				return expenses.map(mapExpense);
+			});
+		};
 
-        service.addExpense = function(expense) {
-        	return Account.addExpense({
-        		accountId: expense.accountId,
-        		categoryId: expense.categoryId,
-        		title: expense.title,
-        		amount: expense.amount,
-        		description: expense.description ? expense.description : '',
-        		date: $filter('date')(expense.date, 'iso')
-        	}).then(function(expense) {
-        		return mapExpense(expense);
-        	});
-        };
+		service.addExpense = function(expense) {
+			return Account.addExpense({
+				accountId: expense.accountId,
+				categoryId: expense.categoryId,
+				title: expense.title,
+				amount: expense.amount,
+				description: expense.description ? expense.description : '',
+				date: $filter('date')(expense.date, 'iso')
+			}).then(function(expense) {
+				return mapExpense(expense);
+			});
+		};
 
-        service.deleteExpense = function(expense) {
-        	return Account.deleteExpense({
-        		id: expense.id
-        	}).then(function(response) {
-        		return response;
-        	});
-        };
+		service.deleteExpense = function(expense) {
+			return Account.deleteExpense({
+				id: expense.id
+			}).then(function(response) {
+				return response;
+			});
+		};
 
-        service.updateExpense = function(expense) {
-        	return Account.updateExpense({
-        		accountId: expense.accountId,
-        		categoryId: expense.categoryId,
-        		id: expense.id,
-        		title: expense.title,
-        		amount: expense.amount,
-        		description: expense.description,
-        		date: $filter('date')(expense.date, 'iso')
-        	}).then(function(expense) {
-        		return mapExpense(expense);
-        	});
-        };
+		service.updateExpense = function(expense) {
+			return Account.updateExpense({
+				accountId: expense.accountId,
+				categoryId: expense.categoryId,
+				id: expense.id,
+				title: expense.title,
+				amount: expense.amount,
+				description: expense.description,
+				date: $filter('date')(expense.date, 'iso')
+			}).then(function(expense) {
+				return mapExpense(expense);
+			});
+		};
 
-        return service;
-    }]);
+		return service;
+	}]);

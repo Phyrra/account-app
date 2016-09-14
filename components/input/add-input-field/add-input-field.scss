@@ -22,13 +22,13 @@
 		}
 	}
 
-    .fa-plus {
-        background-color: $light-blue;
-        color: $white;
+	.fa-plus {
+		background-color: $light-blue;
+		color: $white;
 
-        padding: $filter-item-padding $filter-item-padding * 1.25;
+		padding: $filter-item-padding $filter-item-padding * 1.25;
 
 		border-radius: $filter-item-padding * 2;
 		border: 1px solid $light-blue;
-    }
+	}
 }

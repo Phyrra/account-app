@@ -3,102 +3,102 @@
 @import 'scss/dimensions.scss';
 
 expense-item {
-    &:nth-of-type(even) .expense-item-body {
-        background-color: $light-grey;
-    }
+	&:nth-of-type(even) .expense-item-body {
+		background-color: $light-grey;
+	}
 
-    &:nth-of-type(odd) .expense-item-body {
-        background-color: $middle-grey;
-    }
+	&:nth-of-type(odd) .expense-item-body {
+		background-color: $middle-grey;
+	}
 
-    &:last-child {
-        .expense-item-background,
-        .expense-item-body {
-            border-radius: 0 0 $border-radius $border-radius;
-        }
-    }
+	&:last-child {
+		.expense-item-background,
+		.expense-item-body {
+			border-radius: 0 0 $border-radius $border-radius;
+		}
+	}
 }
 
 .expense-item {
-    position: relative;
-    width: 100%;
+	position: relative;
+	width: 100%;
 
-    .expense-item-background {
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 100%;
+	.expense-item-background {
+		position: absolute;
+		left: 0;
+		right: 0;
+		height: 100%;
 
-        background-color: $lighter-grey;
-        color: $middle-grey;
+		background-color: $lighter-grey;
+		color: $middle-grey;
 
-        padding: $default-padding;
+		padding: $default-padding;
 
-        display: flex;
-        align-items: center;
-    }
+		display: flex;
+		align-items: center;
+	}
 
-    .expense-item-body {
-        position: relative;
-        left: 0;
-        right: 0;
+	.expense-item-body {
+		position: relative;
+		left: 0;
+		right: 0;
 
-        cursor: pointer;
+		cursor: pointer;
 
-        z-index: $z-expense-item;
+		z-index: $z-expense-item;
 
-        .expense-item-display {
-            &.is-new {
-                background-color: $success-green;
-            }
-            
-            padding: $default-padding;
-            
-            font-size: $item-title-size;
-            font-weight: bold;
+		.expense-item-display {
+			&.is-new {
+				background-color: $success-green;
+			}
 
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
+			padding: $default-padding;
 
-            .expense-item-title {
-                flex-grow: 1;
+			font-size: $item-title-size;
+			font-weight: bold;
 
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow-x: hidden;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
 
-                margin-right: $default-padding;
-            }
+			.expense-item-title {
+				flex-grow: 1;
 
-            .expense-item-amount {
-                text-align: right;
-                white-space: nowrap;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow-x: hidden;
 
-                font-size: $item-amount-size;
-                color: $dark-grey;
+				margin-right: $default-padding;
+			}
 
-                margin-right: $default-padding;
-                padding-top: 1px; // MAGIC
-            }
+			.expense-item-amount {
+				text-align: right;
+				white-space: nowrap;
 
-            @media screen and (max-width: $app-break-point-small) {
-                .expense-item-amount {
-                    display: none;
-                }
-            }
+				font-size: $item-amount-size;
+				color: $dark-grey;
 
-            .expense-item-toggle {
-                width: $bigger-icon-size;
-                text-align: center;
-            }
-        }
+				margin-right: $default-padding;
+				padding-top: 1px; // MAGIC
+			}
 
-        .expense-item-detail {
-            padding: $default-padding;
+			@media screen and (max-width: $app-break-point-small) {
+				.expense-item-amount {
+					display: none;
+				}
+			}
 
-            .kvp-table {
-            	color: $dark-grey;
+			.expense-item-toggle {
+				width: $bigger-icon-size;
+				text-align: center;
+			}
+		}
+
+		.expense-item-detail {
+			padding: $default-padding;
+
+			.kvp-table {
+				color: $dark-grey;
 				width: 66%;
 
 				padding: $default-padding 0;
@@ -110,7 +110,7 @@ expense-item {
 						text-align: right;
 					}
 				}
-            }
-        }
-    }
+			}
+		}
+	}
 }

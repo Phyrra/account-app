@@ -23,25 +23,25 @@ app
 		};
 		
 		ctrl.onAccountSelected = function(account) {
-		    // will trigger $routeUpdate which sets model
+			// will trigger $routeUpdate which sets model
 			$location.search('account', account.id);
 
 			ctrl.closeFoldout();
 		};
 
 		ctrl.setAccountById = function(id) {
-		    ctrl.accounts.some(function(account) {
-                if (account.id === id) {
-                    ctrl.model = account;
-                    return true;
-                }
-            });
+			ctrl.accounts.some(function(account) {
+				if (account.id === id) {
+					ctrl.model = account;
+					return true;
+				}
+			});
 		};
 
 		$scope.$on('$routeUpdate', function() {
-            var id = parseInt($location.search().account, 10);
+			var id = parseInt($location.search().account, 10);
 
-		    ctrl.setAccountById(id);
+			ctrl.setAccountById(id);
 		});
 		
 		ctrl.$onInit = function() {
@@ -49,13 +49,13 @@ app
 				ctrl.accounts = accounts;
 
 				if ($location.search().account) {
-                    var id = parseInt($location.search().account, 10);
+					var id = parseInt($location.search().account, 10);
 
-                    ctrl.setAccountById(id);
+					ctrl.setAccountById(id);
 				}
 
 				if (!ctrl.model) {
-				    ctrl.model = ctrl.accounts[0];
+					ctrl.model = ctrl.accounts[0];
 				}
 			});
 		};
