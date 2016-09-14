@@ -22,7 +22,7 @@ app
 		ctrl.selectedTab = null;
 
 		ctrl.onSaveExpense = function() {
-			var inputMaskCtrl =  $element.find('.expense-input-mask').scope().inputMaskCtrl;
+			var inputMaskCtrl = $element.find('.expense-input-mask').scope().inputMaskCtrl;
 
 			inputMaskCtrl.validate();
 

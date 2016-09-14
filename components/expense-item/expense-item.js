@@ -4,7 +4,7 @@ app
 		controller: 'expenseItemController',
 		controllerAs: 'expenseItemCtrl',
 		require: {
-		    accountCtrl: '^^ngController' // AccountController
+			accountCtrl: '^^ngController' // AccountController
 		},
 		bindings: {
 			model: '<ngModel',
@@ -18,7 +18,7 @@ app
 		ctrl.showDetail = false;
 
 		ctrl.onToggleDetail = function() {
-		    ctrl.showDetail = !ctrl.showDetail;
+			ctrl.showDetail = !ctrl.showDetail;
 		};
 
 		ctrl.onEdit = function() {

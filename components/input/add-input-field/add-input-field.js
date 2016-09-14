@@ -44,11 +44,11 @@ app
 		$scope.$on('document-click', function($event, event) {
 			var $target = $(event.target);
 
-            if (!$target.isOrChildOf('add-input-field')) {
-            	$timeout(function() {
-            		ctrl.onBlurClose();
-            	}, 0);
-            }
+			if (!$target.isOrChildOf('add-input-field')) {
+				$timeout(function() {
+					ctrl.onBlurClose();
+				}, 0);
+			}
 		});
 	}])
 
@@ -77,5 +77,5 @@ app
 						done: done
 					});
 			}
-		}
+		};
 	}]);

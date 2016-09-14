@@ -29,7 +29,7 @@ app
 		};
 
 		var enter = function(element, done) {
-		    var target = getAnimationTarget(element);
+			var target = getAnimationTarget(element);
 
 			element.css(target.property, 0);
 			element.css('overflow-y', 'hidden');
@@ -102,5 +102,5 @@ app
 			beforeAddClass: function(element, cls, done) {
 				leave(element, done);
 			}
-		}
+		};
 	}]);

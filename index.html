@@ -27,13 +27,13 @@
 
 			var app = angular.module('app', ['ngAnimate', 'ngRoute', 'ngTouch']);
 
-            app.config(function($routeProvider) {
+			app.config(function($routeProvider) {
 				$routeProvider.when('/', {
-				    templateUrl: 'views/account-view/account-view.html',
-				    controller: 'AccountController',
-				    controllerAs: 'accountCtrl',
-				    reloadOnSearch: false
-                });
+					templateUrl: 'views/account-view/account-view.html',
+					controller: 'AccountController',
+					controllerAs: 'accountCtrl',
+					reloadOnSearch: false
+				});
 
 				$routeProvider.otherwise({ redirectTo: '/' });
 			});
@@ -55,7 +55,7 @@
 			});
 
 			$(document).ready(function() {
-                angular.bootstrap(document, ['app']);
+				angular.bootstrap(document, ['app']);
 			});
 		</script>
 		
@@ -67,15 +67,15 @@
 		<script src="filters/padding-filter.js"></script>
 		<script src="filters/html-filter.js"></script>
 
-        <script src="templates.js"></script>
+		<script src="templates.js"></script>
 		<script src="components.js"></script>
 
 		<script src="views/account-view/AccountController.js"></script>
 	</head>
 
 	<body>
-        <div class="main">
-            <div class="view" ng-view></div>
-        </div>
+		<div class="main">
+			<div class="view" ng-view></div>
+		</div>
 	</body>
 </html>

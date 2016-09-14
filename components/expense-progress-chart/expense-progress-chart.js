@@ -59,7 +59,7 @@ app
 								column[column.length - 1] = current;
 							} else {
 								column.push(current);
-                            	labels.push(filter(expense.date));
+								labels.push(filter(expense.date));
 							}
 
 							if (ctrl.model.id === expense.id) {

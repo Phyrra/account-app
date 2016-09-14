@@ -31,5 +31,5 @@ app
 			}
 
 			ctrl.setDisplay();
-		}
+		};
 	}]);

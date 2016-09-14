@@ -1,5 +1,5 @@
 app
-    .controller('AccountController', ['$scope', 'AccountService', '$q', function($scope, AccountService, $q) {
+	.controller('AccountController', ['$scope', 'AccountService', '$q', function($scope, AccountService, $q) {
 		var ctrl = this;
 
 		ctrl.MAX_OPEN_ON_START = 2;

@@ -1,7 +1,7 @@
 app
 	.component('inputWrapper', {
 		templateUrl: 'components/input/generic-input/input-wrapper.html',
-        transclude: true,
+		transclude: true,
 		controller: 'InputWrapperController',
 		controllerAs: 'inputCtrl',
 		bindings: {
@@ -22,7 +22,7 @@ app
 
 				$element.find('.input-wrapper-body > *')
 					.removeClass('required')
-                    .select();
+					.select();
 			}, 0, false);
 		};
 

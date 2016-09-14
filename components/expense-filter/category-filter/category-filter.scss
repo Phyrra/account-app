@@ -1,11 +1,11 @@
 @import 'scss/dimensions.scss';
 
 .category-filter {
-    padding: $default-padding;
+	padding: $default-padding;
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 
-    margin-top: -$default-padding / 2;
+	margin-top: -$default-padding / 2;
 }

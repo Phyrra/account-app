@@ -22,15 +22,15 @@ app
 				}
 
 				return h;
-			}
+			};
 
 			var frequency = Math.PI / n;
 
 			var colors = [];
 			for (var i = 0; i < n; ++i) {
-			   red   = Math.floor(Math.sin(frequency * i + 0) * 127) + 128;
-			   green = Math.floor(Math.sin(frequency * i + 2 * Math.PI / 3) * 127) + 128;
-			   blue  = Math.floor(Math.sin(frequency * i + 4 * Math.PI / 3) * 127) + 128;
+				red = Math.floor(Math.sin(frequency * i + 0) * 127) + 128;
+				green = Math.floor(Math.sin(frequency * i + 2 * Math.PI / 3) * 127) + 128;
+				blue = Math.floor(Math.sin(frequency * i + 4 * Math.PI / 3) * 127) + 128;
 
 				colors.push('#' + decToHex(red) + decToHex(green) + decToHex(blue));
 			}
@@ -47,7 +47,7 @@ app
 							return expense.categoryId === category.id;
 						})
 						.map(function(expense) {
-							return expense.amount
+							return expense.amount;
 						})
 						.reduce(function(sum, value) {
 							return sum + value;

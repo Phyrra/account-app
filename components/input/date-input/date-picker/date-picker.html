@@ -1,47 +1,47 @@
 <div class="date-picker-container">
-    <div class="date-picker-header">
-        <div class="date-picker-header-button" ng-click="dateCtrl.onPreviousYear()">
-            <i class="fa fa-chevron-left"></i>
-        </div>
-        <div class="date-picker-header-title">
-            {{ dateCtrl.year }}
-        </div>
-        <div class="date-picker-header-button" ng-click="dateCtrl.onNextYear()">
-            <i class="fa fa-chevron-right"></i>
-        </div>
-    </div>
+	<div class="date-picker-header">
+		<div class="date-picker-header-button" ng-click="dateCtrl.onPreviousYear()">
+			<i class="fa fa-chevron-left"></i>
+		</div>
+		<div class="date-picker-header-title">
+			{{ dateCtrl.year }}
+		</div>
+		<div class="date-picker-header-button" ng-click="dateCtrl.onNextYear()">
+			<i class="fa fa-chevron-right"></i>
+		</div>
+	</div>
 
-    <div class="date-picker-table-container" on-swipe="dateCtrl.onSwipeMonth(direction)">
-        <div class="date-picker-table-previous-month">
-            <div class="date-picker-header">
-                <div class="date-picker-header-title">{{ dateCtrl.monthNames[dateCtrl.previousMonth.month - 1] }}</div>
-            </div>
+	<div class="date-picker-table-container" on-swipe="dateCtrl.onSwipeMonth(direction)">
+		<div class="date-picker-table-previous-month">
+			<div class="date-picker-header">
+				<div class="date-picker-header-title">{{ dateCtrl.monthNames[dateCtrl.previousMonth.month - 1] }}</div>
+			</div>
 
-            <date-picker-table year="dateCtrl.previousMonth.year" month="dateCtrl.previousMonth.month"></date-picker-table>
-        </div>
+			<date-picker-table year="dateCtrl.previousMonth.year" month="dateCtrl.previousMonth.month"></date-picker-table>
+		</div>
 
-        <div class="date-picker-table-current-month">
-            <div class="date-picker-header">
-                <div class="date-picker-header-button" ng-click="dateCtrl.onPreviousMonth()">
-                    <i class="fa fa-chevron-left"></i>
-                </div>
-                <div class="date-picker-header-title">
-                    {{ dateCtrl.monthNames[dateCtrl.month - 1] }}
-                </div>
-                <div class="date-picker-header-button" ng-click="dateCtrl.onNextMonth()">
-                    <i class="fa fa-chevron-right"></i>
-                </div>
-            </div>
+		<div class="date-picker-table-current-month">
+			<div class="date-picker-header">
+				<div class="date-picker-header-button" ng-click="dateCtrl.onPreviousMonth()">
+					<i class="fa fa-chevron-left"></i>
+				</div>
+				<div class="date-picker-header-title">
+					{{ dateCtrl.monthNames[dateCtrl.month - 1] }}
+				</div>
+				<div class="date-picker-header-button" ng-click="dateCtrl.onNextMonth()">
+					<i class="fa fa-chevron-right"></i>
+				</div>
+			</div>
 
-            <date-picker-table year="dateCtrl.year" month="dateCtrl.month" ng-model="dateCtrl.model"></date-picker-table>
-        </div>
+			<date-picker-table year="dateCtrl.year" month="dateCtrl.month" ng-model="dateCtrl.model"></date-picker-table>
+		</div>
 
-        <div class="date-picker-table-next-month">
-            <div class="date-picker-header">
-                <div class="date-picker-header-title">{{ dateCtrl.monthNames[dateCtrl.nextMonth.month - 1] }}</div>
-            </div>
+		<div class="date-picker-table-next-month">
+			<div class="date-picker-header">
+				<div class="date-picker-header-title">{{ dateCtrl.monthNames[dateCtrl.nextMonth.month - 1] }}</div>
+			</div>
 
-            <date-picker-table year="dateCtrl.nextMonth.year" month="dateCtrl.nextMonth.month" ng-model="dateCtrl.model"></date-picker-table>
-        </div>
-    </div>
+			<date-picker-table year="dateCtrl.nextMonth.year" month="dateCtrl.nextMonth.month" ng-model="dateCtrl.model"></date-picker-table>
+		</div>
+	</div>
 </div>

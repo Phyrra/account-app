@@ -3,77 +3,77 @@
 @import 'scss/colors.scss';
 
 .app-sidebar {
-    position: fixed;
+	position: fixed;
 
-    top: $app-margin + $header-height;
-    bottom: $app-margin;
+	top: $app-margin + $header-height;
+	bottom: $app-margin;
 
-    z-index: $z-sidebar;
+	z-index: $z-sidebar;
 
-    overflow-x: hidden;
-    border-radius: 0 0 0 $border-radius;
+	overflow-x: hidden;
+	border-radius: 0 0 0 $border-radius;
 
-    width: $sidebar-width;
+	width: $sidebar-width;
 
-    .app-sidebar-content {
-        position: absolute;
+	.app-sidebar-content {
+		position: absolute;
 
-        height: 100%;
-        width: $sidebar-width;
+		height: 100%;
+		width: $sidebar-width;
 
-        background-color: $dark-blue;
+		background-color: $dark-blue;
 
-        .app-sidebar-item {
-        	padding: $default-padding;
-        	text-decoration: none;
+		.app-sidebar-item {
+			padding: $default-padding;
+			text-decoration: none;
 
-        	color: $white;
+			color: $white;
 
-        	cursor: pointer;
+			cursor: pointer;
 
-        	&:hover:not(.is-active) {
-        		background-color: $light-blue;
-        	}
+			&:hover:not(.is-active) {
+				background-color: $light-blue;
+			}
 
-        	&.is-active {
-        		background-color: $middle-blue;
-        	}
-        }
-    }
+			&.is-active {
+				background-color: $middle-blue;
+			}
+		}
+	}
 
-    &.ng-hide-remove {
-        width: 0;
-        transition: $default-transition;
+	&.ng-hide-remove {
+		width: 0;
+		transition: $default-transition;
 
-        .app-sidebar-content {
-            left: -$sidebar-width;
-            transition: $default-transition;
-        }
-    }
+		.app-sidebar-content {
+			left: -$sidebar-width;
+			transition: $default-transition;
+		}
+	}
 
-    &.ng-hide-remove-active {
-        width: $sidebar-width;
+	&.ng-hide-remove-active {
+		width: $sidebar-width;
 
-        .app-sidebar-content {
-            left: 0;
-        }
-    }
+		.app-sidebar-content {
+			left: 0;
+		}
+	}
 
-    &.ng-hide-add {
-        width: $sidebar-width;
-        transition: $default-transition;
+	&.ng-hide-add {
+		width: $sidebar-width;
+		transition: $default-transition;
 
-        .app-sidebar-content {
-            left: 0;
-            transition: $default-transition;
-        }
-    }
+		.app-sidebar-content {
+			left: 0;
+			transition: $default-transition;
+		}
+	}
 
-    &.ng-hide-add-active {
-        width: 0;
+	&.ng-hide-add-active {
+		width: 0;
 
-        .app-sidebar-content {
-            left: -$sidebar-width;
-        }
-    }
+		.app-sidebar-content {
+			left: -$sidebar-width;
+		}
+	}
 }
