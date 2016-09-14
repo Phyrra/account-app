@@ -95,13 +95,17 @@ expense-item {
 		}
 
 		.expense-item-detail {
-			padding: $default-padding;
+			.expense-item-description {
+				padding: $default-padding;
+				padding-top: 0;
+			}
 
 			.kvp-table {
 				color: $dark-grey;
 				width: 66%;
 
-				padding: $default-padding 0;
+				padding: $default-padding;
+				padding-top: 0;
 
 				> div > div {
 					white-space: nowrap;

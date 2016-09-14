@@ -16,7 +16,7 @@
 		</div>
 
 		<div class="expense-item-detail foldout-animation" target-height="450" ng-if="expenseItemCtrl.showDetail">
-			<div class="expense-item-description" ng-bind-html="expenseItemCtrl.model.description | html"></div>
+			<div class="expense-item-description" ng-if="expenseItemCtrl.model.description" ng-bind-html="expenseItemCtrl.model.description | html"></div>
 
 			<div class="kvp-table">
 				<div>
