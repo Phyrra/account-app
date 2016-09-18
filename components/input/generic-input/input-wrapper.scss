@@ -32,25 +32,33 @@
 		transition: font-size $input-wrapper-animation-duration linear;
 	}
 
-	.input-wrapper-body > * {
-		width: 100%;
+	.input-wrapper-body {
+		textarea,
+		input {
+			font-family: inherit;
+			font-size: inherit;
+        }
 
-		border: 1px solid $darkish-grey;
-		border-radius: $border-radius;
+        > * {
+			width: 100%;
 
-		padding: $default-padding;
-		padding-top: $default-padding;
+			border: 1px solid $darkish-grey;
+			border-radius: $border-radius;
 
-		&:focus {
-			outline: none;
+			padding: $default-padding;
+			padding-top: $default-padding;
 
-			border-color: $middle-blue;
+			&:focus {
+				outline: none;
+
+				border-color: $middle-blue;
+			}
+
+			&.required {
+				border-color: $error-red;
+			}
+
+			transition: padding-top $input-wrapper-animation-duration linear;
 		}
-
-		&.required {
-			border-color: $error-red;
-		}
-
-		transition: padding-top $input-wrapper-animation-duration linear;
 	}
 }
