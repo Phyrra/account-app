@@ -2,4 +2,8 @@
 	<div class="category-input-field name">
 		<text-input ng-model="inputMaskCtrl.name" title="Name"></text-input>
 	</div>
+
+	<div class="category-input-field icon">
+		<icon-search ng-model="inputMaskCtrl.icon" on-select="inputMaskCtrl.onSelectIcon(icon)"></icon-search>
+	</div>
 </div>

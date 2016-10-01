@@ -7,7 +7,10 @@
 	</div>
 	<div class="expense-item-body" on-long-click="expenseItemCtrl.onEdit()" on-swipe="expenseItemCtrl.accountCtrl.deleteExpense(expenseItemCtrl.model)" swipe-direction="right">
 		<div class="expense-item-display" ng-class="{ 'is-new': expenseItemCtrl.model.isNew }">
-			<div class="expense-item-title">{{ expenseItemCtrl.model.title }}</div>
+			<div class="expense-item-title">
+				<i ng-if="expenseItemCtrl.model.category.icon" class="fa fa-{{expenseItemCtrl.model.category.icon}}"></i>
+				{{ expenseItemCtrl.model.title }}
+			</div>
 			<div class="expense-item-amount">{{ expenseItemCtrl.model.amount | number }} CHF</div>
 
 			<div class="expense-item-toggle" ng-click="expenseItemCtrl.onToggleDetail()">

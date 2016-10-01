@@ -69,6 +69,10 @@ expense-item {
 				overflow-x: hidden;
 
 				margin-right: $default-padding;
+
+				i.fa {
+					margin-right: $default-padding;
+				}
 			}
 
 			.expense-item-amount {

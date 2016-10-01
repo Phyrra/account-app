@@ -33,6 +33,7 @@ app
 
 				if (cat.id === category.id) {
 					cat.name = category.name;
+					cat.icon = category.icon;
 
 					break;
 				}

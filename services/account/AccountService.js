@@ -110,7 +110,8 @@ app
 				date: new Date(expense.dtDate),
 				category: {
 					id: expense.category.id,
-					name: expense.category.sName
+					name: expense.category.sName,
+					icon: expense.category.sIcon
 				}
 			};
 		};
