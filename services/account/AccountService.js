@@ -107,7 +107,11 @@ app
 				description: expense.sDescription,
 				categoryId: parseInt(expense.idCategory, 10),
 				accountId: parseInt(expense.idAccount, 10),
-				date: new Date(expense.dtDate)
+				date: new Date(expense.dtDate),
+				category: {
+					id: expense.category.id,
+					name: expense.category.sName
+				}
 			};
 		};
 
