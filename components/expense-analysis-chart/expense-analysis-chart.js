@@ -148,7 +148,7 @@ app
 							chart.revert();
 						})
 						.on('click', function(id) {
-							chart.toggle(id);
+							chart.focus(id);
 						});
 			}, 0, false);
 		};
