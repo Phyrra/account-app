@@ -100,21 +100,27 @@ app
 		};
 
 		var mapExpense = function(expense) {
-			return {
-				id: parseInt(expense.id, 10),
-				title: expense.sTitle,
-				amount: parseFloat(expense.fAmount),
-				description: expense.sDescription,
-				categoryId: parseInt(expense.idCategory, 10),
-				accountId: parseInt(expense.idAccount, 10),
-				date: new Date(expense.dtDate),
-				category: {
-					id: expense.category.id,
-					name: expense.category.sName,
-					icon: expense.category.sIcon
-				}
-			};
-		};
+            var mapped = {
+                id: parseInt(expense.id, 10),
+                title: expense.sTitle,
+                amount: parseFloat(expense.fAmount),
+                description: expense.sDescription,
+                categoryId: parseInt(expense.idCategory, 10),
+                accountId: parseInt(expense.idAccount, 10),
+                date: new Date(expense.dtDate),
+                category: {}
+            };
+
+            if (expense.hasOwnProperty('category')) {
+                mapped.category = {
+                    id: parseInt(expense.category.id, 10),
+                    name: expense.category.sName,
+                    icon: expense.category.sIcon
+                };
+            }
+
+            return mapped;
+        };
 
 		service.getExpenses = function(account) {
 			return Account.getExpenses(account).then(function(expenses) {
