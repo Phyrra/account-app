@@ -15,7 +15,7 @@ app
 		};
 
 		service.updateCategory = function(category) {
-			return $q.resolve(JSON.parse(Android.updateCategory(category.id, category.name)));
+			return $q.resolve(JSON.parse(Android.updateCategory(category.id, category.name, category.icon)));
 		};
 
 		return service;
