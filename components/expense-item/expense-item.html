@@ -27,6 +27,10 @@
 					<div>Amount</div>
 					<div>{{ expenseItemCtrl.model.amount | number }} CHF</div>
 				</div>
+				<div>
+					<div>Category</div>
+					<div>{{ expenseItemCtrl.model.category.name }}</div>
+				</div>
 			</div>
 
 			<expense-progress-chart ng-if="!expenseItemCtrl.isLastBlock" ng-model="expenseItemCtrl.model" balances="expenseItemCtrl.accountCtrl.balances" expenses="expenseItemCtrl.accountCtrl.expenses"></expense-progress-chart>

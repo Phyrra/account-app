@@ -58,7 +58,17 @@ app
 				method: 'GET',
 				url: 'http://localhost/public/api/account/get-expenses.php?account-id=' + account.id
 			}).then(function(response) {
-				return response.data;
+				// This is done to match the result from the Android call
+				return response.data.map(function(expense) {
+					expense.category = {
+						id: expense.idCategory,
+						sName: expense.sCategoryName
+					};
+
+					delete expense.sCategoryName;
+
+					return expense;
+				});
 			});
 		};
 
@@ -192,7 +202,11 @@ app
 				description: expense.sDescription,
 				categoryId: parseInt(expense.idCategory, 10),
 				accountId: parseInt(expense.idAccount, 10),
-				date: new Date(expense.dtDate)
+				date: new Date(expense.dtDate),
+				category: {
+					id: expense.category.id,
+					name: expense.category.sName
+				}
 			};
 		};
 
