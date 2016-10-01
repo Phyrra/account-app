@@ -1,0 +1,30 @@
+@import 'scss/dimensions.scss';
+@import 'scss/colors.scss';
+
+.icon-search {
+	.icon-search-result-wrapper {
+		margin-top: $default-padding;
+
+		display: flex;
+		flex-wrap: wrap;
+
+		.icon-search-result {
+			cursor: pointer;
+
+			padding: $default-padding;
+			border-radius: $border-radius;
+
+			font-size: $item-title-size;
+			text-align: center;
+
+			.fa {
+				width: $bigger-icon-size;
+			}
+
+			&:hover {
+				background-color: $middle-blue;
+				color: $white;
+			}
+		}
+	}
+}

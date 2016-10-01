@@ -36,7 +36,8 @@ app
 		service.updateCategory = function(category) {
 			return $q.resolve({
 				id: category.id,
-				sName: category.name
+				sName: category.name,
+				sIcon: category.icon
 			});
 		};
 
@@ -49,7 +50,8 @@ app
 		var mapCategory = function(category) {
 			return {
 				id: parseInt(category.id, 10),
-				name: category.sName
+				name: category.sName,
+				icon: category.sIcon
 			};
 		};
 
@@ -78,7 +80,8 @@ app
 		service.updateCategory = function(category) {
 			return Data.updateCategory({
 				id: category.id,
-				name: category.name
+				name: category.name,
+				icon: category.icon
 			}).then(function(category) {
 				return mapCategory(category);
 			});

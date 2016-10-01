@@ -1,4 +1,5 @@
 <div class="category-filter-item" ng-class="{ 'selected': itemCtrl.model.checked }" ng-click="itemCtrl.toggleCategory()" on-long-click="itemCtrl.onEdit()">
+	<i ng-if="itemCtrl.model.icon" class="fa fa-{{itemCtrl.model.icon}}"></i>
 	{{ itemCtrl.model.name }}
 	<i class="fa" ng-class="{ 'fa-times': !itemCtrl.model.checked, 'fa-check': itemCtrl.model.checked }"></i>
 </div>

@@ -62,10 +62,12 @@ app
 				return response.data.map(function(expense) {
 					expense.category = {
 						id: expense.idCategory,
-						sName: expense.sCategoryName
+						sName: expense.sCategoryName,
+						sIcon: expense.sCategoryIcon
 					};
 
 					delete expense.sCategoryName;
+					delete expense.sCategoryIcon;
 
 					return expense;
 				});
@@ -205,7 +207,8 @@ app
 				date: new Date(expense.dtDate),
 				category: {
 					id: expense.category.id,
-					name: expense.category.sName
+					name: expense.category.sName,
+					icon: expense.category.sIcon
 				}
 			};
 		};

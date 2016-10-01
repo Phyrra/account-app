@@ -1,0 +1,18 @@
+<div class="icon-search">
+	<input-wrapper title="Icon" ng-model="iconSearchCtrl.model" >
+		<input
+				type="text"
+				ng-model="inputCtrl.model"
+				ng-disabled="false"
+				ng-focus="inputCtrl.onFocus()"
+				ng-blur="inputCtrl.onBlur()"
+				ng-change="iconSearchCtrl.onChangeSearch(inputCtrl.model)"
+		/>
+	</input-wrapper>
+
+	<div class="icon-search-result-wrapper">
+		<div class="icon-search-result" ng-repeat="icon in iconSearchCtrl.iconResults" ng-click="iconSearchCtrl.onSelect({ icon: icon })">
+			<i class="fa fa-{{icon}}"></i>
+		</div>
+	</div>
+</div>
