@@ -13,12 +13,6 @@ app
 		var ctrl = this;
 
 		ctrl.items = [{
-			text: 'Account',
-			link: '#/',
-			action: function() {
-				$location.url('/');
-			}
-		}, {
 			text: 'Backup',
 			action: function() {
 				Android.createBackupDump();

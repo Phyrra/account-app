@@ -1,4 +1,4 @@
-<div class="account-dropdown">
+<div class="account-dropdown" ng-if="accountDropdownCtrl.accounts.length > 1">
 	<div class="account-dropdown-display" ng-click="accountDropdownCtrl.onFoldoutToggle()">
 		<div class="account-dropdown-selection">
 			{{ accountDropdownCtrl.model.name }}
