@@ -12,13 +12,7 @@ app
 	.controller('AppSidebarController', ['$location', function($location) {
 		var ctrl = this;
 
-		ctrl.items = [{
-			text: 'Account',
-			link: '#/',
-			action: function() {
-				$location.url('/');
-			}
-		}];
+		ctrl.items = [];
 
 		ctrl.onItemClick = function(item) {
 			if (angular.isString(item.link)) {
