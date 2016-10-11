@@ -56,27 +56,27 @@ app
 		};
 
 		var mapExpense = function(expense) {
-            var mapped = {
-                id: parseInt(expense.id, 10),
-                title: expense.sTitle,
-                amount: parseFloat(expense.fAmount),
-                description: expense.sDescription,
-                categoryId: parseInt(expense.idCategory, 10),
-                accountId: parseInt(expense.idAccount, 10),
-                date: new Date(expense.dtDate),
-                category: {}
-            };
+			var mapped = {
+				id: parseInt(expense.id, 10),
+				title: expense.sTitle,
+				amount: parseFloat(expense.fAmount),
+				description: expense.sDescription,
+				categoryId: parseInt(expense.idCategory, 10),
+				accountId: parseInt(expense.idAccount, 10),
+				date: new Date(expense.dtDate),
+				category: {}
+			};
 
-            if (expense.hasOwnProperty('category')) {
-                mapped.category = {
-                    id: parseInt(expense.category.id, 10),
-                    name: expense.category.sName,
-                    icon: expense.category.sIcon
-                };
-            }
+			if (expense.hasOwnProperty('category')) {
+				mapped.category = {
+					id: parseInt(expense.category.id, 10),
+					name: expense.category.sName,
+					icon: expense.category.sIcon
+				};
+			}
 
-            return mapped;
-        };
+			return mapped;
+		};
 
 		this.getExpenses = function(account) {
 			return Account.getExpenses(account).then(function(expenses) {

@@ -1,9 +1,9 @@
 app
-    .component('accountView', {
-        templateUrl: 'components/account-view/account-view.html',
-        controller: 'AccountViewController',
-        controllerAs: 'accountCtrl'
-    })
+	.component('accountView', {
+		templateUrl: 'components/account-view/account-view.html',
+		controller: 'AccountViewController',
+		controllerAs: 'accountCtrl'
+	})
 
 	.controller('AccountViewController', ['$scope', 'AccountService', '$q', function($scope, AccountService, $q) {
 		var ctrl = this;

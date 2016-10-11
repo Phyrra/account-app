@@ -60,10 +60,10 @@ app
 		this.getExpenses = function(account) {
 			return $http({
 				method: 'GET',
-			 	url: 'http://localhost/public/api/account/get-expenses.php?account-id=' + account.id
+				url: 'http://localhost/public/api/account/get-expenses.php?account-id=' + account.id
 			}).then(function(response) {
-			 	// This is done to match the result from the Android call
-			 	return response.data.map(function(expense) {
+				// This is done to match the result from the Android call
+				return response.data.map(function(expense) {
 					expense.category = {
 						id: expense.idCategory,
 						sName: expense.sCategoryName,
@@ -74,7 +74,7 @@ app
 					delete expense.sCategoryIcon;
 
 					return expense;
-			 	});
+				});
 			});
 		};
 
