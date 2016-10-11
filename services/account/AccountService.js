@@ -1,147 +1,6 @@
 app
-	.factory('Account', ['$http', '$q', function($http, $q) {
-		var service = {};
-
-		service.getAccounts = function() {
-			return $http({
-				method: 'GET',
-				url: 'http://localhost/public/api/account/get-accounts.php'
-			}).then(function(response) {
-				return response.data;
-			});
-		};
-
-		service.getBalances = function(account) {
-			return $http({
-				method: 'GET',
-				url: 'http://localhost/public/api/account/get-balances.php?account-id=' + account.id
-			}).then(function(response) {
-				return response.data;
-			});
-		};
-
-		service.addBalance = function(balance) {
-			return $http({
-				method: 'POST',
-				url: 'http://localhost/public/api/account/post-balance.php',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-				},
-				data: {
-					'account-id': balance.accountId,
-					'amount': balance.amount,
-					'date': balance.date
-				},
-				transformRequest: $.param
-			}).then(function(response) {
-				return response.data[0];
-			});
-		};
-
-		service.deleteBalance = function(balance) {
-			return $q.resolve({
-				success: true
-			});
-		};
-
-		service.updateBalance = function(balance) {
-			return $q.resolve({
-				id: balance.id,
-				idAccount: balance.accountId,
-				fAmount: balance.amount,
-				dtDate: balance.date
-			});
-		};
-
-		service.getExpenses = function(account) {
-			return $http({
-				method: 'GET',
-				url: 'http://localhost/public/api/account/get-expenses.php?account-id=' + account.id
-			}).then(function(response) {
-				// This is done to match the result from the Android call
-				return response.data.map(function(expense) {
-					expense.category = {
-						id: expense.idCategory,
-						sName: expense.sCategoryName,
-						sIcon: expense.sCategoryIcon
-					};
-
-					delete expense.sCategoryName;
-					delete expense.sCategoryIcon;
-
-					return expense;
-				});
-			});
-		};
-
-		service.addExpense = function(expense) {
-			return $http({
-				method: 'POST',
-				url: 'http://localhost/public/api/account/post-expense.php',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-				},
-				data: {
-					'account-id': expense.accountId,
-					'category-id': expense.categoryId,
-					'title': expense.title,
-					'amount': expense.amount,
-					'description': expense.description,
-					'date': expense.date
-				},
-				transformRequest: $.param
-			}).then(function(response) {
-				return response.data[0];
-			});
-		};
-
-		service.deleteExpense = function(expense) {
-			return $http({
-				method: 'POST',
-				url: 'http://localhost/public/api/account/delete-expense.php',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-				},
-				data: {
-					'expense-id': expense.id
-				},
-				transformRequest: $.param
-			}).then(function(response) {
-				return {
-					success: true
-				};
-			});
-		};
-
-		service.updateExpense = function(expense) {
-			return $http({
-				method: 'POST',
-				url: 'http://localhost/public/api/account/update-expense.php',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-				},
-				data: {
-					'expense-id': expense.id,
-					'account-id': expense.accountId,
-					'category-id': expense.categoryId,
-					'title': expense.title,
-					'amount': expense.amount,
-					'description': expense.description,
-					'date': expense.date
-				},
-				transformRequest: $.param
-			}).then(function(response) {
-				return response.data[0];
-			});
-		};
-
-		return service;
-	}])
-
-	.factory('AccountService', ['Account', '$filter', function(Account, $filter) {
-		var service = {};
-
-		service.getAccounts = function() {
+	.service('AccountService', ['Account', '$filter', function(Account, $filter) {
+		this.getAccounts = function() {
 			return Account.getAccounts().then(function(accounts) {
 				return accounts.map(function(account) {
 					return {
@@ -156,18 +15,18 @@ app
 			return {
 				id: parseInt(balance.id, 10),
 				accountId: parseInt(balance.idAccount, 10),
-				amount: parseFloat(balance.fSaldo),
+				amount: parseFloat(balance.fAmount),
 				date: new Date(balance.dtDate)
 			};
 		};
 
-		service.getBalances = function(account) {
+		this.getBalances = function(account) {
 			return Account.getBalances(account).then(function(balances) {
 				return balances.map(mapBalance);
 			});
 		};
 
-		service.addBalance = function(balance) {
+		this.addBalance = function(balance) {
 			return Account.addBalance({
 				accountId: balance.accountId,
 				amount: balance.amount,
@@ -177,7 +36,7 @@ app
 			});
 		};
 
-		service.deleteBalance = function(balance) {
+		this.deleteBalance = function(balance) {
 			return Account.deleteBalance({
 				id: balance.id
 			}).then(function(response) {
@@ -185,7 +44,7 @@ app
 			});
 		};
 
-		service.updateBalance = function(balance) {
+		this.updateBalance = function(balance) {
 			return Account.updateBalance({
 				id: balance.id,
 				accountId: balance.accountId,
@@ -219,13 +78,13 @@ app
             return mapped;
         };
 
-		service.getExpenses = function(account) {
+		this.getExpenses = function(account) {
 			return Account.getExpenses(account).then(function(expenses) {
 				return expenses.map(mapExpense);
 			});
 		};
 
-		service.addExpense = function(expense) {
+		this.addExpense = function(expense) {
 			return Account.addExpense({
 				accountId: expense.accountId,
 				categoryId: expense.categoryId,
@@ -238,7 +97,7 @@ app
 			});
 		};
 
-		service.deleteExpense = function(expense) {
+		this.deleteExpense = function(expense) {
 			return Account.deleteExpense({
 				id: expense.id
 			}).then(function(response) {
@@ -246,7 +105,7 @@ app
 			});
 		};
 
-		service.updateExpense = function(expense) {
+		this.updateExpense = function(expense) {
 			return Account.updateExpense({
 				accountId: expense.accountId,
 				categoryId: expense.categoryId,
@@ -259,6 +118,4 @@ app
 				return mapExpense(expense);
 			});
 		};
-
-		return service;
 	}]);

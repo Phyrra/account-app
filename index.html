@@ -29,9 +29,7 @@
 
 			app.config(function($routeProvider) {
 				$routeProvider.when('/', {
-					templateUrl: 'views/account-view/account-view.html',
-					controller: 'AccountController',
-					controllerAs: 'accountCtrl',
+					template: '<account-view></account-view>',
 					reloadOnSearch: false
 				});
 
@@ -58,7 +56,11 @@
 				angular.bootstrap(document, ['app']);
 			});
 		</script>
-		
+
+		<script src="services/account/backend-implementation/AccountStatic.js"></script>
+		<script src="services/data/backend-implementation/DataStatic.js"></script>
+		<script src="services/data/backend-implementation/FontAwesomeStatic.js"></script>
+
 		<script src="services/account/AccountService.js"></script>
 		<script src="services/data/DataService.js"></script>
 		<script src="services/data/FontAwesomeIconService.js"></script>
@@ -70,8 +72,6 @@
 
 		<script src="templates.js"></script>
 		<script src="components.js"></script>
-
-		<script src="views/account-view/AccountController.js"></script>
 	</head>
 
 	<body>

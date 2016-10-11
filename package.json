@@ -15,7 +15,9 @@
     "gulp-sass": "^2.0.4"
   },
   "scripts": {
-    "install": "bower --config.interactive=false install && gulp sass"
+    "install": "bower --config.interactive=false install && gulp sass",
+    "gulp": "gulp",
+    "bower": "bower"
   },
   "author": "Sandro Maggi",
   "license": "MIT"
