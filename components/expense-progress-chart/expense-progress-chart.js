@@ -15,19 +15,17 @@ app
 
 		ctrl.id = null;
 
-		ctrl.sliceWidth = 75;
-		ctrl.swipeFadeout = 500;
+		ctrl.SLICE_WIDTH = 66;
+		ctrl.SWIPE_FADEOUT = 500;
 
-		ctrl.getChartData = function() {
+		ctrl.getColumnData = function() {
 			var column = [];
-			var labels = [];
 			var regionIdx = -1;
 
 			var tmpExpenses = ctrl.expenses.slice().reverse();
 			var curIdx = 0;
 
 			var tmpBalances = ctrl.balances.slice(1).reverse(); // remove the "mock"
-			var balanceIdx = [];
 
 			var current;
 			var lastDate;
@@ -36,9 +34,10 @@ app
 
 			tmpBalances
 				.forEach(function(balance, idx) {
-					column.push(balance.amount);
-					labels.push(filter(balance.date));
-					balanceIdx.push(column.length - 1);
+					column.push({
+						amount: balance.amount,
+						date: balance.date
+					});
 
 					current = balance.amount;
 					lastDate = balance.date;
@@ -56,10 +55,12 @@ app
 							current -= expense.amount;
 
 							if (lastDate.getTime() === expense.date.getTime()) {
-								column[column.length - 1] = current;
+								column[column.length - 1].amount = current;
 							} else {
-								column.push(current);
-								labels.push(filter(expense.date));
+								column.push({
+									amount: current,
+									date: expense.date
+								});
 							}
 
 							if (ctrl.model.id === expense.id) {
@@ -71,8 +72,6 @@ app
 
 			return {
 				column: column,
-				balanceIdx: balanceIdx,
-				labels: labels,
 				regionIdx: regionIdx
 			};
 		};
@@ -132,9 +131,9 @@ app
 			$document.on('mouseup touchend', function() {
 				if (swiping) {
 					$element.animate({
-						left: cropValue($element.offset().left - parent.offset().left + swipeXSpeed * ctrl.swipeFadeout)
+						left: cropValue($element.offset().left - parent.offset().left + swipeXSpeed * ctrl.SWIPE_FADEOUT)
 					}, {
-						duration: ctrl.swipeFadeout,
+						duration: ctrl.SWIPE_FADEOUT,
 						easing: 'linear'
 					});
 				}
@@ -143,26 +142,92 @@ app
 			});
 		};
 
+		ctrl.prepareChartDataWithSpacing = function(columnData) {
+			var day0;
+			if (columnData.column.length > 0) {
+				day0 = columnData.column[0].date;
+			}
+
+			var dateDiff = function(date1, date2) {
+				var timeDiff = date2.getTime() - date1.getTime();
+				return Math.ceil(timeDiff / (1000 * 3600 * 24));
+			};
+
+			var x1 = columnData.column.map(function(value) {
+				return dateDiff(day0, value.date);
+			});
+
+			var data1 = columnData.column.map(function(value) {
+				return value.amount;
+			});
+
+			var balances = ctrl.balances.slice(1).reverse();
+
+			var x2 = balances.map(function(balance) {
+				return dateDiff(day0, balance.date);
+			});
+
+			var data2 = balances.map(function(balance) {
+				return balance.amount;
+			});
+
+			var data1Labels = [];
+			var xLabels = [];
+			columnData.column.forEach(function(value) {
+				var label = $filter('date')(value.date);
+
+				data1Labels.push(label);
+
+				var idx = dateDiff(day0, value.date);
+				xLabels[idx] = label;
+			});
+
+			var data2Labels = balances.map(function(balance) {
+				return $filter('date')(balance.date);
+			});
+
+			var regionIdx = dateDiff(day0, columnData.column[columnData.regionIdx].date);
+
+			return {
+				x1: x1,
+				data1: data1,
+				x2: x2,
+				data2: data2,
+				labels: {
+					xLabels: xLabels,
+					data1: data1Labels,
+					data2: data2Labels
+				},
+				regionIdx: regionIdx,
+				chartWidth: xLabels.length * ctrl.SLICE_WIDTH
+			};
+		};
+
 		ctrl.$onInit = function() {
 			ctrl.id = 'chart-' + UUID();
-			ctrl.chartData = ctrl.getChartData();
+
+			var columnData = ctrl.getColumnData();
+			ctrl.chartData = ctrl.prepareChartDataWithSpacing(columnData);
 
 			$timeout(function() { // little hack to let Angular draw
 				c3.generate({
 					bindto: '#' + ctrl.id,
 					data: {
-						type: 'line',
 						xs: {
 							'data1': 'x1',
 							'data2': 'x2'
 						},
 						columns: [
-							['x1'].concat(ctrl.chartData.column.map(function(value, idx) { return idx; })),
-							['data1'].concat(ctrl.chartData.column),
+							['x1'].concat(ctrl.chartData.x1),
+							['data1'].concat(ctrl.chartData.data1),
 
-							['x2'].concat(ctrl.chartData.balanceIdx),
-							['data2'].concat(ctrl.balances.slice(1).reverse().map(function(balance) { return balance.amount; }))
-						]
+							['x2'].concat(ctrl.chartData.x2),
+							['data2'].concat(ctrl.chartData.data2)
+						],
+						types: {
+							data1: 'line',
+							data2: 'line'
+						}
 					},
 					axis: {
 						x: {
@@ -170,8 +235,8 @@ app
 								culling: {
 									max: 1
 								},
-								format: function(idx) {
-									return ctrl.chartData.labels[idx];
+								format: function(x) {
+									return ctrl.chartData.labels.xLabels[x];
 								}
 							}
 						},
@@ -188,9 +253,9 @@ app
 								return 'Balance';
 							},
 							name: function(name, ratio, id, idx) {
-								return ctrl.chartData.labels[idx];
+								return ctrl.chartData.labels[id][idx];
 							},
-							value: function(value) {
+							value: function(value, ratio, id) {
 								return $filter('number')(value);
 							}
 						}
@@ -206,7 +271,7 @@ app
 				var $element = $('#' + ctrl.id);
 
 				if (ctrl.chartData.regionIdx !== -1) {
-					$element.css('left', -ctrl.chartData.regionIdx * ctrl.sliceWidth + $element.parent().outerWidth() / 4.0);
+					$element.css('left', -ctrl.chartData.regionIdx * ctrl.SLICE_WIDTH + $element.parent().outerWidth() / 4.0);
 				}
 
 				ctrl.initSliding($element);
