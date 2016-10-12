@@ -18,6 +18,11 @@ app
 				idAccount: 1,
 				fAmount: 23456,
 				dtDate: '2016-09-01'
+			}, {
+				id: 3,
+				idAccount: 1,
+				fAmount: 34567,
+				dtDate: '2016-10-01'
 			}].reverse());
 		};
 
@@ -86,6 +91,62 @@ app
 				fAmount: 20,
 				sDescription: '',
 				dtDate: '2016-09-03'
+			}, {
+				id: 6,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 20,
+				sDescription: '',
+				dtDate: '2016-09-07'
+			},{
+				id: 7,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 20,
+				sDescription: '',
+				dtDate: '2016-09-09'
+			},{
+				id: 8,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 23,
+				sDescription: '',
+				dtDate: '2016-09-12'
+			}, {
+				id: 9,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 10,
+				sDescription: '',
+				dtDate: '2016-09-16'
+			}, {
+				id: 10,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 17,
+				sDescription: '',
+				dtDate: '2016-09-23'
+			}, {
+				id: 11,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 20,
+				sDescription: '',
+				dtDate: '2016-09-27'
+			}, {
+				id: 12,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 19,
+				sDescription: '',
+				dtDate: '2016-10-02'
 			}].reverse());
 		};
 
