@@ -73,8 +73,4 @@ app
 				ctrl.filteredExpenses = ctrl.accountCtrl.getExpensesInDateRange(ctrl.expenses, ctrl.model);
 			}
 		});
-
-		ctrl.$onInit = function() {
-
-		};
 	}]);

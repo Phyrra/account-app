@@ -10,15 +10,15 @@ app
 		this.getBalances = function(account) {
 			return $q.resolve([{
 				id: 1,
-				accountId: 1,
+				idAccount: 1,
 				fAmount: 12345,
 				dtDate: '2016-08-01'
 			}, {
 				id: 2,
-				accountId: 1,
+				idAccount: 1,
 				fAmount: 23456,
 				dtDate: '2016-09-01'
-			}]);
+			}].reverse());
 		};
 
 		this.addBalance = function(balance) {
@@ -46,7 +46,47 @@ app
 		};
 
 		this.getExpenses = function(account) {
-			return $q.resolve([{}]);
+			return $q.resolve([{
+				id: 1,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 12,
+				sDescription: '',
+				dtDate: '2016-08-02'
+			}, {
+				id: 2,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 32,
+				sDescription: '',
+				dtDate: '2016-08-05'
+			}, {
+				id: 3,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 23,
+				sDescription: '',
+				dtDate: '2016-08-08'
+			}, {
+				id: 4,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 15,
+				sDescription: '',
+				dtDate: '2016-08-12'
+			}, {
+				id: 5,
+				idAccount: 1,
+				idCategory: 1,
+				sTitle: 'Lunch',
+				fAmount: 20,
+				sDescription: '',
+				dtDate: '2016-09-03'
+			}].reverse());
 		};
 
 		this.addExpense = function(expense) {
