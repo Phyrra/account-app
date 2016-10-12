@@ -30,7 +30,7 @@
 					<div>Amount</div>
 					<div>{{ expenseItemCtrl.model.amount | number }} CHF</div>
 				</div>
-				<div>
+				<div ng-if="expenseItemCtrl.model.category.name">
 					<div>Category</div>
 					<div>{{ expenseItemCtrl.model.category.name }}</div>
 				</div>
