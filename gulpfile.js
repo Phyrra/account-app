@@ -34,16 +34,7 @@ gulp.task('components-template', function() {
 		.pipe(gulp.dest('build/template/.'));
 });
 
-gulp.task('views-template', function() {
-	return gulp.src('views/**/*.html')
-		.pipe(html2js({
-			moduleName: 'app',
-			prefix: 'views/'
-		}))
-		.pipe(gulp.dest('build/template/.'));
-});
-
-gulp.task('template-concat', ['components-template', 'views-template'], function() {
+gulp.task('template-concat', ['components-template'], function() {
 	return gulp.src('build/template/**/*.js')
 		.pipe(concat('templates.js'))
 		.pipe(gulp.dest('.'));
@@ -68,8 +59,7 @@ gulp.task('jscs', function() {
 	return gulp.src([
 			'components/**/*.js',
 			'filters/**/*.js',
-			'services/**/*.js',
-			'views/**/*.js'
+			'services/**/*.js'
 		])
 		.pipe(jscs())
 		.pipe(jscs.reporter());
