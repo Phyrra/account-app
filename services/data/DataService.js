@@ -1,29 +1,5 @@
 app
-	.factory('Data', ['$q', function($q) {
-		var service = {};
-
-		service.getCategories = function() {
-			return $q.resolve(JSON.parse(Android.getCategories()));
-		};
-
-		service.addCategory = function(category) {
-			return $q.resolve(JSON.parse(Android.addCategory(category.name)));
-		};
-
-		service.deleteCategory = function(category) {
-			return $q.resolve(JSON.parse(Android.deleteCategory(category.id)));
-		};
-
-		service.updateCategory = function(category) {
-			return $q.resolve(JSON.parse(Android.updateCategory(category.id, category.name, category.icon)));
-		};
-
-		return service;
-	}])
-
-	.factory('DataService', ['Data', function(Data) {
-		var service = {};
-
+	.service('DataService', ['Data', function(Data) {
 		var mapCategory = function(category) {
 			return {
 				id: parseInt(category.id, 10),
@@ -32,13 +8,13 @@ app
 			};
 		};
 
-		service.getCategories = function() {
+		this.getCategories = function() {
 			return Data.getCategories().then(function(categories) {
 				return categories.map(mapCategory);
 			});
 		};
 
-		service.deleteCategory = function(category) {
+		this.deleteCategory = function(category) {
 			return Data.deleteCategory({
 				id: category.id
 			}).then(function(response) {
@@ -46,7 +22,7 @@ app
 			});
 		};
 
-		service.addCategory = function(category) {
+		this.addCategory = function(category) {
 			return Data.addCategory({
 				name: category.name
 			}).then(function(category) {
@@ -54,7 +30,7 @@ app
 			});
 		};
 
-		service.updateCategory = function(category) {
+		this.updateCategory = function(category) {
 			return Data.updateCategory({
 				id: category.id,
 				name: category.name,
@@ -63,6 +39,4 @@ app
 				return mapCategory(category);
 			});
 		};
-
-		return service;
 	}]);
