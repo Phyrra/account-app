@@ -27,13 +27,11 @@
 
 			var app = angular.module('app', ['ngAnimate', 'ngRoute', 'ngTouch']);
 
-            app.config(function($routeProvider) {
+			app.config(function($routeProvider) {
 				$routeProvider.when('/', {
-				    templateUrl: 'views/account-view/account-view.html',
-				    controller: 'AccountController',
-				    controllerAs: 'accountCtrl',
-				    reloadOnSearch: false
-                });
+					template: '<account-view></account-view>',
+					reloadOnSearch: false
+				});
 
 				$routeProvider.otherwise({ redirectTo: '/' });
 			});
@@ -55,10 +53,14 @@
 			});
 
 			$(document).ready(function() {
-                angular.bootstrap(document, ['app']);
+				angular.bootstrap(document, ['app']);
 			});
 		</script>
-		
+
+		<script src="services/account/backend-implementation/AccountMySql.js"></script>
+		<script src="services/data/backend-implementation/DataMySql.js"></script>
+		<script src="services/data/backend-implementation/FontAwesomeMySql.js"></script>
+
 		<script src="services/account/AccountService.js"></script>
 		<script src="services/data/DataService.js"></script>
 		<script src="services/data/FontAwesomeIconService.js"></script>
@@ -68,13 +70,13 @@
 		<script src="filters/padding-filter.js"></script>
 		<script src="filters/html-filter.js"></script>
 
-        <script src="templates.js"></script>
+		<script src="templates.js"></script>
 		<script src="components.js"></script>
-
-		<script src="views/account-view/AccountController.js"></script>
 	</head>
 
 	<body>
-		<div class="view" ng-view></div>
+		<div class="main">
+			<div class="view" ng-view></div>
+		</div>
 	</body>
 </html>

@@ -4,7 +4,7 @@ app
 		controller: 'expenseItemController',
 		controllerAs: 'expenseItemCtrl',
 		require: {
-			accountCtrl: '^^ngController' // AccountController
+			accountCtrl: '^^accountView' // AccountViewController
 		},
 		bindings: {
 			model: '<ngModel',
@@ -60,9 +60,5 @@ app
 				expense: ctrl.model,
 				content: '<expense-input-mask ng-model="expense"></expense-input-mask>'
 			});
-		};
-		
-		ctrl.$onInit = function() {
-			// nothing
 		};
 	}]);

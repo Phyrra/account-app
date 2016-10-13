@@ -4,7 +4,7 @@ app
 		controller: 'BalanceBlockController',
 		controllerAs: 'blockCtrl',
 		require: {
-			accountCtrl: '^^ngController' // AccountController
+			accountCtrl: '^^accountView' // AccountViewController
 		},
 		bindings: {
 			model: '<ngModel',
@@ -73,8 +73,4 @@ app
 				ctrl.filteredExpenses = ctrl.accountCtrl.getExpensesInDateRange(ctrl.expenses, ctrl.model);
 			}
 		});
-
-		ctrl.$onInit = function() {
-
-		};
 	}]);

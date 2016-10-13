@@ -1,5 +1,11 @@
 app
-	.controller('AccountController', ['$scope', 'AccountService', '$q', function($scope, AccountService, $q) {
+	.component('accountView', {
+		templateUrl: 'components/account-view/account-view.html',
+		controller: 'AccountViewController',
+		controllerAs: 'accountCtrl'
+	})
+
+	.controller('AccountViewController', ['$scope', 'AccountService', '$q', function($scope, AccountService, $q) {
 		var ctrl = this;
 
 		ctrl.MAX_OPEN_ON_START = 2;

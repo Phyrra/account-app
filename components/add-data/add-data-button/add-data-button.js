@@ -2,7 +2,10 @@ app
 	.component('addDataButton', {
 		templateUrl: 'components/add-data/add-data-button/add-data-button.html',
 		controller: 'AddDataButtonController',
-		controllerAs: 'buttonCtrl'
+		controllerAs: 'buttonCtrl',
+		require: {
+			accountCtrl: '^^accountView' // AccountViewController
+		}
 	})
 
 	.controller('AddDataButtonController', ['ModalService', function(ModalService) {
@@ -37,10 +40,5 @@ app
 				accountId: ctrl.accountCtrl.selectedAccount.id,
 				content: '<add-data-dialog account-id="accountId"></add-data-dialog>'
 			});
-		};
-
-		ctrl.$onInit = function() {
-			// TODO: this is hacky, don't know how to require ng-view controller?
-			ctrl.accountCtrl = angular.element('div[ng-view]').scope().accountCtrl;
 		};
 	}]);
