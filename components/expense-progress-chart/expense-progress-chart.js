@@ -61,6 +61,8 @@ app
 									amount: current,
 									date: expense.date
 								});
+
+								lastDate = expense.date;
 							}
 
 							if (ctrl.model.id === expense.id) {
@@ -231,6 +233,10 @@ app
 					},
 					axis: {
 						x: {
+							padding: {
+								left: 0.5,
+								right: 0.5
+							},
 							tick: {
 								culling: {
 									max: 1

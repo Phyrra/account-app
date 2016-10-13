@@ -104,6 +104,12 @@ app
 						return false;
 					});
 				}
+
+				// FIXME: bit of a hack to prevent animation on first load
+				// the 1000 is a "measured-guess"
+				setTimeout(function() {
+					$('.view').addClass('animation-foldout-scroll-parent');
+				}, 1000);
 			});
 		};
 
