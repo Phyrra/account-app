@@ -1,0 +1,14 @@
+<div class="tag-input" ng-click="inputCtrl.onFocus()">
+	<div class="tag-list-item" ng-repeat="tag in inputCtrl.tags">
+		{{ tag }}
+		<i class="fa fa-times" ng-click="inputCtrl.onRemoveTag($index, $event)"></i>
+	</div>
+
+	<input
+			size="1"
+			ng-model="inputCtrl.inputModel"
+			ng-change="inputCtrl.onChange(inputCtrl.inputModel)"
+			ng-trim="false"
+			ng-blur="inputCtrl.onBlur()"
+	/>
+</div>
