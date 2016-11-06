@@ -1,14 +1,20 @@
 app
-	.service('AccountService', ['Account', '$filter', function(Account, $filter) {
+	.service('AccountService', ['Account', '$filter', '$log', function(Account, $filter, $log) {
 		this.getAccounts = function() {
-			return Account.getAccounts().then(function(accounts) {
-				return accounts.map(function(account) {
-					return {
-						id: parseInt(account.id, 10),
-						name: account.sName
-					};
+			return Account.getAccounts()
+				.then(function(accounts) {
+					return accounts.map(function(account) {
+						return {
+							id: parseInt(account.id, 10),
+							name: account.sName
+						};
+					});
+				})
+				.catch(function(error) {
+					$log.error('Cannot load accounts', error);
+
+					return [];
 				});
-			});
 		};
 
 		var mapBalance = function(balance) {
@@ -21,9 +27,15 @@ app
 		};
 
 		this.getBalances = function(account) {
-			return Account.getBalances(account).then(function(balances) {
-				return balances.map(mapBalance);
-			});
+			return Account.getBalances(account)
+				.then(function(balances) {
+					return balances.map(mapBalance);
+				})
+				.catch(function(error) {
+					$log.error('Cannot load balances', error);
+
+					return [];
+				});
 		};
 
 		this.addBalance = function(balance) {
@@ -31,17 +43,31 @@ app
 				accountId: balance.accountId,
 				amount: balance.amount,
 				date: $filter('date')(balance.date, 'iso')
-			}).then(function(balance) {
-				return mapBalance(balance);
-			});
+			})
+				.then(function(balance) {
+					return mapBalance(balance);
+				})
+				.catch(function(error) {
+					$log.error('Cannot add balance', error);
+
+					return balance;
+				});
 		};
 
 		this.deleteBalance = function(balance) {
 			return Account.deleteBalance({
 				id: balance.id
-			}).then(function(response) {
-				return response;
-			});
+			})
+				.then(function(response) {
+					return response;
+				})
+				.catch(function(error) {
+					$log.error('Cannot delete balance', error);
+
+					return {
+						success: false
+					};
+				});
 		};
 
 		this.updateBalance = function(balance) {
@@ -50,9 +76,15 @@ app
 				accountId: balance.accountId,
 				amount: balance.amount,
 				date: $filter('date')(balance.date, 'iso')
-			}).then(function(balance) {
-				return mapBalance(balance);
-			});
+			})
+				.then(function(balance) {
+					return mapBalance(balance);
+				})
+				.catch(function(error) {
+					$log.error('Cannot update balance', error);
+
+					return balance;
+				});
 		};
 
 		var mapExpense = function(expense) {
@@ -79,9 +111,15 @@ app
 		};
 
 		this.getExpenses = function(account) {
-			return Account.getExpenses(account).then(function(expenses) {
-				return expenses.map(mapExpense);
-			});
+			return Account.getExpenses(account)
+				.then(function(expenses) {
+					return expenses.map(mapExpense);
+				})
+				.catch(function(error) {
+					$log.error('Cannot load expenses', error);
+
+					return [];
+				});
 		};
 
 		this.addExpense = function(expense) {
@@ -92,17 +130,31 @@ app
 				amount: expense.amount,
 				description: expense.description ? expense.description : '',
 				date: $filter('date')(expense.date, 'iso')
-			}).then(function(expense) {
-				return mapExpense(expense);
-			});
+			})
+				.then(function(expense) {
+					return mapExpense(expense);
+				})
+				.catch(function(error) {
+					$log.error('Cannot add expense', error);
+
+					return expense;
+				});
 		};
 
 		this.deleteExpense = function(expense) {
 			return Account.deleteExpense({
 				id: expense.id
-			}).then(function(response) {
-				return response;
-			});
+			})
+				.then(function(response) {
+					return response;
+				})
+				.catch(function(error) {
+					$log.error('Cannot delete expense', error);
+
+					return {
+						success: false
+					};
+				});
 		};
 
 		this.updateExpense = function(expense) {
@@ -114,8 +166,14 @@ app
 				amount: expense.amount,
 				description: expense.description,
 				date: $filter('date')(expense.date, 'iso')
-			}).then(function(expense) {
-				return mapExpense(expense);
-			});
+			})
+				.then(function(expense) {
+					return mapExpense(expense);
+				})
+				.catch(function(error) {
+					$log.error('Cannot update expense', error);
+
+					return expense;
+				});
 		};
 	}]);
