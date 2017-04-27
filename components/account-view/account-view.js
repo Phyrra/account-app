@@ -8,7 +8,7 @@ app
 	.controller('AccountViewController', ['$scope', 'AccountService', '$q', function($scope, AccountService, $q) {
 		var ctrl = this;
 
-		ctrl.MAX_OPEN_ON_START = 2;
+		ctrl.MAX_OPEN_ON_START = 1;
 
 		ctrl.showSidebar = false;
 		ctrl.showFilterMenu = false;

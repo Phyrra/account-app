@@ -1,0 +1,66 @@
+@import "scss/dimensions.scss";
+@import "scss/colors.scss";
+
+$circle-size: $default-icon-size + $default-padding / 2;
+
+.tag-input {
+	background-color: $white;
+
+	border: 1px solid $darkish-grey;
+	border-radius: $border-radius;
+
+	min-height: $circle-size + $default-padding / 2 * 2 + 2 + 2;
+
+	padding: 0 $default-padding;
+	padding-top: $default-padding / 2;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+
+	&.focus {
+		border-color: $middle-blue;
+	}
+
+	.tag-list-item {
+		border: 1px solid $middle-grey;
+		border-radius: $circle-size;
+
+		padding-left: $default-padding;
+
+		margin-right: $default-padding / 2;
+		margin-bottom: $default-padding / 2;
+
+		height: $circle-size + 2; // for border
+
+		white-space: nowrap;
+
+		.fa-times {
+			text-align: center;
+
+			width: $circle-size;
+			height: $circle-size;
+
+			border-radius: $circle-size;
+			background-color: $middle-grey;
+
+			padding-top: 2px; // TODO: a bit of a hack
+
+			margin-left: $default-padding / 2;
+		}
+	}
+
+	input {
+		padding: 0;
+		flex-grow: 1;
+
+		border: none;
+
+		padding-bottom: $default-padding / 2;
+
+		&:focus {
+			outline: none;
+		}
+	}
+}

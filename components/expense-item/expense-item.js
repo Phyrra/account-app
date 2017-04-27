@@ -61,4 +61,21 @@ app
 				content: '<expense-input-mask ng-model="expense"></expense-input-mask>'
 			});
 		};
+
+		var entityMap = {
+            '<': '&lt;',
+            '>': '&gt;'
+        };
+
+        function escapeHtml (string) {
+            return string.replace(/[<>]/g, function(s) {
+                return entityMap[s];
+            });
+        }
+
+		ctrl.$onInit = function() {
+		    if (ctrl.model.description) {
+		        ctrl.model.description = escapeHtml(ctrl.model.description).replace(/(?:\r\n|\r|\n)/g, '<br />');
+		    }
+		};
 	}]);
