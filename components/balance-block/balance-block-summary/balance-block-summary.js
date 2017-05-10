@@ -8,18 +8,18 @@ app
 		}
 	})
 
-	.controller('BalanceBlockSummaryController', ['$scope', function($scope) {
+	.controller('BalanceBlockSummaryController', [function() {
 		var ctrl = this;
 
 		ctrl.onToggleContent = function() {
 			ctrl.showContent = !ctrl.showContent;
 		};
 
-		$scope.$watch('summaryCtrl.expenses', function(value) {
-			if (value) {
-				ctrl.expenseSum = ctrl.expenses.reduce(function(iter, expense) {
-					return iter + expense.amount;
-				}, 0);
-			}
-		});
+        ctrl.$onChanges = function(changes) {
+            if (changes.expenses) {
+                ctrl.expenseSum = changes.expenses.currentValue.reduce(function(iter, expense) {
+                    return iter + expense.amount;
+                }, 0);
+            }
+        };
 	}]);

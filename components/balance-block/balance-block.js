@@ -14,7 +14,7 @@ app
 		}
 	})
 
-	.controller('BalanceBlockController', ['ModalService', '$scope', function(ModalService, $scope) {
+	.controller('BalanceBlockController', ['ModalService', function(ModalService) {
 		var ctrl = this;
 
 		ctrl.onContentToggle = function() {
@@ -66,13 +66,13 @@ app
 			});
 		};
 
+        ctrl.$onChanges = function(changes) {
+            if (changes.expenses) {
+                ctrl.filteredExpenses = ctrl.accountCtrl.getExpensesInDateRange(changes.expenses.currentValue, ctrl.model);
+            }
+        };
+
 		ctrl.$onInit = function() {
 		    ctrl.showContent = ctrl.openOnInit === true;
 		};
-
-		$scope.$watch('blockCtrl.expenses', function(value) {
-			if (value) {
-				ctrl.filteredExpenses = ctrl.accountCtrl.getExpensesInDateRange(ctrl.expenses, ctrl.model);
-			}
-		});
 	}]);
