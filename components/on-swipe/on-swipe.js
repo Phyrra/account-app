@@ -10,7 +10,8 @@ app
 			link: function($scope, $element, $attrs) {
 				var DEFAULT_EXECUTE_FRACTION = 0.5;
 				var MIN_ANIMATION_TIME = 500;
-				var Y_TOLERANCE = 32;
+				var Y_TOLERANCE_MIN = 32;
+				var Y_TOLERANCE_FACTOR = 0.75;
 
 				var swipeValidator = {
 					'left': function(newX, oldX) {
@@ -39,6 +40,8 @@ app
 				var callback = null;
 				if (angular.isDefined($attrs.onSwipe)) {
 					callback = $parse($attrs.onSwipe);
+				} else {
+				    callback = angular.noop;
 				}
 
 				var running = false;
@@ -84,7 +87,7 @@ app
 							}
 						}
 
-						if (Math.abs(startY - newY) > Y_TOLERANCE) {
+						if (Math.abs(startY - newY) > Math.max(Y_TOLERANCE_MIN, Math.abs(startX - newX) * Y_TOLERANCE_FACTOR)) {
 							doReset = true;
 						}
 
@@ -117,15 +120,14 @@ app
 								duration: Math.min(time || MIN_ANIMATION_TIME, MIN_ANIMATION_TIME),
 								easing: 'linear',
 								done: function() {
-									if (angular.isFunction(callback)) {
-										$timeout(function() {
-											callback(
-												$scope, {
-													direction: left > 0 ? SWIPE_DIRECTION.RIGHT : SWIPE_DIRECTION.LEFT
-												}
-											);
-										}, 0);
-									}
+								    $timeout(function() {
+								        callback(
+                                            $scope,
+                                            {
+                                                direction: left > 0 ? SWIPE_DIRECTION.RIGHT : SWIPE_DIRECTION.LEFT
+                                            }
+                                        );
+                                    }, 0);
 
 									$element.css('left', '');
 								}

@@ -8,7 +8,7 @@ app
 		}
 	})
 
-	.controller('ExpenseAnalysisChartController', ['DataService', '$timeout', '$filter', '$scope', '$element', 'UUID', function(DataService, $timeout, $filter, $scope, $element, UUID) {
+	.controller('ExpenseAnalysisChartController', ['DataService', '$timeout', '$filter', '$element', 'UUID', function(DataService, $timeout, $filter, $element, UUID) {
 		var ctrl = this;
 
 		var CHART_ID = 'expense-analysis-chart-';
@@ -157,11 +157,13 @@ app
 			return $element.parent().width() / 2.0;
 		};
 
-		$scope.$watch('chartCtrl.expenses', function(value) {
-			if (value && ctrl.categories && ctrl.categories.length > 0) {
-				ctrl.buildChart();
-			}
-		});
+		ctrl.$onChanges = function(changes) {
+		    if (changes.expenses) {
+		        if (ctrl.categories && ctrl.categories.length > 0) {
+		            ctrl.buildChart();
+		        }
+		    }
+		};
 
 		ctrl.$onInit = function() {
 			ctrl.id = UUID();

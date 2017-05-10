@@ -73,9 +73,9 @@ app
             });
         }
 
-		ctrl.$onInit = function() {
-		    if (ctrl.model.description) {
-		        ctrl.model.description = escapeHtml(ctrl.model.description).replace(/(?:\r\n|\r|\n)/g, '<br />');
-		    }
-		};
+        ctrl.$onChanges = function(changes) {
+            if (changes.model) {
+                ctrl.displayDescription = escapeHtml(changes.model.currentValue.description).replace(/(?:\r\n|\r|\n)/g, '<br />');
+            }
+        };
 	}]);
