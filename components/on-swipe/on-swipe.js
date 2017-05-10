@@ -38,6 +38,8 @@ app
 				var callback = null;
 				if (angular.isDefined($attrs.onSwipe)) {
 					callback = $parse($attrs.onSwipe);
+				} else {
+				    callback = angular.noop;
 				}
 
 				var running = false;
@@ -87,7 +89,7 @@ app
 							}
 						}
 
-						if (Math.abs(startY - newY) > 10) {
+						if (Math.abs(startY - newY) > Math.max(50, Math.abs(startX - newX) * 0.75)) {
 							doReset = true;
 						}
 
@@ -120,15 +122,14 @@ app
 								duration: Math.min(time || MIN_ANIMATION_TIME, MIN_ANIMATION_TIME),
 								easing: 'linear',
 								done: function() {
-									if (angular.isFunction(callback)) {
-										$timeout(function() {
-											callback(
-												$scope, {
-													direction: left > 0 ? SWIPE_DIRECTION.RIGHT : SWIPE_DIRECTION.LEFT
-												}
-											);
-										}, 0);
-									}
+								    $timeout(function() {
+								        callback(
+                                            $scope,
+                                            {
+                                                direction: left > 0 ? SWIPE_DIRECTION.RIGHT : SWIPE_DIRECTION.LEFT
+                                            }
+                                        );
+                                    }, 0);
 
 									$element.css('left', '');
 								}

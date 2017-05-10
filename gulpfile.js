@@ -44,11 +44,11 @@ gulp.task('components', ['components-concat', 'template-concat'], function() {
 	// do nothing
 });
 
-gulp.task('update', ['sass', 'components'], function() {
+gulp.task('build', ['sass', 'components'], function() {
 	// do nothing
 });
 
-gulp.task('serve', ['update'], function() {
+gulp.task('serve', ['build'], function() {
 	browserSync.init({
 		server: './',
 		online: true // speeds up startup
