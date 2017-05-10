@@ -17,8 +17,6 @@ app
 	.controller('BalanceBlockController', ['ModalService', '$scope', function(ModalService, $scope) {
 		var ctrl = this;
 
-		ctrl.showContent = ctrl.openOnInit === true;
-
 		ctrl.onContentToggle = function() {
 			ctrl.showContent = !ctrl.showContent;
 		};
@@ -66,6 +64,10 @@ app
 				balance: ctrl.model,
 				content: '<balance-input-mask ng-model="balance"></balance-input-mask>'
 			});
+		};
+
+		ctrl.$onInit = function() {
+		    ctrl.showContent = ctrl.openOnInit === true;
 		};
 
 		$scope.$watch('blockCtrl.expenses', function(value) {
