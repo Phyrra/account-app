@@ -24,7 +24,10 @@ $circle-size: $default-icon-size + $default-padding / 2;
 	}
 
 	.tag-list-item {
-		border: 1px solid $middle-grey;
+	    color: $white;
+	    background-color: $light-blue;
+
+        border: 1px solid $light-blue;
 		border-radius: $circle-size;
 
 		padding-left: $default-padding;
@@ -37,17 +40,23 @@ $circle-size: $default-icon-size + $default-padding / 2;
 		white-space: nowrap;
 
 		.fa-times {
+		    color: $white;
+		    background-color: $middle-blue;
+
 			text-align: center;
 
 			width: $circle-size;
 			height: $circle-size;
 
 			border-radius: $circle-size;
-			background-color: $middle-grey;
 
 			padding-top: 2px; // TODO: a bit of a hack
 
 			margin-left: $default-padding / 2;
+
+			&:hover {
+			    background-color: $dark-blue;
+			}
 		}
 	}
 
