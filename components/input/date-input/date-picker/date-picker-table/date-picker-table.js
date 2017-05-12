@@ -95,7 +95,7 @@ app
 		};
 
 		ctrl.$onChanges = function(changes) {
-		    ctrl.calendarMonth = ctrl.calendarMonth.slice(); // create a clone to give it a new id, to force a re-rendering
+			ctrl.calendarMonth = ctrl.calendarMonth.slice(); // create a clone to give it a new id, to force a re-rendering
 		};
 
 		ctrl.$onInit = function() {

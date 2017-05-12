@@ -4,7 +4,7 @@ app
 		controller: 'TagInputController',
 		controllerAs: 'inputCtrl',
 		bindings: {
-		    title: '@',
+			title: '@',
 			model: '=ngModel',
 			disabled: '<?ngDisabled'
 		}
@@ -18,27 +18,27 @@ app
 
 		ctrl.onFocus = function() {
 			// a bit of a hack to get the animation running every time
-            $timeout(function() {
-                $element.find('.input-wrapper')
-                    .addClass('focus');
+			$timeout(function() {
+				$element.find('.input-wrapper')
+					.addClass('focus');
 
-                $element.find('.input-wrapper-body input')
-                    .removeClass('required')
-                    .select();
-            }, 0, false);
+				$element.find('.input-wrapper-body input')
+					.removeClass('required')
+					.select();
+			}, 0, false);
 		};
 
 		ctrl.onBlur = function() {
-            ctrl.tryToAddTag(ctrl.inputModel);
+			ctrl.tryToAddTag(ctrl.inputModel);
 
-            ctrl.transferTagsToModel();
+			ctrl.transferTagsToModel();
 
-            // a bit of a hack to get the animation running every time
-            $timeout(function() {
-                $element.find('.input-wrapper')
-                    .removeClass('focus');
-            }, 0, false);
-        };
+			// a bit of a hack to get the animation running every time
+			$timeout(function() {
+				$element.find('.input-wrapper')
+					.removeClass('focus');
+			}, 0, false);
+		};
 
 		ctrl.tryToAddTag = function(model) {
 			var trimmed = model.trim();

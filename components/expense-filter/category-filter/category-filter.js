@@ -76,9 +76,9 @@ app
 		};
 
 		ctrl.$onChanges = function(changes) {
-		    if (changes.model) {
-		        ctrl.performFilter();
-		    }
+			if (changes.model) {
+				ctrl.performFilter();
+			}
 		};
 
 		ctrl.$onInit = function() {

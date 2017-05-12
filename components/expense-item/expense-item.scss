@@ -97,11 +97,11 @@ expense-item {
 			}
 		}
 
-        .expense-item-display.is-new + .expense-item-detail {
-            .expense-item-description {
-                padding-top: $default-padding;
-            }
-        }
+		.expense-item-display.is-new + .expense-item-detail {
+			.expense-item-description {
+				padding-top: $default-padding;
+			}
+		}
 
 		.expense-item-detail {
 			.expense-item-description {

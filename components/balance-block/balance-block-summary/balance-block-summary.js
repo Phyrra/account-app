@@ -15,11 +15,11 @@ app
 			ctrl.showContent = !ctrl.showContent;
 		};
 
-        ctrl.$onChanges = function(changes) {
-            if (changes.expenses) {
-                ctrl.expenseSum = changes.expenses.currentValue.reduce(function(iter, expense) {
-                    return iter + expense.amount;
-                }, 0);
-            }
-        };
+		ctrl.$onChanges = function(changes) {
+			if (changes.expenses) {
+				ctrl.expenseSum = changes.expenses.currentValue.reduce(function(iter, expense) {
+					return iter + expense.amount;
+				}, 0);
+			}
+		};
 	}]);

@@ -68,13 +68,13 @@ app
 			});
 		};
 
-        ctrl.$onChanges = function(changes) {
-            if (changes.expenses) {
-                ctrl.filteredExpenses = ctrl.accountCtrl.getExpensesInDateRange(changes.expenses.currentValue, ctrl.model);
-            }
-        };
+		ctrl.$onChanges = function(changes) {
+			if (changes.expenses) {
+				ctrl.filteredExpenses = ctrl.accountCtrl.getExpensesInDateRange(changes.expenses.currentValue, ctrl.model);
+			}
+		};
 
 		ctrl.$onInit = function() {
-		    ctrl.showContent = ctrl.openOnInit === true;
+			ctrl.showContent = ctrl.openOnInit === true;
 		};
 	}]);
