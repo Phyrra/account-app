@@ -9,7 +9,6 @@
 		cursor: pointer;
 
 		display: flex;
-		flex-direction: row;
 
 		&.focus {
 			text-input .input-wrapper .input-wrapper-body input {
@@ -36,7 +35,6 @@
 			border-radius: 0 $border-radius $border-radius 0;
 
 			display: flex;
-			flex-direction: column;
 			align-items: center;
 			justify-content: center;
 		}
