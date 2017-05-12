@@ -1,6 +1,8 @@
 @import 'scss/dimensions.scss';
 @import 'scss/colors.scss';
 
+$circle-size: $default-icon-size + $default-padding / 2;
+
 .search-filter {
     padding: $default-padding;
 
@@ -41,14 +43,14 @@
 
         color: $darkish-grey;
 
-        width: $bigger-icon-size;
-        height: $bigger-icon-size;
+        width: $circle-size;
+        height: $circle-size;
 
-        border-radius: $bigger-icon-size;
+        border-radius: $circle-size;
 
-        // FIXME: Hardcoded to center the icon
-        padding-left: 3.5px;
-        padding-top: 1.5px;
+        text-align: center;
+
+        padding-top: 2px; // TODO: a bit of a hack
 
         &:hover {
             color: $white;
