@@ -53,9 +53,7 @@ app
                 map = newMap;
             });
 
-            return Object.keys(map).map(function(key) {
-                return map[key];
-            });
+            return map;
         };
 
 		ctrl.onCategoryFilterChange = function(dstModel) {
@@ -72,7 +70,13 @@ app
 
         // TODO: Race condition?!
 		ctrl.filterExpenses = function() {
-		    ctrl.filteredExpenses = getCommonElements('id', ctrl.expenses, ctrl.categoryFilteredExpenses, ctrl.searchFilteredExpenses);
+		    var key = 'id';
+
+		    var commonFilteredExpenses = getCommonElements('id', ctrl.categoryFilteredExpenses, ctrl.searchFilteredExpenses);
+
+		    ctrl.filteredExpenses = ctrl.expenses.filter(function(expense) {
+		        return commonFilteredExpenses.hasOwnProperty(expense[key]);
+		    });
 		};
 
 		ctrl.getExpensesInDateRange = function(expenses, balance) {
