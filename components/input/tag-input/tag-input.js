@@ -4,19 +4,41 @@ app
 		controller: 'TagInputController',
 		controllerAs: 'inputCtrl',
 		bindings: {
-			model: '=ngModel'
+		    title: '@',
+			model: '=ngModel',
+			disabled: '<?ngDisabled'
 		}
 	})
 
-	.controller('TagInputController', ['$element', function($element) {
+	.controller('TagInputController', ['$element', '$timeout', function($element, $timeout) {
 		var ctrl = this;
 
 		ctrl.tags = [];
 		ctrl.inputModel = '';
 
 		ctrl.onFocus = function() {
-			$element.find('input').focus();
+			// a bit of a hack to get the animation running every time
+            $timeout(function() {
+                $element.find('.input-wrapper')
+                    .addClass('focus');
+
+                $element.find('.input-wrapper-body input')
+                    .removeClass('required')
+                    .select();
+            }, 0, false);
 		};
+
+		ctrl.onBlur = function() {
+            ctrl.tryToAddTag(ctrl.inputModel);
+
+            ctrl.transferTagsToModel();
+
+            // a bit of a hack to get the animation running every time
+            $timeout(function() {
+                $element.find('.input-wrapper')
+                    .removeClass('focus');
+            }, 0, false);
+        };
 
 		ctrl.tryToAddTag = function(model) {
 			var trimmed = model.trim();
@@ -36,12 +58,6 @@ app
 			if (model[model.length - 1] === ' ') {
 				ctrl.tryToAddTag(model);
 			}
-		};
-
-		ctrl.onBlur = function() {
-			ctrl.tryToAddTag(ctrl.inputModel);
-
-			ctrl.transferTagsToModel();
 		};
 
 		ctrl.onRemoveTag = function(idx, $event) {
