@@ -158,11 +158,11 @@ app
 		};
 
 		ctrl.$onChanges = function(changes) {
-		    if (changes.expenses) {
-		        if (ctrl.categories && ctrl.categories.length > 0) {
-		            ctrl.buildChart();
-		        }
-		    }
+			if (changes.expenses) {
+				if (ctrl.categories && ctrl.categories.length > 0) {
+					ctrl.buildChart();
+				}
+			}
 		};
 
 		ctrl.$onInit = function() {

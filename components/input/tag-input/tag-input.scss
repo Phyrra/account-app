@@ -14,11 +14,11 @@ $circle-size: $default-icon-size + $default-padding / 2;
 	padding: 0 $default-padding;
 
 	&.has-tags {
-	    padding-bottom: $default-padding - ($default-padding / 2); // - the margin-bottom of the .tag-list-item
+		padding-bottom: $default-padding - ($default-padding / 2); // - the margin-bottom of the .tag-list-item
 
-	    input {
-	        margin-bottom: $default-padding - ($default-padding / 2);
-	    }
+		input {
+			margin-bottom: $default-padding - ($default-padding / 2);
+		}
 	}
 
 	display: flex;
@@ -26,10 +26,10 @@ $circle-size: $default-icon-size + $default-padding / 2;
 	align-items: center;
 
 	.tag-list-item {
-	    color: $white;
-	    background-color: $light-blue;
+		color: $white;
+		background-color: $light-blue;
 
-        border: 1px solid $light-blue;
+		border: 1px solid $light-blue;
 		border-radius: $circle-size;
 
 		padding-left: $default-padding;
@@ -42,8 +42,8 @@ $circle-size: $default-icon-size + $default-padding / 2;
 		white-space: nowrap;
 
 		.fa-times {
-		    color: $white;
-		    background-color: $middle-blue;
+			color: $white;
+			background-color: $middle-blue;
 
 			text-align: center;
 
@@ -57,7 +57,7 @@ $circle-size: $default-icon-size + $default-padding / 2;
 			margin-left: $default-padding / 2;
 
 			&:hover {
-			    background-color: $dark-blue;
+				background-color: $dark-blue;
 			}
 		}
 	}
@@ -75,5 +75,5 @@ $circle-size: $default-icon-size + $default-padding / 2;
 }
 
 .input-wrapper.focus .tag-input {
-    border-color: $middle-blue;
+	border-color: $middle-blue;
 }
