@@ -67,11 +67,11 @@ app
 			'>': '&gt;'
 		};
 
-		function escapeHtml (string) {
+		var escapeHtml = function(string) {
 			return string.replace(/[<>]/g, function(s) {
 				return entityMap[s];
 			});
-		}
+		};
 
 		ctrl.$onChanges = function(changes) {
 			if (changes.model) {
