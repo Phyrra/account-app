@@ -29,7 +29,6 @@ app
 		ctrl.$onInit = function() {
 			FontAwesomeIconService.getIcons().then(function(icons) {
 				ctrl.icons = icons;
-				console.log(icons);
 			});
 		};
 	}]);

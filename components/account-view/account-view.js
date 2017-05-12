@@ -10,6 +10,8 @@ app
 
 		ctrl.MAX_OPEN_ON_START = 1;
 
+		ctrl.SEARCH_KEYS = ['category.name', 'title', 'description'];
+
 		ctrl.showSidebar = false;
 		ctrl.showFilterMenu = false;
 
@@ -19,6 +21,63 @@ app
 
 		ctrl.expenses = [];
 		ctrl.filteredExpenses = [];
+		ctrl.categoryFilteredExpenses = [];
+		ctrl.searchFilteredExpenses = [];
+
+		var listToMap = function(list, key) {
+		    var map = {};
+
+		    list.forEach(function(element) {
+		        map[element[key]] = element;
+		    });
+
+		    return map;
+		};
+
+		var getCommonElements = function(key) {
+        	var listOfLists = arguments;
+
+            var map = listToMap(listOfLists[1], key);
+
+            Array.prototype.slice.call(listOfLists, 2).forEach(function(list) {
+                var newMap = {};
+
+                list.forEach(function(element) {
+                    var keyValue = element[key];
+
+                    if (map.hasOwnProperty(keyValue)) {
+                        newMap[keyValue] = map[keyValue];
+                    }
+                });
+
+                map = newMap;
+            });
+
+            return map;
+        };
+
+		ctrl.onCategoryFilterChange = function(dstModel) {
+		    ctrl.categoryFilteredExpenses = dstModel;
+
+		    ctrl.filterExpenses();
+		};
+
+		ctrl.onSearchFilterChange = function(dstModel) {
+		    ctrl.searchFilteredExpenses = dstModel;
+
+		    ctrl.filterExpenses();
+		};
+
+        // TODO: Race condition?!
+		ctrl.filterExpenses = function() {
+		    var key = 'id';
+
+		    var commonFilteredExpenses = getCommonElements('id', ctrl.categoryFilteredExpenses, ctrl.searchFilteredExpenses);
+
+		    ctrl.filteredExpenses = ctrl.expenses.filter(function(expense) {
+		        return commonFilteredExpenses.hasOwnProperty(expense[key]);
+		    });
+		};
 
 		ctrl.getExpensesInDateRange = function(expenses, balance) {
 			return expenses.filter(function(expense) {
