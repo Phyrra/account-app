@@ -4,7 +4,7 @@ app
 		controller: 'CategoryFilterController',
 		controllerAs: 'categoryFilterCtrl',
 		bindings: {
-			srcModel: '<',
+			model: '<ngModel',
 			onChange: '&'
 		}
 	})
@@ -68,7 +68,7 @@ app
 		};
 
 		ctrl.performFilter = function() {
-			var filteredModel = ctrl.srcModel.filter(function(model) {
+			var filteredModel = ctrl.model.filter(function(model) {
 				return ctrl.isCategorySelected(model.categoryId);
 			});
 
@@ -76,7 +76,7 @@ app
 		};
 
 		ctrl.$onChanges = function(changes) {
-		    if (changes.srcModel) {
+		    if (changes.model) {
 		        ctrl.performFilter();
 		    }
 		};

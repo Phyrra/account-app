@@ -10,6 +10,8 @@ app
 
 		ctrl.MAX_OPEN_ON_START = 1;
 
+		ctrl.SEARCH_KEYS = ['category.name', 'title', 'description'];
+
 		ctrl.showSidebar = false;
 		ctrl.showFilterMenu = false;
 
@@ -19,6 +21,8 @@ app
 
 		ctrl.expenses = [];
 		ctrl.filteredExpenses = [];
+		ctrl.categoryFilteredExpenses = [];
+		ctrl.searchFilteredExpenses = [];
 
 		var listToMap = function(list, key) {
 		    var map = {};
@@ -55,7 +59,20 @@ app
         };
 
 		ctrl.onCategoryFilterChange = function(dstModel) {
-		    ctrl.filteredExpenses = getCommonElements('id', ctrl.expenses, dstModel);
+		    ctrl.categoryFilteredExpenses = dstModel;
+
+		    ctrl.filterExpenses();
+		};
+
+		ctrl.onSearchFilterChange = function(dstModel) {
+		    ctrl.searchFilteredExpenses = dstModel;
+
+		    ctrl.filterExpenses();
+		};
+
+        // TODO: Race condition?!
+		ctrl.filterExpenses = function() {
+		    ctrl.filteredExpenses = getCommonElements('id', ctrl.expenses, ctrl.categoryFilteredExpenses, ctrl.searchFilteredExpenses);
 		};
 
 		ctrl.getExpensesInDateRange = function(expenses, balance) {
