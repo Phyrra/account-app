@@ -45,9 +45,22 @@ app
 	            return;
 	        }
 
+            var searchStrings = ctrl.search.split(' ')
+                .map(function(search) {
+                    return search.trim();
+                })
+                .filter(function(search) {
+                    return search.length > 0; // TODO: Maybe > 3?
+                });
+
 	        var dstModel = ctrl.model.filter(function(element) {
 	            return ctrl.keys.some(function(key) {
-                    return stringContains(getValue(element, key), ctrl.search);
+	                var value = getValue(element, key);
+
+	                // Binds the searches as "or"
+	                return searchStrings.some(function(search) {
+	                    return stringContains(value, search);
+	                });
 	            });
 	        });
 
