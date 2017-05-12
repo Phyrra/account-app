@@ -20,6 +20,44 @@ app
 		ctrl.expenses = [];
 		ctrl.filteredExpenses = [];
 
+		var listToMap = function(list, key) {
+		    var map = {};
+
+		    list.forEach(function(element) {
+		        map[element[key]] = element;
+		    });
+
+		    return map;
+		};
+
+		var getCommonElements = function(key) {
+        	var listOfLists = arguments;
+
+            var map = listToMap(listOfLists[1], key);
+
+            Array.prototype.slice.call(listOfLists, 2).forEach(function(list) {
+                var newMap = {};
+
+                list.forEach(function(element) {
+                    var keyValue = element[key];
+
+                    if (map.hasOwnProperty(keyValue)) {
+                        newMap[keyValue] = map[keyValue];
+                    }
+                });
+
+                map = newMap;
+            });
+
+            return Object.keys(map).map(function(key) {
+                return map[key];
+            });
+        };
+
+		ctrl.onCategoryFilterChange = function(dstModel) {
+		    ctrl.filteredExpenses = getCommonElements('id', ctrl.expenses, dstModel);
+		};
+
 		ctrl.getExpensesInDateRange = function(expenses, balance) {
 			return expenses.filter(function(expense) {
 				if (ctrl.balances.length === 1) { // there's always at least 1 "mock" balance

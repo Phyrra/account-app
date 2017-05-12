@@ -4,12 +4,12 @@ app
 		controller: 'CategoryFilterController',
 		controllerAs: 'categoryFilterCtrl',
 		bindings: {
-			srcModel: '=',
-			dstModel: '='
+			srcModel: '<',
+			onChange: '&'
 		}
 	})
 
-	.controller('CategoryFilterController', ['DataService', '$scope', 'ModalService', function(DataService, $scope, ModalService) {
+	.controller('CategoryFilterController', ['DataService', function(DataService) {
 		var ctrl = this;
 
 		ctrl.categories = [];
@@ -62,20 +62,24 @@ app
 
 		ctrl.isCategorySelected = function(categoryId) {
 			return ctrl.categories
-				.filter(function(category) {
+				.some(function(category) {
 					return category.checked === true && category.id === categoryId;
-				}).length > 0;
+				});
 		};
 
 		ctrl.performFilter = function() {
-			ctrl.dstModel = ctrl.srcModel.filter(function(model) {
+			var filteredModel = ctrl.srcModel.filter(function(model) {
 				return ctrl.isCategorySelected(model.categoryId);
 			});
+
+			ctrl.onChange({ dstModel: filteredModel });
 		};
 
-		$scope.$watch('categoryFilterCtrl.srcModel', function(value) {
-			ctrl.performFilter();
-		});
+		ctrl.$onChanges = function(changes) {
+		    if (changes.srcModel) {
+		        ctrl.performFilter();
+		    }
+		};
 
 		ctrl.$onInit = function() {
 			ctrl.loadCategories();

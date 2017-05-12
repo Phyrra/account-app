@@ -7,7 +7,7 @@
 
 	<div class="expense-filter foldout-animation" ng-show="accountCtrl.showFilterMenu">
 		<account-dropdown ng-model="accountCtrl.selectedAccount"></account-dropdown>
-		<category-filter src-model="accountCtrl.expenses" dst-model="accountCtrl.filteredExpenses"></category-filter>
+		<category-filter src-model="accountCtrl.expenses" on-change="accountCtrl.onCategoryFilterChange(dstModel)"></category-filter>
 	</div>
 
 	<balance-block
