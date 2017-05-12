@@ -93,6 +93,7 @@ app
 				title: expense.sTitle,
 				amount: parseFloat(expense.fAmount),
 				description: expense.sDescription,
+				tags: expense.sTagList,
 				categoryId: parseInt(expense.idCategory, 10),
 				accountId: parseInt(expense.idAccount, 10),
 				date: new Date(expense.dtDate),
@@ -128,7 +129,8 @@ app
 				categoryId: expense.categoryId,
 				title: expense.title,
 				amount: expense.amount,
-				description: expense.description ? expense.description : '',
+				description: expense.description || '',
+				tags: expense.tags || '',
 				date: $filter('date')(expense.date, 'iso')
 			})
 				.then(function(expense) {
@@ -164,7 +166,8 @@ app
 				id: expense.id,
 				title: expense.title,
 				amount: expense.amount,
-				description: expense.description,
+				description: expense.description || '',
+				tags: expense.tags || '',
 				date: $filter('date')(expense.date, 'iso')
 			})
 				.then(function(expense) {

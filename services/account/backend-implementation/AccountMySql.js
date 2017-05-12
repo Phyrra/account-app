@@ -91,6 +91,7 @@ app
 					'title': expense.title,
 					'amount': expense.amount,
 					'description': expense.description,
+					'tags': expense.tags,
 					'date': expense.date
 				},
 				transformRequest: $.param
@@ -131,6 +132,7 @@ app
 					'title': expense.title,
 					'amount': expense.amount,
 					'description': expense.description,
+					'tags': expense.tags,
 					'date': expense.date
 				},
 				transformRequest: $.param

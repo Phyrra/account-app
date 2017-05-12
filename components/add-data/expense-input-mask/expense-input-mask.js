@@ -34,6 +34,7 @@ app
 				title: ctrl.title,
 				amount: ctrl.amount,
 				description: ctrl.description,
+				tags: ctrl.tags,
 				date: ctrl.date
 			});
 		};
@@ -46,6 +47,7 @@ app
 				title: ctrl.title,
 				amount: ctrl.amount,
 				description: ctrl.description,
+				tags: ctrl.tags,
 				date: ctrl.date
 			});
 		};
@@ -65,6 +67,7 @@ app
 				ctrl.title = ctrl.model.title;
 				ctrl.amount = ctrl.model.amount;
 				ctrl.description = ctrl.model.description;
+				ctrl.tags = ctrl.model.tags;
 				ctrl.date = ctrl.model.date;
 			}
 		};

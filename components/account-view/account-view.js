@@ -10,7 +10,7 @@ app
 
 		ctrl.MAX_OPEN_ON_START = 1;
 
-		ctrl.SEARCH_KEYS = ['category.name', 'title', 'description'];
+		ctrl.SEARCH_KEYS = ['category.name', 'title', 'description', 'tags'];
 
 		ctrl.showSidebar = false;
 		ctrl.showFilterMenu = false;
