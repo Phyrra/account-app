@@ -17,6 +17,8 @@ app
 	.controller('BalanceBlockController', ['ModalService', function(ModalService) {
 		var ctrl = this;
 
+		ctrl.filteredExpenses = [];
+
 		ctrl.onContentToggle = function() {
 			ctrl.showContent = !ctrl.showContent;
 		};
