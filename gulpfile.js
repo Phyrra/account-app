@@ -7,6 +7,7 @@ var concatCss = require('gulp-concat-css');
 var html2js = require('gulp-ng-html2js');
 var browserSync = require('browser-sync').create();
 var jscs = require('gulp-jscs');
+var zip = require('gulp-zip');
  
 gulp.task('sass', function() {
 	gulp.src([
@@ -63,4 +64,18 @@ gulp.task('jscs', function() {
 		])
 		.pipe(jscs())
 		.pipe(jscs.reporter());
+});
+
+gulp.task('build-android', ['build'], function() {
+    gulp.src([
+            'index.html',
+            'components.js',
+            'templates.js',
+            'styles.css',
+            'filters/**',
+            'services/**',
+            'bower_components/**'
+        ], { base: '.' })
+        .pipe(zip('android-assets.zip'))
+        .pipe(gulp.dest('.'))
 });
