@@ -63,19 +63,19 @@ app
 		};
 
 		var entityMap = {
-            '<': '&lt;',
-            '>': '&gt;'
-        };
+			'<': '&lt;',
+			'>': '&gt;'
+		};
 
-        function escapeHtml (string) {
-            return string.replace(/[<>]/g, function(s) {
-                return entityMap[s];
-            });
-        }
+		function escapeHtml (string) {
+			return string.replace(/[<>]/g, function(s) {
+				return entityMap[s];
+			});
+		}
 
-        ctrl.$onChanges = function(changes) {
-            if (changes.model) {
-                ctrl.displayDescription = escapeHtml(changes.model.currentValue.description).replace(/(?:\r\n|\r|\n)/g, '<br />');
-            }
-        };
+		ctrl.$onChanges = function(changes) {
+			if (changes.model) {
+				ctrl.displayDescription = escapeHtml(changes.model.currentValue.description).replace(/(?:\r\n|\r|\n)/g, '<br />');
+			}
+		};
 	}]);

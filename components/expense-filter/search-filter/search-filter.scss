@@ -4,57 +4,57 @@
 $circle-size: $default-icon-size + $default-padding / 2;
 
 .search-filter {
-    padding: $default-padding;
+	padding: $default-padding;
 
-    position: relative;
+	position: relative;
 
-    input {
-        font-family: inherit;
-        font-size: inherit;
+	input {
+		font-family: inherit;
+		font-size: inherit;
 
-        width: 100%;
-        padding: $default-padding;
-        padding-right: 5 * $default-padding;
+		width: 100%;
+		padding: $default-padding;
+		padding-right: 5 * $default-padding;
 
-        border: 1px solid $darkish-grey;
-        border-radius: $border-radius;
+		border: 1px solid $darkish-grey;
+		border-radius: $border-radius;
 
-        &:focus {
-            outline: none;
-        }
-    }
+		&:focus {
+			outline: none;
+		}
+	}
 
-    i.fa-search {
-        position: absolute;
+	i.fa-search {
+		position: absolute;
 
-        right: 2 * $default-padding;
-        top: 2 * $default-padding;
+		right: 2 * $default-padding;
+		top: 2 * $default-padding;
 
-        color: $darkish-grey;
-    }
+		color: $darkish-grey;
+	}
 
-    i.fa-times {
-        cursor: pointer;
+	i.fa-times {
+		cursor: pointer;
 
-        position: absolute;
+		position: absolute;
 
-        right: 4 * $default-padding;
-        top: 2 * $default-padding;
+		right: 4 * $default-padding;
+		top: 2 * $default-padding;
 
-        color: $darkish-grey;
+		color: $darkish-grey;
 
-        width: $circle-size;
-        height: $circle-size;
+		width: $circle-size;
+		height: $circle-size;
 
-        border-radius: $circle-size;
+		border-radius: $circle-size;
 
-        text-align: center;
+		text-align: center;
 
-        padding-top: 2px; // TODO: a bit of a hack
+		padding-top: 2px; // TODO: a bit of a hack
 
-        &:hover {
-            color: $white;
-            background-color: $dark-blue;
-        }
-    }
+		&:hover {
+			color: $white;
+			background-color: $dark-blue;
+		}
+	}
 }

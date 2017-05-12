@@ -41,7 +41,7 @@ app
 				if (angular.isDefined($attrs.onSwipe)) {
 					callback = $parse($attrs.onSwipe);
 				} else {
-				    callback = angular.noop;
+					callback = angular.noop;
 				}
 
 				var running = false;
@@ -124,14 +124,14 @@ app
 								duration: Math.min(time || MIN_ANIMATION_TIME, MIN_ANIMATION_TIME),
 								easing: 'linear',
 								done: function() {
-								    $timeout(function() {
-								        callback(
-                                            $scope,
-                                            {
-                                                direction: left > 0 ? SWIPE_DIRECTION.RIGHT : SWIPE_DIRECTION.LEFT
-                                            }
-                                        );
-                                    }, 0);
+									$timeout(function() {
+										callback(
+											$scope,
+											{
+												direction: left > 0 ? SWIPE_DIRECTION.RIGHT : SWIPE_DIRECTION.LEFT
+											}
+										);
+									}, 0);
 
 									$element.css('left', '');
 								}
