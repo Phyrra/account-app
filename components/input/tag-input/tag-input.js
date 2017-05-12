@@ -69,7 +69,7 @@ app
 		};
 
 		ctrl.$onInit = function() {
-			if (angular.isDefined(ctrl.model)) {
+			if (ctrl.model) {
 				ctrl.tags = ctrl.model.split(',').map(function(tag) {
 					return tag.trim();
 				});
