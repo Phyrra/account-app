@@ -4,4 +4,10 @@
 	.expense-input-field {
 		padding: $default-padding;
 	}
+
+	.expense-input-category-option {
+	    .fa {
+	        margin-right: $default-padding;
+	    }
+	}
 }

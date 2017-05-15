@@ -1,8 +1,6 @@
 <div class="dropdown-input">
 	<div class="dropdown-input-display" ng-class="{ 'dropdown-input-foldout-open': inputCtrl.showFoldout }" ng-click="inputCtrl.onFoldoutToggle()">
-		<div class="dropdown-input-selection">
-			{{ inputCtrl.display }}
-		</div>
+		<div class="dropdown-input-selection" ng-bind-html="inputCtrl.renderOption(inputCtrl.model, true) | html"></div>
 		
 		<div class="dropdown-input-toggle">
 			<i class="fa" ng-class="{ 'fa-chevron-down': !inputCtrl.showFoldout, 'fa-chevron-left': inputCtrl.showFoldout }"></i>
@@ -11,7 +9,7 @@
 
 	<div class="dropdown-input-foldout foldout-animation" ng-if="inputCtrl.showFoldout">
 		<div class="dropdown-input-option" ng-repeat="option in inputCtrl.options" ng-click="inputCtrl.onOptionSelected(option)">
-			{{ option.text }}
+			<span ng-bind-html="::inputCtrl.renderOption(option, false) | html"></span>
 		</div>
 	</div>
 </div>

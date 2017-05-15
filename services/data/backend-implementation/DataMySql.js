@@ -17,7 +17,7 @@ app
 					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
 				},
 				data: {
-					'category-name': category.name
+					'name': category.name
 				},
 				transformRequest: $.param
 			}).then(function(response) {
@@ -32,10 +32,21 @@ app
 		};
 
 		this.updateCategory = function(category) {
-			return $q.resolve({
-				id: category.id,
-				sName: category.name,
-				sIcon: category.icon
-			});
+		    return $http({
+		        method: 'POST',
+		        url: 'http://localhost/public/api/data/update-category.php',
+		        headers: {
+		            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+		        },
+		        data: {
+		            'category-id': category.id,
+		            'name': category.name,
+		            'icon': category.icon
+		        },
+		        transformRequest: $.param
+		    })
+		        .then(function(response) {
+		            return response.data[0];
+		        });
 		};
 	}]);

@@ -6,11 +6,12 @@ app
 		bindings: {
 			model: '=ngModel',
 			options: '<',
+			render: '&?',
 			placeholder: '@'
 		}
 	})
 	
-	.controller('DropdownInputController', ['$element', '$scope', function($element, $scope) {
+	.controller('DropdownInputController', ['$element', function($element) {
 		var ctrl = this;
 
 		ctrl.showFoldout = false;
@@ -26,8 +27,7 @@ app
 		};
 
 		ctrl.onOptionSelected = function(option) {
-			ctrl.model = option.value;
-			ctrl.display = option.text;
+			ctrl.model = option;
 
 			ctrl.closeFoldout();
 
@@ -35,35 +35,23 @@ app
 				.removeClass('required');
 		};
 
-		ctrl.evalDisplayText = function() {
-			if (angular.isUndefined(ctrl.model)) {
-				if (angular.isDefined(ctrl.placeholder)) {
-					ctrl.display = ctrl.placeholder;
-				} else {
-					ctrl.display = '-- Please select --';
-				}
+		ctrl.renderOption = function(option, isPlaceholderAllowed) {
+			if (angular.isUndefined(option)) {
+			    if (isPlaceholderAllowed) {
+			        if (angular.isDefined(ctrl.placeholder)) {
+                        return ctrl.placeholder;
+                    } else {
+                        return '-- Please select --';
+                    }
+			    }
 
-				return;
+			    return undefined;
 			}
 
-			ctrl.options.some(function(option) {
-				if (ctrl.model === option.value) {
-					ctrl.display = option.text;
-				}
-			});
+            if (angular.isFunction(ctrl.render)) {
+                return ctrl.render({ option: option });
+            }
+
+            return option.text || '&nbsp;';
 		};
-
-		var modelWatcher = $scope.$watch('inputCtrl.model', function(value) {
-			if (value) {
-				ctrl.evalDisplayText();
-				modelWatcher();
-			}
-		});
-
-		var optionsWatcher = $scope.$watch('inputCtrl.options', function(value) {
-			if (value && value.length > 0) {
-				ctrl.evalDisplayText();
-				optionsWatcher();
-			}
-		});
 	}]);

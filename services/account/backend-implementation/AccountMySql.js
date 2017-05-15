@@ -49,12 +49,22 @@ app
 		};
 
 		this.updateBalance = function(balance) {
-			return $q.resolve({
-				id: balance.id,
-				idAccount: balance.accountId,
-				fAmount: balance.amount,
-				dtDate: balance.date
-			});
+			return $http({
+                method: 'POST',
+                url: 'http://localhost/public/api/account/update-balance.php',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                data: {
+                    'balance-id': balance.id,
+                    'account-id': balance.accountId,
+                    'amount': balance.amount,
+                    'date': balance.date
+                },
+                transformRequest: $.param
+            }).then(function(response) {
+                return response.data[0];
+            });
 		};
 
 		this.getExpenses = function(account) {
