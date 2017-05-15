@@ -77,5 +77,5 @@ gulp.task('build-android', ['build'], function() {
             'bower_components/**'
         ], { base: '.' })
         .pipe(zip('android-assets.zip'))
-        .pipe(gulp.dest('.'))
+        .pipe(gulp.dest('./build'))
 });
