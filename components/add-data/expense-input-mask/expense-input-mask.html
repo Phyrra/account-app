@@ -1,6 +1,6 @@
 <div class="expense-input-mask">
 	<div class="expense-input-field category">
-		<dropdown-input ng-model="inputMaskCtrl.categoryId" options="inputMaskCtrl.categories" placeholder="-- Category --"></dropdown-input>
+		<dropdown-input ng-model="inputMaskCtrl.category" options="inputMaskCtrl.categories" render="inputMaskCtrl.renderCategory(option)" placeholder="-- Category --"></dropdown-input>
 	</div>
 
 	<div class="expense-input-field title">

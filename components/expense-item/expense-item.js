@@ -33,14 +33,12 @@ app
 								.find('.expense-input-mask').scope()
 								.inputMaskCtrl;
 
-							inputMaskCtrl.validate();
+							if (inputMaskCtrl.validate()) {
+							    inputMaskCtrl.onUpdate().then(function(expense) {
+                                    ctrl.accountCtrl.updateExpense(expense);
 
-							if (inputMaskCtrl.categoryId && inputMaskCtrl.amount && inputMaskCtrl.title && inputMaskCtrl.date) {
-								inputMaskCtrl.onUpdate().then(function(expense) {
-									ctrl.accountCtrl.updateExpense(expense);
-
-									ModalService.close();
-								});
+                                    ModalService.close();
+                                });
 							}
 						}
 					}, {

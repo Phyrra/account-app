@@ -172,6 +172,20 @@ app
 			});
 		};
 
+		ctrl.updateCategories = function(categories) {
+		    var map = {};
+
+		    categories.forEach(function(category) {
+		        map[category.id] = category;
+		    });
+
+		    ctrl.expenses.forEach(function(expense) {
+		        if (map[expense.categoryId]) {
+		            expense.category = map[expense.categoryId];
+		        }
+		    });
+		};
+
 		$scope.$watch('accountCtrl.selectedAccount', function(value, oldValue) {
 			if (value && value !== oldValue) {
 				ctrl.loadData();

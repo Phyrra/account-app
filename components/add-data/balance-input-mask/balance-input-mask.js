@@ -29,9 +29,15 @@ app
 		};
 
 		ctrl.validate = function() {
+		    var valid = true;
+
 			if (!ctrl.amount) {
 				$element.find('.amount input').addClass('required');
+
+				valid = false;
 			}
+
+			return valid;
 		};
 
 		ctrl.$onInit = function() {
