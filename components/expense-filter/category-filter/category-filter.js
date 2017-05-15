@@ -3,6 +3,9 @@ app
 		templateUrl: 'components/expense-filter/category-filter/category-filter.html',
 		controller: 'CategoryFilterController',
 		controllerAs: 'categoryFilterCtrl',
+		require: {
+            accountCtrl: '^^accountView' // AccountViewController
+        },
 		bindings: {
 			model: '<ngModel',
 			onChange: '&'
@@ -38,6 +41,8 @@ app
 					break;
 				}
 			}
+
+			ctrl.accountCtrl.updateCategories(ctrl.categories);
 		};
 
 		ctrl.deleteCategory = function(category) {

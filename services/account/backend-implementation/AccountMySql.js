@@ -1,5 +1,5 @@
 app
-	.service('Account', ['$http', '$q', function($http, $q) {
+	.service('Account', ['$http', 'DataService', '$q', function($http, DataService, $q) {
 		this.getAccounts = function() {
 			return $http({
 				method: 'GET',
@@ -65,6 +65,19 @@ app
             }).then(function(response) {
                 return response.data[0];
             });
+		};
+
+		var getCategoriesMap = function() {
+		    return DataService.getCategories()
+		        .then(function(categories) {
+		            var map = {};
+
+		            categories.forEach(function(category) {
+		                map[category.id] = category;
+		            });
+
+		            return map;
+		        });
 		};
 
 		this.getExpenses = function(account) {
