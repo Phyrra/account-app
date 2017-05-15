@@ -73,7 +73,9 @@ app
 
 		ctrl.$onChanges = function(changes) {
 			if (changes.model) {
-				ctrl.displayDescription = escapeHtml(changes.model.currentValue.description).replace(/(?:\r\n|\r|\n)/g, '<br />');
+			    if (changes.model.currentValue.description) {
+				    ctrl.displayDescription = escapeHtml(changes.model.currentValue.description).replace(/(?:\r\n|\r|\n)/g, '<br />');
+				}
 			}
 		};
 	}]);

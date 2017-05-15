@@ -24,9 +24,7 @@ app
 		ctrl.onSaveExpense = function() {
 			var inputMaskCtrl = $element.find('.expense-input-mask').scope().inputMaskCtrl;
 
-			inputMaskCtrl.validate();
-
-			if (inputMaskCtrl.categoryId && inputMaskCtrl.amount && inputMaskCtrl.title && inputMaskCtrl.date) {
+			if (inputMaskCtrl.validate()) {
 				return inputMaskCtrl.onCreate(ctrl.accountId).then(function(expense) {
 					return {
 						success: true,
@@ -44,9 +42,7 @@ app
 		ctrl.onSaveBalance = function() {
 			var inputMaskCtrl = $element.find('.balance-input-mask').scope().inputMaskCtrl;
 
-			inputMaskCtrl.validate();
-
-			if (inputMaskCtrl.amount) {
+			if (inputMaskCtrl.validate()) {
 				return inputMaskCtrl.onCreate(ctrl.accountId).then(function(balance) {
 					return {
 						success: true,
