@@ -3,6 +3,5 @@ bower_components/
 node_modules/
 build/
 *.css
-components.js
-templates.js
+app.js
 backend_tmp/

@@ -19,12 +19,6 @@ gulp.task('sass', function() {
 		.pipe(gulp.dest('.'));
 });
 
-gulp.task('components-concat', function() {
-	return gulp.src('components/**/*.js')
-		.pipe(concat('components.js'))
-		.pipe(gulp.dest('.'));
-});
-
 gulp.task('components-template', function() {
 	return gulp.src('components/**/*.html')
 		.pipe(html2js({
@@ -34,17 +28,27 @@ gulp.task('components-template', function() {
 		.pipe(gulp.dest('build/template/.'));
 });
 
-gulp.task('template-concat', ['components-template'], function() {
-	return gulp.src('build/template/**/*.js')
-		.pipe(concat('templates.js'))
-		.pipe(gulp.dest('.'));
+gulp.task('concat-js', ['components-template'], function() {
+    var backendServices = [
+        'services/account/backend-implementation/AccountMySql.js',
+        'services/data/backend-implementation/DataMySql.js',
+        'services/data/backend-implementation/FontAwesomeStatic.js'
+    ];
+
+    return gulp.src(
+        [
+            'build/template/**/*.js',
+            'components/**/*.js',
+            'filters/**/*.js'
+        ]
+        .concat(backendServices)
+        .concat(['services/*/*.js'])
+    )
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest('.'));
 });
 
-gulp.task('components', ['components-concat', 'template-concat'], function() {
-	// do nothing
-});
-
-gulp.task('build', ['sass', 'components'], function() {
+gulp.task('build', ['sass', 'concat-js'], function() {
 	// do nothing
 });
 
