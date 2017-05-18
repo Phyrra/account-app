@@ -31,8 +31,8 @@ gulp.task('components-template', function() {
 
 gulp.task('concat-js', ['components-template'], function() {
     var backendServices = [
-        'services/account/backend-implementation/AccountMySql.js',
-        'services/data/backend-implementation/DataMySql.js',
+        'services/account/backend-implementation/AccountAndroid.js',
+        'services/data/backend-implementation/DataAndroid.js',
         'services/data/backend-implementation/FontAwesomeStatic.js'
     ];
 
@@ -73,11 +73,8 @@ gulp.task('jscs', function() {
 gulp.task('build-android', ['build'], function() {
     gulp.src([
             'index.html',
-            'components.js',
-            'templates.js',
+            'app.js',
             'styles.css',
-            'filters/**',
-            'services/**',
             'bower_components/**'
         ], { base: '.' })
         .pipe(zip('android-assets.zip'))
