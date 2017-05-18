@@ -10,8 +10,10 @@ app
 		}
 	})
 
-	.controller('SearchFilterController', [function() {
+	.controller('SearchFilterController', ['FuzzySearchService', function(FuzzySearchService) {
 		var ctrl = this;
+
+		var FUZZY_LIMIT = 0.75;
 
 		var getValue = function(obj, compositeKey) {
 			var keys = compositeKey.split('.');
@@ -45,22 +47,17 @@ app
 				return;
 			}
 
-			var searchStrings = ctrl.search.split(' ')
-				.map(function(search) {
-					return search.trim();
-				})
-				.filter(function(search) {
-					return search.length > 0; // TODO: Maybe > 3?
-				});
-
 			var dstModel = ctrl.model.filter(function(element) {
-				return ctrl.keys.some(function(key) {
-					var value = getValue(element, key);
-
-					// Binds the searches as "or"
-					return searchStrings.some(function(search) {
-						return stringContains(value, search);
+				var values = ctrl.keys
+					.map(function(key) {
+						return getValue(element, key);
+					})
+					.filter(function(value) {
+						return !!value;
 					});
+
+				return values.some(function(value) {
+					return FuzzySearchService.getFuzzyResult(value, ctrl.search).match > FUZZY_LIMIT;
 				});
 			});
 

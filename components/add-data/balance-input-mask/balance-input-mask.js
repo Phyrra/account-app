@@ -29,7 +29,7 @@ app
 		};
 
 		ctrl.validate = function() {
-		    var valid = true;
+			var valid = true;
 
 			if (!ctrl.amount) {
 				$element.find('.amount input').addClass('required');

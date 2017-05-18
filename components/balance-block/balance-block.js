@@ -40,11 +40,11 @@ app
 								.inputMaskCtrl;
 
 							if (inputMaskCtrl.validate()) {
-							    inputMaskCtrl.onUpdate().then(function(balance) {
-                                    ModalService.close();
+								inputMaskCtrl.onUpdate().then(function(balance) {
+									ModalService.close();
 
-                                    ctrl.accountCtrl.updateBalance(balance);
-                                });
+									ctrl.accountCtrl.updateBalance(balance);
+								});
 							}
 						}
 					}, {

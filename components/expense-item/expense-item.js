@@ -34,11 +34,11 @@ app
 								.inputMaskCtrl;
 
 							if (inputMaskCtrl.validate()) {
-							    inputMaskCtrl.onUpdate().then(function(expense) {
-                                    ctrl.accountCtrl.updateExpense(expense);
+								inputMaskCtrl.onUpdate().then(function(expense) {
+									ctrl.accountCtrl.updateExpense(expense);
 
-                                    ModalService.close();
-                                });
+									ModalService.close();
+								});
 							}
 						}
 					}, {
@@ -73,8 +73,8 @@ app
 
 		ctrl.$onChanges = function(changes) {
 			if (changes.model) {
-			    if (changes.model.currentValue.description) {
-				    ctrl.displayDescription = escapeHtml(changes.model.currentValue.description).replace(/(?:\r\n|\r|\n)/g, '<br />');
+				if (changes.model.currentValue.description) {
+					ctrl.displayDescription = escapeHtml(changes.model.currentValue.description).replace(/(?:\r\n|\r|\n)/g, '<br />');
 				}
 			}
 		};

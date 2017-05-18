@@ -8,7 +8,7 @@ var html2js = require('gulp-ng-html2js');
 var browserSync = require('browser-sync').create();
 var jscs = require('gulp-jscs');
 var zip = require('gulp-zip');
- 
+
 gulp.task('sass', function() {
 	gulp.src([
 			'scss/*.scss',
@@ -33,17 +33,18 @@ gulp.task('concat-js', ['components-template'], function() {
     var backendServices = [
         'services/account/backend-implementation/AccountAndroid.js',
         'services/data/backend-implementation/DataAndroid.js',
-        'services/data/backend-implementation/FontAwesomeStatic.js'
+        'services/data/backend-implementation/FontAwesomeStatic.js',
+        'services/search/string-matcher/StringMatcherJaro.js'
     ];
 
     return gulp.src(
-        [
-            'build/template/**/*.js',
-            'components/**/*.js',
-            'filters/**/*.js'
-        ]
-        .concat(backendServices)
-        .concat(['services/*/*.js'])
+        backendServices
+            .concat([
+                'services/*/*.js',
+                'filters/**/*.js',
+                'build/template/**/*.js',
+                'components/**/*.js'
+            ])
     )
         .pipe(concat('app.js'))
         .pipe(gulp.dest('.'));
