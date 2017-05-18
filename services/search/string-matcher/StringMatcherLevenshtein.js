@@ -33,10 +33,10 @@ app
 		};
 
 		var relativeLevenshtein = function(a, b) {
-			return directLevenshtein(a, b) / (a.length + b.length) * 2;
+			return Math.min(directLevenshtein(a, b) / (a.length + b.length) * 2, 1);
 		};
 
 		this.getMatch = function(a, b) {
-			return 1 - Math.min(relativeLevenshtein(a, b), 1);
+			return 1 - relativeLevenshtein(a, b);
 		};
 	}]);
