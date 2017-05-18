@@ -13,6 +13,7 @@ app
 	.controller('SearchFilterController', ['FuzzySearchService', function(FuzzySearchService) {
 		var ctrl = this;
 
+		var MIN_LENGTH = 3;
 		var FUZZY_LIMIT = 0.75;
 
 		var getValue = function(obj, compositeKey) {
@@ -41,11 +42,16 @@ app
 		};
 
 		ctrl.performSearch = function() {
-			if (!ctrl.search) { // catches null, undefined, ''
+			if (!ctrl.search || ctrl.search.length < MIN_LENGTH) { // catches null, undefined, ''
 				ctrl.onChange({ dstModel: ctrl.model.slice() });
 
 				return;
 			}
+
+			FuzzySearchService.configure({
+				ignoreCase: true,
+				minLength: MIN_LENGTH
+			});
 
 			var dstModel = ctrl.model.filter(function(element) {
 				var values = ctrl.keys
@@ -57,7 +63,7 @@ app
 					});
 
 				return values.some(function(value) {
-					return FuzzySearchService.getFuzzyResult(value, ctrl.search).match > FUZZY_LIMIT;
+					return FuzzySearchService.getFuzzyResult(ctrl.search, value).match > FUZZY_LIMIT;
 				});
 			});
 
