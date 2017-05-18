@@ -36,13 +36,13 @@ gulp.task('concat-js', ['components-template'], function() {
     ];
 
     return gulp.src(
-        [
-            'build/template/**/*.js',
-            'components/**/*.js',
-            'filters/**/*.js'
-        ]
-        .concat(backendServices)
-        .concat(['services/*/*.js'])
+        backendServices
+            .concat([
+                'services/*/*.js',
+                'filters/**/*.js',
+                'build/template/**/*.js',
+                'components/**/*.js'
+            ])
     )
         .pipe(concat('app.js'))
         .pipe(gulp.dest('.'));
