@@ -14,7 +14,7 @@ app
 		ctrl.categories = [];
 
 		ctrl.validate = function() {
-		    var valid = true;
+			var valid = true;
 
 			if (!ctrl.category) {
 				$element.find('.category .dropdown-input').addClass('required');
@@ -61,10 +61,10 @@ app
 		};
 
 		ctrl.renderCategory = function(category) {
-            return  '<span class="expense-input-category-option">' +
-                        (category.icon ? '<i class="fa fa-' + category.icon + '"></i>' : '')+
-                        category.name +
-                    '</span>';
+			return '<span class="expense-input-category-option">' +
+						(category.icon ? '<i class="fa fa-' + category.icon + '"></i>' : '') +
+						category.name +
+					'</span>';
 		};
 
 		ctrl.$onInit = function() {
@@ -72,15 +72,15 @@ app
 				ctrl.categories = categories;
 
 				if (angular.isDefined(ctrl.model)) {
-				    ctrl.categories.some(function(category) {
-				        if (category.id === ctrl.model.categoryId) {
-				            ctrl.category = category;
+					ctrl.categories.some(function(category) {
+						if (category.id === ctrl.model.categoryId) {
+							ctrl.category = category;
 
-				            return true;
-				        }
+							return true;
+						}
 
-				        return false;
-				    });
+						return false;
+					});
 				}
 			});
 

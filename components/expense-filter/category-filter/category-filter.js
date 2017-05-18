@@ -4,8 +4,8 @@ app
 		controller: 'CategoryFilterController',
 		controllerAs: 'categoryFilterCtrl',
 		require: {
-            accountCtrl: '^^accountView' // AccountViewController
-        },
+			accountCtrl: '^^accountView' // AccountViewController
+		},
 		bindings: {
 			model: '<ngModel',
 			onChange: '&'

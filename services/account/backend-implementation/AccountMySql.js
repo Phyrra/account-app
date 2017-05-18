@@ -50,34 +50,34 @@ app
 
 		this.updateBalance = function(balance) {
 			return $http({
-                method: 'POST',
-                url: 'http://localhost/public/api/account/update-balance.php',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                },
-                data: {
-                    'balance-id': balance.id,
-                    'account-id': balance.accountId,
-                    'amount': balance.amount,
-                    'date': balance.date
-                },
-                transformRequest: $.param
-            }).then(function(response) {
-                return response.data[0];
-            });
+				method: 'POST',
+				url: 'http://localhost/public/api/account/update-balance.php',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+				},
+				data: {
+					'balance-id': balance.id,
+					'account-id': balance.accountId,
+					'amount': balance.amount,
+					'date': balance.date
+				},
+				transformRequest: $.param
+			}).then(function(response) {
+				return response.data[0];
+			});
 		};
 
 		var getCategoriesMap = function() {
-		    return DataService.getCategories()
-		        .then(function(categories) {
-		            var map = {};
+			return DataService.getCategories()
+				.then(function(categories) {
+					var map = {};
 
-		            categories.forEach(function(category) {
-		                map[category.id] = category;
-		            });
+					categories.forEach(function(category) {
+						map[category.id] = category;
+					});
 
-		            return map;
-		        });
+					return map;
+				});
 		};
 
 		this.getExpenses = function(account) {

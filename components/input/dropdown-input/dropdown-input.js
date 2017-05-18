@@ -37,21 +37,21 @@ app
 
 		ctrl.renderOption = function(option, isPlaceholderAllowed) {
 			if (angular.isUndefined(option)) {
-			    if (isPlaceholderAllowed) {
-			        if (angular.isDefined(ctrl.placeholder)) {
-                        return ctrl.placeholder;
-                    } else {
-                        return '-- Please select --';
-                    }
-			    }
+				if (isPlaceholderAllowed) {
+					if (angular.isDefined(ctrl.placeholder)) {
+						return ctrl.placeholder;
+					} else {
+						return '-- Please select --';
+					}
+				}
 
-			    return undefined;
+				return undefined;
 			}
 
-            if (angular.isFunction(ctrl.render)) {
-                return ctrl.render({ option: option });
-            }
+			if (angular.isFunction(ctrl.render)) {
+				return ctrl.render({ option: option });
+			}
 
-            return option.text || '&nbsp;';
+			return option.text || '&nbsp;';
 		};
 	}]);
