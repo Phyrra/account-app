@@ -33,8 +33,7 @@ gulp.task('concat-js', ['components-template'], function() {
     var backendServices = [
         'services/account/backend-implementation/AccountAndroid.js',
         'services/data/backend-implementation/DataAndroid.js',
-        'services/data/backend-implementation/FontAwesomeStatic.js',
-        'services/search/string-matcher/StringMatcherJaro.js'
+        'services/data/backend-implementation/FontAwesomeStatic.js'
     ];
 
     return gulp.src(

@@ -69,6 +69,14 @@ app
 		ctrl.$onChanges = function(changes) {
 			if (changes.expenses) {
 				ctrl.filteredExpenses = ctrl.accountCtrl.getExpensesInDateRange(changes.expenses.currentValue, ctrl.model);
+
+				var hasNew = ctrl.filteredExpenses.some(function(expense) {
+					return expense.isNew;
+				});
+
+				if (hasNew) {
+					ctrl.showContent = true;
+				}
 			}
 		};
 

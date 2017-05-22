@@ -5,12 +5,14 @@ app
 		controllerAs: 'accountCtrl'
 	})
 
-	.controller('AccountViewController', ['$scope', 'AccountService', '$q', function($scope, AccountService, $q) {
+	.controller('AccountViewController', ['$scope', 'AccountService', '$q', '$timeout', function($scope, AccountService, $q, $timeout) {
 		var ctrl = this;
 
 		ctrl.MAX_OPEN_ON_START = 1;
 
 		ctrl.SEARCH_KEYS = ['title', 'description'];
+
+		ctrl.SCROLL_TO_NEW_SPEED = 300;
 
 		ctrl.showSidebar = false;
 		ctrl.showFilterMenu = false;
@@ -163,6 +165,23 @@ app
 						return false;
 					});
 				}
+
+				$timeout(function() {
+					var view = $('.view');
+					var newElement = $('.is-new');
+
+					if (newElement.length > 0) {
+						var offsetView = view.offset().top;
+						var offsetElement = newElement.offset().top;
+						var heightElement = newElement.outerHeight();
+
+						view.animate({
+							scrollTop: offsetElement - offsetView - heightElement
+						}, {
+							duration: ctrl.SCROLL_TO_NEW_SPEED
+						});
+					}
+				}, 5, false);
 
 				// FIXME: bit of a hack to prevent animation on first load
 				// the 1000 is a "measured-guess"
