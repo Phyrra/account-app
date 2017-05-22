@@ -167,16 +167,15 @@ app
 				}
 
 				$timeout(function() {
-					var view = $('.view');
+					var view = $('body');
 					var newElement = $('.is-new');
 
 					if (newElement.length > 0) {
-						var offsetView = view.offset().top;
 						var offsetElement = newElement.offset().top;
 						var heightElement = newElement.outerHeight();
 
 						view.animate({
-							scrollTop: offsetElement - offsetView - heightElement
+							scrollTop: offsetElement - heightElement
 						}, {
 							duration: ctrl.SCROLL_TO_NEW_SPEED
 						});
