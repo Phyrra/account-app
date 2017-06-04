@@ -20,6 +20,7 @@
     "angular-touch": "1.6.4",
     "jquery": "3.2.1",
     "font-awesome": "4.6.3",
-    "c3": "0.4.11"
+    "c3": "0.4.11",
+    "sama-aggregator": "0.1.3"
   }
 }

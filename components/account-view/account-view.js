@@ -26,38 +26,6 @@ app
 		ctrl.categoryFilteredExpenses = [];
 		ctrl.searchFilteredExpenses = [];
 
-		var listToMap = function(list, key) {
-			var map = {};
-
-			list.forEach(function(element) {
-				map[element[key]] = element;
-			});
-
-			return map;
-		};
-
-		var getCommonElements = function(key) {
-			var listOfLists = arguments;
-
-			var map = listToMap(listOfLists[1], key);
-
-			Array.prototype.slice.call(listOfLists, 2).forEach(function(list) {
-				var newMap = {};
-
-				list.forEach(function(element) {
-					var keyValue = element[key];
-
-					if (map.hasOwnProperty(keyValue)) {
-						newMap[keyValue] = map[keyValue];
-					}
-				});
-
-				map = newMap;
-			});
-
-			return map;
-		};
-
 		ctrl.onCategoryFilterChange = function(dstModel) {
 			ctrl.categoryFilteredExpenses = dstModel;
 
@@ -70,11 +38,16 @@ app
 			ctrl.filterExpenses();
 		};
 
-		// TODO: Race condition?!
 		ctrl.filterExpenses = function() {
 			var key = 'id';
 
-			var commonFilteredExpenses = getCommonElements('id', ctrl.categoryFilteredExpenses, ctrl.searchFilteredExpenses);
+			// TODO: getCommonElements destroys order
+			// 		 therefore the last step is done with .filter()
+			var commonFilteredExpenses = Aggregator.getCommonElements(
+				key,
+				new Aggregator(ctrl.categoryFilteredExpenses),
+				new Aggregator(ctrl.searchFilteredExpenses)
+			).toMap(key);
 
 			ctrl.filteredExpenses = ctrl.expenses.filter(function(expense) {
 				return commonFilteredExpenses.hasOwnProperty(expense[key]);

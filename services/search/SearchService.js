@@ -202,17 +202,10 @@ app
 				return list.slice();
 			}
 
-			return list.filter(function(element) {
-				return include
-					.map(function(key) {
-						return getDeepValue(element, key);
-					})
-					.filter(function(value) {
-						return !!value;
-					})
-					.some(function(value) {
-						return getFuzzyResult(search, value).match > config.fuzzyLimit;
-					});
-			});
+			return new Aggregator(list)
+				.where(include, one(function(value) {
+					return value && getFuzzyResult(search, value).match > config.fuzzyLimit;
+				}))
+				.toArray();
 		};
 	}]);
