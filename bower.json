@@ -21,6 +21,6 @@
     "jquery": "3.2.1",
     "font-awesome": "4.6.3",
     "c3": "0.4.11",
-    "sama-aggregator": "0.1.3"
+    "sama-aggregator": "0.2.2"
   }
 }
